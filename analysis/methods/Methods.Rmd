@@ -46,12 +46,6 @@ Cont.model <- na.omit(Cont.model)
 
 ```
 
-```{r demographics_model}
-
-cont.vars <- c("PCTPOVR", "PBAMORER", "URBANRUR", "AGER", "RACER", "SEX", "PAYTYPER")
-Cont.model <- urgentCareOnly.df[cont.vars]
-Cont.model <- na.omit(Cont.model)
-```
 
 ```{r functions}
 
