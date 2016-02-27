@@ -1,0 +1,17 @@
+base
+methods
+datasets
+utils
+grDevices
+graphics
+stats
+devtools
+rticles
+dplyr
+plyr
+ggplot2
+knitr
+cluster
+MASS
+klaR
+ape

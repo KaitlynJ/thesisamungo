@@ -1,0 +1,20 @@
+---
+title: "package_notes"
+output: pdf_document
+---
+
+library(dplyr)
+library(plyr)
+library(ggplot2)
+library(knitr)
+library(cluster)
+library(klaR)
+
+### Analyses of Phylogenetics and Evolution
+ + call: library(ape)
+ 
+ + description: ape provides functions for reading and manipulating phylogenetic trees and DNA sequences, computing DNA distances,    estimating trees with distance-based methods, and a range of methods for comparative analyses and analysis of diversification.
+ 
+ + use: visualization of clusters
+
+ + note: The complete list of functions can be displayed with library(help = ape).

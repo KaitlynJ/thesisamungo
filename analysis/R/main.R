@@ -180,10 +180,11 @@ dim(y)
 library(dplyr)
 library(cluster)
 library(plyr)
+
 sample <- sample_n(y, 200)
 
 ##################
-library(plyr)
+
 
 revalue(sample$PCTPOVR, c("Missing data"="Missing", 
                           "Quartile 1 (Less than 5.00 percent)"="Q1: <5%", 
@@ -204,7 +205,8 @@ revalue(sample$URBANRUR, c("Micropolitan/noncore (nonmetro)"="Rural",
 library(klaR)
 
 #distance matrix
-summary(dsy1 <- daisy(sample, metric = "gower"))
+sample.dsy <- daisy(sample, metric = "gower", stand = TRUE)
+
 
 # pick #
 install.packages('ape')
@@ -212,22 +214,23 @@ library(ape)
 
 colrs <- c("pink", "blue", "yellow", "green", "purple", "orange", "magenta", "red")
 
-h <- hclust(dsy1, method = "complete")
+h <- hclust(dsy1, method = "ward.D2")
 plot(h, labels= FALSE)
 
-clus8 = cutree(h, 8)
+clus8 = cutree(h, 16)
+table(clus8)
 
-
+plot(clus8)
 
 plot(as.phylo(h),  type="radial", tip.color = colrs[clus8] )
 title("Phylogenic Repesentation of 8 Sample Clusters")
 
-z <- agnes(dsy1, method = "complete")
+z <- agnes(dsy1, method = "ward")
 
 plot(z, labels=FALSE)
 
 
-plot(as.phylo(z), type = "radial")
+plot(as.phylo(z$[1]), type = "radial")
 
 title
 
@@ -237,8 +240,19 @@ k <- 9
 table(cutree(z, k))
 #splom(~sample[4:7], groups=sample$PAYTYPER, auto.key=TRUE, varnames = NULL)
 
+
+
+
+
+# EXPERIMENT 1 ----------------------------------
+X.hclustPL.wardD2 = hclust.PL(dist(y),method="ward.D2")
+X.agnes.wardD2 = agnes(dist(y),method="ward")
+
+#identical!
+
+
 #kmodes(data, modes, iter.max = 10, weighted = FALSE)
-cl <- kmodes(sample, modes = k, iter.max = 10, weighted = FALSE)
+sample.kmode <- kmodes(sample, modes = k, iter.max = 10, weighted = FALSE)
 cl
 cl$modes
 summary(cl)
