@@ -1,0 +1,102 @@
+Clustering Anlaysis Prep:
+
+## Remove and estimate missing data, then scale entire data setlibrary
+
+Data sumary example:
+
+cdata <- ddply(data, c("sex", "condition"), summarise,
+               N    = length(change),
+               mean = mean(change),
+               sd   = sd(change),
+               se   = sd / sqrt(N)
+               
+
+dummy <- as.numeric(year == 1957)
+
+demo.nblnks.df$TYPERC <- revalue(demo.nblnks.df$TYPE4CLASS, c("Private solo or group practice" = "0", "Community Health Center" = "0", "Other" = "0", "Urgent Care Center/Freestanding Clinic" = "1"))
+
+
+#### attempts to scale
+
+mydata <- scale(mydata)
+
+### determining number of clusters
+plot of the within groups sum of squares by number of clusters extracted
+
+wss <- (nrow(clusterable.df)-1)*sum(apply(,2,var))
+
+for (i in 2:15) wss[i] <- sum(kmeans(mydata, 
+  	centers=i)$withinss)
+  	
+plot(1:15, wss, type="b", xlab="Number of Clusters",
+  ylab="Within groups sum of squares")
+  
+  
+##Another way?
+  
+  
+ You can perform a cluster analysis with the dist and hclust functions. 
+ 
+ The dist function calculates a distance matrix for your dataset, giving the Euclidean distance between any two observations. 
+ 
+ The hclust function performs hierarchical clustering on a distance matrix. 
+ 
+ So to perform a cluster analysis from your raw data, use both functions together as shown below.
+ 
+> modelname<-hclust(dist(dataset))
+
+hclustfunc <- function(x) hclust(x, method="complete")
+distfunc <- function(x) as.dist((1-cor(t(x)))/2)
+d <- distfunc(mydata)
+fit <- hclustfunc(d)
+
+############################################
+First take small sample:
+sample1 <- sample_n(fornow.df, 4)
+
+then scale:
+sample1 <- scale(sample1)
+d <- distfunc(sample1)
+fit <- hclustfunc(d)
+
+
+
+The command saves the results of the analysis to an object named modelname.
+
+The results of a cluster analysis are best represented by a dendrogram, which you can create with the plot function as shown.
+
+> plot(modelname)
+
+Be default, the row numbers or row names are used to label the observations. However you can use the labels argument to select a variable to use for the labels.
+
+> plot(modelname, labels=dataset$variable)
+
+To ‘cut’ the dendrogram to identify a given number of clusters, use the rect.hclust function immediately after the plot function as shown below:
+> plot(modelname)
+> rect.hclust(modelname, n)
+
+where n is the number of clusters that you want to identify.
+
+Alternatively you can cut the dendrogram at a specific height by adding the h argument.
+
+> plot(modelname)
+> rect.hclust(modelname, h=height)
+
+To save the cluster numbers to a new variable in the dataset, use the cutree function.
+> dataset$clusternumber<-cutree(modelname, n)
+
+Example: Cluster analysis of europe dataset
+
+Consider the europe dataset, which is available in CSV format here. The data is taken from the CIA World Factbook and gives some information about 28 european countries.
+> europe
+          Country   Area   GDP Inflation Life.expect Military Pop.growth Unemployment
+1         Austria  83871 41600       3.5       79.91     0.80       0.03          4.2
+2         Belgium  30528 37800       3.5       79.65     1.30       0.06          7.2
+3        Bulgaria 110879 13800       4.2       73.84     2.60      -0.80          9.6
+4         Croatia  56594 18000       2.3       75.99     2.39      -0.09         17.7
+5  Czech Republic  78867 27100       1.9       77.38     1.15      -0.13          8.5
+6         Denmark  43094 37000       2.8       78.78     1.30       0.24          6.1
+...
+28 United Kingdom 243610 36500       4.5       80.17     2.70       0.55          8.1
+To perform the cluster analysis and save the results to an object, use the command:
+> euroclust<-hclust(dist(europe[-1]))

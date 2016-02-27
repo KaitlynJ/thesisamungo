@@ -1,0 +1,7 @@
+    Urg Care    Self Pay       Priv Ins       Hispanic        WHite          Black          Asian          Two +        Sex           Rural        Wealthy    
+ Min.   :1   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0.00   Min.   :0   Min.   :0.00   Min.   :0.0   Min.   :0.00  
+ 1st Qu.:1   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:1.00   1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0   1st Qu.:0.00   1st Qu.:0.0   1st Qu.:0.00  
+ Median :1   Median :0.00   Median :0.00   Median :0.00   Median :1.00   Median :0.00   Median :0.00   Median :0   Median :0.00   Median :0.0   Median :0.00  
+ Mean   :1   Mean   :0.07   Mean   :0.48   Mean   :0.08   Mean   :0.86   Mean   :0.12   Mean   :0.02   Mean   :0   Mean   :0.47   Mean   :0.2   Mean   :0.19  
+ 3rd Qu.:1   3rd Qu.:0.00   3rd Qu.:1.00   3rd Qu.:0.00   3rd Qu.:1.00   3rd Qu.:0.00   3rd Qu.:0.00   3rd Qu.:0   3rd Qu.:1.00   3rd Qu.:0.0   3rd Qu.:0.00  
+ Max.   :1   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :1.00   Max.   :0   Max.   :1.00   Max.   :1.0   Max.   :1.00 
