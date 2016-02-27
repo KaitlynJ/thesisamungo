@@ -1,0 +1,155 @@
+This method was chosen do to the differences between dichotomous attributes (this/that) and dichotomous attributes (present/absent). 
+
+History::
+
+library("dplyr", lib.loc="/Library/Frameworks/R.framework/Versions/3.2/Resources/library")
+
+sample1 <- sample_n(fornow.df, 10)
+View(sample1)
+
+dist(sample1, method = "euclidean")
+dist(sample1, method = "manhattan")
+dist(sample1, method = "binary")
+
+?flower
+??flower
+
+sample1 <- sample_n(fornow.df, 18)
+
+library("cluster", lib.loc="/Library/Frameworks/R.framework/Versions/3.2/Resources/library")
+
+fll <- daisy(sample1,type = list(asymm = 1, symm = 2, 3, 4, 5))
+#or
+fll <- daisy(sample1, type = list(asymm = 1))
+
+dist.s1 <- dist(sample1, method = "euclidean")
+h <- hclust(dist.s1, method = "complete")
+
+print(h)
+h$merge
+
+plot(h)
+plot(h, labels = FALSE)
+
+h$labels
+h$height
+
+h.cl <- h$height
+h.cl2 <- c(0, h.cl[-length(h.cl)])
+round(h.cl- h.cl2, 3)
+max(round(h.cl- h.cl2, 3))
+which.max(round(h.cl-h.cl2,3))
+
+dist.s2 <- dist(sample1, method = "binary")
+h <- hclust(dist.s2, method = "complete")
+h$merge
+plot(h)
+
+h.cl <- h$height
+h.cl2 <- c(0, h.cl[-length(h.cl)])
+max(round(h.cl- h.cl2, 3))
+which.max(round(h.cl-h.cl2,3))
+
+
+sample1 <- sample_n(fornow.df, 100)
+View(sample1)
+
+par(mfrow=c(2,2))
+plot(hclust(dist(sample1), method = "single"), ylab="Distance")
+plot(hclust(dist(sample1), method = "complete"), ylab="Distance")
+plot(hclust(dist(sample1), method = "average"), ylab="Distance")
+plot(hclust(dist(sample1), method = "ward.D"), ylab="Distance")
+
+dist.s <- dist(sample1, method = "binary")
+plot(hclust(dist.s, method = "single"), ylab="Distance")
+plot(hclust(dist.s, method = "complete"), ylab="Distance")
+plot(hclust(dist.s, method = "average"), ylab="Distance")
+
+par(mfrow=c(1,3))
+plot(hclust(dist.s, method = "single"), ylab="Distance")
+plot(hclust(dist.s, method = "average"), ylab="Distance")
+plot(hclust(dist.s, method = "complete"), ylab="Distance")
+
+
+h <- hclust(dist.s, method = "complete")
+h.cl <- h$height
+h.cl2 <- c(0, h.cl[-length(h.cl)])
+max(round(h.cl- h.cl2, 3))
+which.max(round(h.cl-h.cl2,3))
+
+
+clusters.km <- kmeans(sample1, 11)
+
+## setting names of rows
+id <- rownames(sample1)
+
+sample.clus.km <- lapply(1:11, function(nc)
+  id[clusters.km$cluster==nc])
+sample.clus.km
+
+clusters.km <- kmeans(sample1, 8)
+sample.clus.km <- lapply(1:8, function(nc)
+  id[clusters.km$cluster==nc])
+sample.clus.km
+
+clusters.km <- kmeans(sample1, 2)
+sample.clus.km <- lapply(1:2, function(nc)
+  id[clusters.km$cluster==nc])
+sample.clus.km
+
+clusters.km <- kmeans(sample1, 4)
+sample.clus.km <- lapply(1:4, function(nc)
+  id[clusters.km$cluster==nc])
+sample.clus.km
+
+id <- rownames(sample1$Urg)
+
+sample.clus.km <- lapply(1:4, function(nc)
+  id[clusters.km$cluster==nc])
+sample.clus.km
+id <- rownames(sample1$Urg)
+row.names(sample1)
+row.names(sample1) <- ifelse(sample1$Urg == 1,"UC", "Other")
+
+View(sample1)
+
+rownames(sample1) <- make.names(ifelse(sample1$Urg == 1, "UC", "O"), unique=TRUE)
+
+View(sample1)
+clusters.km <- kmeans(sample1, 8)
+  id <- rownames(sample1)
+sample.clus.km <- lapply(1:8, function(nc)
+id[clusters.km$cluster==nc])
+sample.clus.km
+
+clusters.km <- kmeans(sample1, 11)
+sample.clus.km <- lapply(1:11, function(nc)
+  id[clusters.km$cluster==nc])
+sample.clus.km
+
+
+par(mfrow=c(1,1))
+
+sil <- silhouette(clusters.km$cluster,dist.s)
+install.packages("kernlab")
+install.packages("fpc")
+library(fpc)
+
+out.sample.clus <- cluster.stats(dist.s, clusters.km$cluster)
+out.sample.clus
+
+plot(sil,cex.names=0.6, nmax.lab = 98 ,main="Silhouette Plot for 'Sample1' + dataset, k=11")
+clusters.km <- kmeans(sample1, 6)
+dist.s <- dist(sample1, method = "binary")
+out.sample.clus <- cluster.stats(dist.s, clusters.km$cluster)
+plot(sil,cex.names=0.6, nmax.lab = 4 ,main="Silhouette Plot for 'Sample1' + dataset, k=11")
+out.sample.clus
+
+sil <- silhouette(clusters.km$cluster,dist.s)
+plot(sil,cex.names=0.2,main="Silhouette Plot for 'Sample1' + dataset, k=11")
+
+rownames(sample1) <- make.names(ifelse(sample1$Urg == 1, "UC", "O"), unique=TRUE)
+
+sample.clus.km <- lapply(1:8, function(nc)
+  id[clusters.km$cluster==nc])
+sample.clus.km

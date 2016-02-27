@@ -1,0 +1,316 @@
+---
+title: "actual-explore"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages_include, echo=FALSE, message=FALSE}
+
+if (!require('Hmisc')) 
+{
+  install.packages('Hmisc', repos = 'http://cran.us.r-project.org');
+  library(ggplot2);
+}
+
+if (!require('dplyr')) 
+{
+  install.packages('dplyr', repos = 'http://cran.us.r-project.org');
+  library(dplyr);
+}
+
+if (!require('corrplot')) 
+{
+  install.packages('corrplot', repos = 'http://cran.us.r-project.org');
+  library(corrplot);
+}
+
+```
+
+## Initial Analyses
+
+**Outcome of interest: Per Capita Violent Crimes**
+The per capita violent crimes variable was calculated using population and the sum of 
+crime variables considered violent crimes in the United States: murder, rape, robbery, 
+and assault.
+
+```{r data_include, echo=FALSE, message=FALSE}
+crime <- read.csv("crime-train.csv", header = TRUE, na.strings = "?")
+attach(crime)
+sample <- sample_n(crime, 600)
+test.test <- anti_join(crime, sample)
+
+```
+
+
+## The outcome variable:
+
+```{r sums_of_outcome}
+summary(ViolentCrimesPerPop)
+plot(ViolentCrimesPerPop)
+```
+
+most around crime rates around .2, big outliers though
+
+```{r if_yr_bored, eval= FALSE}
+
+# the following lets you view plots one at a time, by setting the index from crime df
+# this chunk doesn't eval when knitted
+
+myPlot <- function(index) {
+  plot(crime$ViolentCrimesPerPop ~ crime[,index], 
+       main=names(crime[index]), pch=20, xlab = names(crime[index]))
+  }
+
+par(mfrow = c(1, 1), ask = TRUE)
+lapply(5:50, FUN = myPlot)
+lapply(51:100, FUN = myPlot)
+lapply(101:126, FUN = myPlot)
+```
+
+
+## (actual) Possible Variables List
+
+SES variables:
+* racepctblack - skewed, might log?
+* racepctwhite - opp of blck, more clear though*
+* pctUrban - weird but maybe significant, def not linear though
+* medIncome - downward slope,v clean**
+* pctWPubAsst - upward, could be picking up income tho
+* pctWInvInc - def downward sloping
+* blackPerCap - sig, downward trend
+* HispPerCap - same as above
+* * look at ratio of white/black and white/hispanic per cap income.... how? shrugs
+* PctPopUnderPov - * explore more, needs transformation
+
+Education/employment Variables:
+* PctNotHSGrad _ best for education?
+* PctBSorMore - opp of hsgrad
+* **PctUnemployed - def include??
+* PctEmployed, less outliers?? for some reason
+* PctOccupMgmtProf - weirdly sig
+
+Family Dynamics Variables:
+* *MalePctDivorce - very sig, family dynamics indicator
+* *Female Pct Div - pick one or above
+* better yet-- use Total Pct Div
+* PctFam2Par -- extremely neg correlate w crime**
+* PctKids2Par -- same
+* *PctIlleg
+
+Housing market/misc/weird stuff going on variables:
+* *look at immigrant more closely, possibly log
+* PctLargeHouseFam - sig in lower tail?
+* PcrPersOwnOccup- sig downward trend
+* PctHouseLess3BR - sig upward trend
+* PctHousOwnOcc - sig downward trend
+* PctSameCity85- longer = more crime? can't leave?
+
+
+
+```{r model_making function}
+
+# give it a list of variables and it outputs a list of simple lms on perCapCrime
+singularModels <- function(varlist) {
+  lm(substitute(ViolentCrimesPerPop ~ i, list(i = as.name(varlist))), data = crime)
+}
+
+# to view their summaries
+#lapply(models, summary)
+
+# to view their diagnostic plots
+#par(mfrow = c(2, 2), ask = TRUE)
+#invisible(lapply(models, plot))
+
+
+```
+
+
+```{r finding_sig_variables, cache=TRUE}
+
+varset.famDynamics <- c("MalePctDivorce", "FemalePctDiv", "TotalPctDiv", "PctFam2Par", "PctKids2Par", "PctIlleg")
+
+varset.SESind <- c("racepctblack", "racePctWhite", "pctUrban", "medIncome", "pctWPubAsst", "pctWInvInc", "blackPerCap", "HispPerCap", "PctPopUnderPov")
+
+varset.educEmp <- c("PctNotHSGrad", "PctBSorMore", "PctEmploy", "PctOccupMgmtProf")
+
+varset.misc <- c("PctPersOwnOccup", "PctHousLess3BR", "PctHousOwnOcc", "PctSameCity85")
+
+educEmp.df <- subset(crime, select = varset.educEmp)
+famDynamics.df <- subset(crime, select = varset.famDynamics)
+misc.df <- subset(crime, select = varset.misc)
+SESind.df <- subset(crime, select = varset.SESind)
+
+```
+
+ 
+```{r colin_checking}
+corrplot.mixed(cor(educEmp.df), order = "FPC")
+corrplot.mixed(cor(famDynamics.df), order = "FPC")
+corrplot.mixed(cor(SESind.df), order = "FPC")
+corrplot.mixed(cor(misc.df), order = "FPC")
+```
+
+## Variables and Transformations
+
+```{r transforms_and_checks}
+library(dplyr)
+
+
+hist(pctUrban)
+hist(pctUrban^2)
+hist(sqrt(pctUrban))
+
+plot(racePctWhite)
+
+ViolentCrimesPerPop ~ racePctWhite + PctIlleg + TotalPctDiv + PctNotHSGrad + sqrt(pctUrban) + PctPopUnderPov
+
+plot(ViolentCrimesPerPop, racePctWhite, pch= 20)
+
+
+
+```
+
+
+
+
+
+```{r mse}
+
+mse <- function(sm) { 
+    mse <- mean(sm$residuals^2)
+    return(mse)
+}
+
+```
+
+
+## significant things(?)!
+
+```{r model_makin!}
+
+raceIncome <- blackPerCap/whitePerCap
+raceIncome <- HispPerCap/whitePerCap
+summary(raceIncome)
+plot(raceIncome)
+hist(log(raceIncome+1))
+
+summary(lm(ViolentCrimesPerPop~log(raceIncome +1)))
+
+
+#summary(lm(ViolentCrimesPerPop ~ PctNotHSGrad +  PctIlleg + PctPersDenseHous + HousVacant + PctVacantBoarded))
+
+attach(crime)
+
+pairs(racePctWhite, PctIlleg, TotalPctDiv, PctNotHSGrad)
+
+quadPctUrban <- pctUrban^2
+
+suburban <- ifelse(pctUrban > 0.9, 0, ifelse(pctUrban < 0.1, 0, 1))
+summary(suburban)
+
+hist(pctUrban)
+plot(ViolentCrimesPerPop ~ pctUrban)
+
+fit <- lm(ViolentCrimesPerPop ~ racePctWhite + PctIlleg + log(TotalPctDiv + 1) + log(PctNotHSGrad +1) + quadPctUrban)
+
+fit <- lm(ViolentCrimesPerPop ~ racePctWhite + PctIlleg + log(TotalPctDiv + 1) + PctNotHSGrad + quadPctUrban)
+
+detach(sample)
+detach(crime)
+
+lotDiv.smpl <- log(sample$TotalPctDiv + 1)
+quPctUrban <- sample$pctUrban^2
+
+
+lotDiv.test <- log(test.test$TotalPctDiv + 1)
+quPctUrban.t <- test.test$pctUrban^2
+
+test.fit <- lm(test.test$ViolentCrimesPerPop ~ test.test$racePctWhite + test.test$PctIlleg + quPctUrban.t + lotDiv.test + test.test$PctNotHSGrad )
+
+summary(test.fit)
+
+mse(test.fit)
+
+sample.fit <- lm(sample$ViolentCrimesPerPop ~ sample$racePctWhite + sample$PctIlleg + quPctUrban + lotDiv.smpl + sample$PctNotHSGrad)
+
+mse(sample.fit)
+
+summary(fit)
+summary(sample.fit)
+
+library(DAAG)
+
+val.smpl <- cv.lm(data = sample, form.lm = sample.fit, m=3)
+
+
+
+
+
+
+
+
+plot(ViolentCrimesPerPop ~ racePctWhite)
+plot(ViolentCrimesPerPop ~ PctIlleg)
+plot(ViolentCrimesPerPop ~ TotalPctDiv)
+plot(ViolentCrimesPerPop ~ PctNotHSGrad)
+
+
+plot(ViolentCrimesPerPop ~ PctHousOwnOcc)
+
+summary(fit)
+plot(fit)
+
+anova(fit)
+
+mse(fit)
+
+
+
+
+```
+
+
+```{r modeling}
+
+f_hat <- function(x)
+{ fit$coefficients[1] + x * fit$coefficients[2]}
+
+x <- 
+rss <- sum(fit$residuals^2)
+sigma2 <- rss/(length(fit$residuals) - 2)
+y <- f_hat(x) + rnorm(length(x), sd = sqrt(sigma2)) 
+
+plot(PctIlleg, y)
+plot(PctIlleg, ViolentCrimesPerPop)
+
+
+```
+
+
+
+
+
+
+
+```{r diagnostics}
+
+
+library(car)
+outlierTest(fit)
+
+
+qqPlot(fit, main="QQ Plot")
+spreadLevelPlot(fit)
+vif(fit)
+crPlots(fit)
+# Ceres plots 
+ceresPlots(fit)
+durbinWatsonTest(fit)
+
+
+```
+
+
