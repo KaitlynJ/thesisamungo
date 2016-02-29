@@ -1,17 +1,3 @@
-```{r include_rticles, include = FALSE}
-# This chunk ensures that the rticles package is installed and loaded
-# This rticles package includes the template files for the thesis and also
-# two functions used for labeling and referencing
-if(!require(devtools))
-  install.packages("devtools", repos = "http://cran.rstudio.com")
-if(!require(rticles)){
-  library(devtools)
-  devtools::install_github("ismayc/rticles")
-  }
-library(rticles)
-```
-
-
 ---
 header-includes:
 - \usepackage{graphicx,latexsym}
@@ -138,8 +124,6 @@ demographics.tbl <- rbind(t1, t2, t3, t4, t5, t6)
 ```{r table_sums, results = "asis", echo=FALSE}
 kable(demographics.tbl, col.names = c("Variable", "Category", "Percentage"),
       caption = "Summary Statistics 1 \\label{tab:sums}")
-
-
 ```
 
 
