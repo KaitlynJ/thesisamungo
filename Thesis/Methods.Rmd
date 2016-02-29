@@ -7,9 +7,9 @@ header-includes:
 - \usepackage{setspace}
 output: pdf_document
 ---
-\onehalfspacing
+\doublespacing
 
-```{r load_pkgs, message = FALSE}
+```{r load_pkgs, echo = FALSE,message = FALSE}
 # List of packages required for this analysis
 pkg <- c("dplyr", "ggplot2", "knitr", "devtools")
 new.pkg <- pkg[!(pkg %in% installed.packages())]
@@ -30,7 +30,7 @@ urgentCareOnly.df <- subset(NAMCS.work, TYPE4CLASS == "Urgent Care Center/Freest
 
 ```
 
-```{r prp_data_ch3}
+```{r prp_data_ch3, echo=FALSE}
 # fixing NAs/blanks
 urgentCareOnly.df[c("VYEAR")][is.na(urgentCareOnly.df[c("VYEAR")])] <- 2011
 urgentCareOnly.df[urgentCareOnly.df == "Blank"] <- NA
@@ -39,7 +39,7 @@ urgentCareOnly.df[urgentCareOnly.df == "Missing data"] <- NA
 
 ```
 
-```{r demographics_model}
+```{r demographics_model, echo= FALSE}
 
 cont.vars <- c("PCTPOVR", "PBAMORER", "URBANRUR", "AGER", "RACER", "SEX", "PAYTYPER")
 Cont.model <- urgentCareOnly.df[cont.vars]
@@ -47,14 +47,7 @@ Cont.model <- na.omit(Cont.model)
 
 ```
 
-```{r demographics_model}
-
-cont.vars <- c("PCTPOVR", "PBAMORER", "URBANRUR", "AGER", "RACER", "SEX", "PAYTYPER")
-Cont.model <- urgentCareOnly.df[cont.vars]
-Cont.model <- na.omit(Cont.model)
-```
-
-```{r functions}
+```{r functions, echo= FALSE}
 
 probtable.func <- function(variable){
     # get name
@@ -97,7 +90,7 @@ Some limitations to the data should be noted. There may be related errors given 
 The variables I chose to include in my analysis were chosen with both data availaility and sociological theory in mind. Initially I am interested in looking at demographics surrounding age, race, gender, and socio economic status. Inital clusters included dummy variables for self-pay, private insurance, race (white, black, hispanic, asian, 2+), sex, rural, and wealthy. To identify the subsets, I took random samples from the cases which were recording as having been at urgent care centers using the dplyr package sample_n, which allows for a random campling of rows from a table. from the cases which were recording as having been at urgent care centers. For the three years in question a total of 2459 visits to urgent care were surveyed. In order to get workable training data for the unsupervised clustering, I set aside a random sample of 250 visits for test data, and proceeded to randomly sample from the 2209 cases available, running the analysis on 250 observations at a time. 
 
 
-```{r make-tbl-demographics}
+```{r make-tbl-demographics, echo=FALSE}
 #pretty names
 PercentPoverty <- Cont.model$PCTPOVR
 PercentBachelors <- Cont.model$PBAMORER
@@ -127,7 +120,7 @@ kable(demographics.tbl, col.names = c("Variable", "Category", "Percentage"),
 ```
 
 
-\onehalfspacing
+\doublespacing
 Below are the summary statistics for an example sample:
 
 ```{r eval=FALSE}
@@ -163,18 +156,8 @@ While clustering methods are incresingly being used to generate scientific hypot
 
 Because urgent care centers have been greatly ignored by sociologists studying medical practices, there was little theoretical guidance in selecting a likely number of subgroups for the analysis. Similarly, because I am interested in understanding how an unsupervised analysis of patient data will reveal trends, it was particuarly important to the analysis that the number of clusters were both methematically acheivable and substantivly small enough for analysis. 
 
-```{r banner1, results = "asis", echo=FALSE}
-label(path = "figures/banner.png", caption = "Sample Banner Agglomerative Clustering Results", 
-      label = "ban1", type = "figure", options = "h!", scale = 0.35)
-```
-
 To accomplish this, I began with hierarchal clustering of the random samples chosen from the data. Using a mixed-methods tool to calculate the distance matrix between the various observations, I placed each point into an althgorithm which subsequently minimized the variance between clusters. Figure 1 shows the banner for the initial agglomerative cluster methods for the behavioral variables. . 
 
 The white lines extending to the right represent clusters which differ from each other. After running the hierarchal, bottom up method for a number of trials, the agglomerative coefficient was always between .73 and .8, indicating that as the height for which the clusters should stop combining. Again, Figure 1 demonstrates that at that height, 8 clusters are have clearly seperated. 
-
-```{r phylo1, results = "asis", echo=FALSE}
-label(path = "figures/phylo1.png", caption = "Radial Phylogenic Dedrogram with 8 Clusters color coded", 
-      label = "phy1", type = "figure", scale = 0.35)
-```
 
 

@@ -5,7 +5,7 @@ output: pdf_document
 <!-- The {.unnumbered} option here means that the introduction will be "Chapter 0." -->
 
 # Introduction {.unnumbered}
-\onehalfspacing
+\doublespacing
 <!--
 You'll see \LaTeX\ code here and there, but it won't make up a large chunk of your thesis text.
 -->
