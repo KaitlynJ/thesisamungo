@@ -7,7 +7,7 @@ header-includes:
 - \usepackage{setspace}
 output: pdf_document
 ---
-\doublespacing
+\onehalfspacing
 
 ```{r load_pkgs, echo = FALSE,message = FALSE}
 # List of packages required for this analysis
@@ -52,7 +52,7 @@ Cont.model <- na.omit(Cont.model)
 probtable.func <- function(variable){
     # get name
     category <- deparse(substitute(variable))
-    category <- data.frame(name = category, variable = "", Freq = 100.00, stringsAsFactors = FALSE)
+    category <- data.frame(name = category, variable = "", Freq = " ", stringsAsFactors = FALSE)
     # get proportions
     table.sums <- table(variable)
     variable.tbl <- round(prop.table(table.sums)*100, 2)
@@ -144,7 +144,7 @@ In the supervised learning world, the data in question has an obvious response v
 
 ## Hierarchal Cluster Analysis
 
-To examine such data, I have chosen to use hierarchical cluster anlaysis. This method allows for grouping patients that have similar characteristics across a set of variables by dividing a set of cases into ever more numerous and specific subsets, thus leading to homogenous empirical types (Rapkin and Luke, 1993). One of the most powerful exploratory aspects of cluster analysis is that you do not need to have a response variable in order to better understand your data. For this project, this is extremely useful since we initially only know who is going to urgent care and who is not, but would like to understand them as a group better before drawing comparisions between patients who visited a traidtional primary care clinic. Also a plus for cluster analysis, such inductive methodologies are based only on quantitative similarities among cases, only two factors may be responsible for trends in the data: the actual structure of the observed phenomenon and the methodological decisions I made concerning choosing the cases and variables (inclduing the statistical method used to identify subsets). 
+ This method allows for grouping patients that have similar characteristics across a set of variables by dividing a set of cases into ever more numerous and specific subsets, thus leading to homogenous empirical types (Rapkin and Luke, 1993). One of the most powerful exploratory aspects of cluster analysis is that you do not need to have a response variable in order to better understand your data. For this project, this is extremely useful since we initially only know who is going to urgent care and who is not, but would like to understand them as a group better before drawing comparisions between patients who visited a traidtional primary care clinic. Also a plus for cluster analysis, such inductive methodologies are based only on quantitative similarities among cases, only two factors may be responsible for trends in the data: the actual structure of the observed phenomenon and the methodological decisions I made concerning choosing the cases and variables (inclduing the statistical method used to identify subsets). 
 
 Because I am interested in two somewhat distinct aspects of the patients of Urgent Care-- both their demographics and their patterns of use -- The clustering was performed in two batches of parameters which aimed to help us understand the two different side to a visit to urgent care. Variables for *Age, Sex, Race, Urban Type, % Neighborhood Poverty, % Neighborhood college degree attainment, and Pay Type*, what I will refer to as the *demographic variables* from this point forward were first analyzed for subgroups. Secondly, some of the same variables were again analyzed with the behavior parameters of *Injury related, Primary Caregiver, Seen Before?, Past Visits, Major Reason, and the day of the week*, what I will refer to as the *behavior parameters*. 
 
