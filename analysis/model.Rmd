@@ -218,6 +218,21 @@ kable(cluster.tbl2, col.names = c("PCTPOVR", "HINCOMER", "PBAMORER", "URBANRUR",
 
 
 
+```{r logistic model}
+
+model.matrix(demographic.varset)
+
+sapply(demographic.varset,function(x) sum(is.na(x)))
+
+train <- sample_n(behavioral.varset, nrow(behavioral.varset))
+test <- behavioral.varset[-train,]
+
+set.seed(666)
+
+
+glm(NAMCS.work$PRIMCARE ~ NAMCS.work$AGE + NAMCS.work$RACER + NAMCS.work$URBANRUR)
+
+```
 
 
 
