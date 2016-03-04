@@ -1,6 +1,7 @@
 For THIS FRIDAY:
  + get *document* READY TO GO. ho boy.
 
+<<<<<<< HEAD
 For Now:
 
 split age: young adult, working, retired +
@@ -12,6 +13,13 @@ summary statistics table of variables included in regression
 logit model
 
 
+=======
+For next week:
+ + get *document* READY TO GO. ho boy.
+
++ Present data in an understandable way
+  + Get table of chosen variables done
+>>>>>>> first-draft
 
 
 
@@ -22,6 +30,7 @@ Monday
   + Get table of chosen variables done
 + Find definitive clusters using k-modes
   + make a table of those
+<<<<<<< HEAD
   
 Tuesday
 -------
@@ -35,3 +44,13 @@ Wednesday
 Thursday
 --------
 + Go to Andrew's office hours
+=======
+
+
+  + split age:
+      Young adult
+      Working
+      Elderly
+      
+  
+>>>>>>> first-draft

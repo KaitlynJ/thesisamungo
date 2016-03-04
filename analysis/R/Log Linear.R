@@ -27,7 +27,7 @@ logit.vars <- c("PCTPOVR", "HINCOMER", "PBAMORER", "URBANRUR", "RACER", "WEEKEND
 logit.varset <- NAMCS.logit[logit.vars]
 logit.varset <- na.omit(logit.varset)
 dim(logit.varset)
-
+dummies <- as.data.frame(model.matrix(~., data=logit.varset)[,-1]) 
 dummies <- model.matrix( ~ logit.varset)
 logit.dummies <- subset(dummies, select = c("PCTPOVRQuartile 1 (Less than 5.00 percent)", 
                                             "PCTPOVRQuartile 4 (20.00 percent or more)", 
