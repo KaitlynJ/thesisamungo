@@ -15,9 +15,9 @@ title: 'Patients as Consumers: the cohaptation and consumption of health at urge
 #  To my family.
 #preface: >
 #  This is an example of a thesis setup to use the reed thesis document class.
-#bibliography: bib/thesis.bib
+bibliography: bib/THESIS.bib
 # Download your specific bibliography database file and refer to it in the line above.
-#csl: csl/apa.csl
+csl: csl/apa.csl
 # Download your specific csl file and refer to it in the line above.
 output: 
   rticles::reed_thesis:
@@ -73,9 +73,16 @@ This is the way to split your thesis into chapters and then include each of the 
 ```{r chapter4, child = 'Analysis.Rmd'}
 ```
 
+```{r chapter5, child = 'appendix1.Rmd'}
+```
 
 <!--
 The bib chunk below must go last in this document according to how R Markdown renders.  More info is at http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html
 -->
+
+```{r bib, child = 'Biblio.Rmd'}
+```
+
+
 
 
