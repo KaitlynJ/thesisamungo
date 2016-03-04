@@ -5,6 +5,8 @@ output: word_document
 # Introduction {.unnumbered}
 \onehalfspacing
 
+test
+
 The past two decades have seen a surge in a new form of medical practice: walk in clinics designed with an emphasis on acute, quick and cheap care. WHile they went through a phase of many names, most people in America are familiar and personally acquainted with urgent care centers. These urgent care centers focus on acute episodic care with a substantial emphasis on customer service. There is no official definition of what constitutes an urgent care center, but the scope of services provided generally falls between that of a primary care doctor’s office and an emergency department.  
 
 The first of these centers opened in the United States in the early 1980’s., with no more than a handful in operation at the time.  Unfortunately, (at least as far as early investors were concerned), the industry rapidly declined, and the few clinics which had opened were largely obsorbed into larger hospitals and healthcare groups.  Ten years later, in the mid-1990’s , the industry again began growing rapidly, quickly growing to between 12,000 and 20,000 centers today. By the UCAOA’s estimate, in 2014 approximately two new urgent care centers were opening in the United States each week. 
