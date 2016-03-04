@@ -1,14 +1,10 @@
 ---
 output: word_document
 ---
-\doublespacing
-
 # Literature Review
+\onehalfspacing
 
-The first "urgent care" centers opened in the United States in the early 1980’s., with no more than a handful in operation at the time.  Unfortunately, (at least as far as early investors were concerned), the industry rapidly declined, and the few clinics which had opened were largely obsorbed into larger hospitals and healthcare groups.  Ten years later, in the mid-1990’s , the industry again began growing rapidly, quickly growing to between 12,000 and 20,000 centers today. By the UCAOA’s estimate, in 2014 approximately two new urgent care centers were opening in the United States each week. 
-By definition, urgent care centers focus on acute episodic care with a substantial emphasis on customer service.There is no nationally accepted definition of what constitutes an urgent care center --- the scope of services provided generally falls between that of a primary care doctor’s office and an emergency department. While urgent care centers may be owned and operated by hospitals or multi-specialty group practices, this report focuses on those that are independently owned or that are part of chains of urgent care centers. 
-
-** Set up more informative view of what urgent care centers are and how they target consumers**
+** Need intro to this... make more cohesive **
 
 ##Moving away from Primary Care
 

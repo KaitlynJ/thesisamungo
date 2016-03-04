@@ -5,9 +5,8 @@ header-includes:
 - \usepackage{longtable,booktabs,setspace}
 output: word_document
 ---
-\doublespacing
-
 # Analysis
+\onehalfspacing
 
 ## not rly sure what this section is anymore ....
 

@@ -61,13 +61,16 @@ This is the way to split your thesis into chapters and then include each of the 
 ```{r chapter0, child = 'Intro.Rmd'}
 ```
 
-```{r chapter1, child = 'Lit_Review.Rmd'}
+```{r chapter1, child = 'Background.Rmd'}
 ```
 
-```{r chapter2, child = 'Methods.Rmd'}
+```{r chapter2, child = 'Lit_Review.Rmd'}
 ```
 
-```{r chapter3, child = 'Analysis.Rmd'}
+```{r chapter3, child = 'Methods.Rmd'}
+```
+
+```{r chapter4, child = 'Analysis.Rmd'}
 ```
 
 
