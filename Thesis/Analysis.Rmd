@@ -10,6 +10,8 @@ output: word_document
 
 ## not rly sure what this section is anymore ....
 
+HEre new text
+
 A quick summary of the data shows that by and large most of the observations continue to choose traditional means of obcuring primary care. Great quote: For our purposes, we do not presume to go quite this far, but we are applying this method as a form of retroduction, using observed evidence to create a research hypothesis that accounts for the observed facts *Sayer, 1992*.
 
 ## Identifying Typologies with Clustering
