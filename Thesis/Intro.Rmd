@@ -1,15 +1,23 @@
 ---
-output: pdf_document
+output: word_document
 ---
 
-<!-- The {.unnumbered} option here means that the introduction will be "Chapter 0." -->
-
 # Introduction {.unnumbered}
-\doublespacing
-<!--
-You'll see \LaTeX\ code here and there, but it won't make up a large chunk of your thesis text.
--->
+\onehalfspacing
 
-Over the last two decades, urgent care centers have proliferated in the United States, growing to 9,000 facilities  as of 2014 (Anon n.d.). Such recent and rapid expansion of the industry has been heavily examined by the press, which often attribute growth to a diverse set of market factors such as long wait times for primary care appointments, crowded emergency departments and patient demand for more accessible care, including after-hours appointments (Yee, Lechner, and Boukus 2013). Yet despite the rapid development of the industry and the great interest sociologists have historically taken in America’s health care system, hardly any scholarly research has been done on why these centers are coming to play a major part of the healthcare system or what their patterns of use are. 
+The past two decades have seen a surge in a new form of medical practice: walk in clinics designed with an emphasis on acute, quick and cheap care. WHile they went through a phase of many names, most people in America are familiar and personally acquainted with urgent care centers. These urgent care centers focus on acute episodic care with a substantial emphasis on customer service. There is no official definition of what constitutes an urgent care center, but the scope of services provided generally falls between that of a primary care doctor’s office and an emergency department.  
 
-In the following analysis, I will attempt to situate the rise of such clinics within the existing sociological research, generating hypotheses about why patients are turning towards such centers and away from primary care. Drawing on researchers studying the sociology of medicine and using advanced statistical clustering methods, this thesis seeks to understand what the key characteristics are of individuals choosing to go to urgent care. To do so, I will utilize the clustering method of unsupervised learning in order to better understand if and what subgroups appear within the group of patients who have begun to use urgent care rather than traditional means of procuring healthcare. 
+The first of these centers opened in the United States in the early 1980’s., with no more than a handful in operation at the time.  Unfortunately, (at least as far as early investors were concerned), the industry rapidly declined, and the few clinics which had opened were largely obsorbed into larger hospitals and healthcare groups.  Ten years later, in the mid-1990’s , the industry again began growing rapidly, quickly growing to between 12,000 and 20,000 centers today. By the UCAOA’s estimate, in 2014 approximately two new urgent care centers were opening in the United States each week. 
+
+Such recent and rapid expansion of the industry has been heavily examined by the media, which often attribute growth to a diverse set of market factors such as long wait times for primary care appointments, crowded emergency departments and patient demand for more accessible care, including after-hours appointments (Yee, Lechner, and Boukus 2013). Yet despite the rapid development of the industry and the great interest sociologists have historically taken in America’s health care system, hardly any scholarly research has been done on why these centers are coming to play a major part of the healthcare system or what their patterns of use are. While many are quick to point towards long wait times, and the difficulty of finding doctors in the current healthcare system, the repurcussions of the new turn torwards urgent care centers. 
+
+In the following analysis, I will attempt to situate the rise of such clinics within the existing sociological research on the American healthcare system, generating hypotheses about why patients are turning towards such centers and away from primary care and/or emergency department use. In Chapter one, I highlight the rise in the number of urgent care centers in the United States since the early 1990's, showing the rising prominence of these institutions. I also provide background on the services and care these faciilities offer, focusing on how they are advertised and their own obvious institutional goals. I situate urgent care centers into a wider context of the American healthcare system's varied actors and organizations, and explore the ways these insitutions might offer a response to common complaints regarding the accessibility and organization of the more established healthcare faciliites. 
+
+Chapter two turns to the current sociological understandings of the healthcare system, and examines how the competing theories of the patient/doctor relationship work when examining these actors in an urgent care setting, focusing on theories of consumerism in modern healthcare. I highlight how these new organizations might informally facilitate an arm's length relationship between practitioner and patient, eliminating the close ties many medical sociologists have identified as vital to an optimal doctor patient relationship. In this chapter I also highlight the current gaps in the literature surrounding new forms of medical care facilities which have been largely ignored by sociologist and other scholars attempts to understand health care in America. 
+
+Chapter three offers a description of the National Ambulatory Medical Care Survey where I am drawing my anlysis from, and including a description of the methods I use to examine patient visits to urgent care. These include both a k-modal hieracrchal clustering exploratory analysis used to identify groups of similar patients using urgent care and a logistic analysis of those choosing to use urgent care as their primary care facility. Chapters four and five present these analyses, and discuss the findings in light of the research. 
+
+** Insert thesis statment. "I suggest..." **
+
+In the conclusion, I explore the implications of the tensions between what is thought important to the doctor-patient relationship, and the reality of accessing healthcare in America today. I argue that... ** really need to clarify what I'm arguing here **. I conclude with implications and suggestions for ways in which urgent care centers could be incorporated into the traditional healthcare model. 
+

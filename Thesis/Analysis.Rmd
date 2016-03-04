@@ -5,15 +5,10 @@ header-includes:
 - \usepackage{longtable,booktabs,setspace}
 output: word_document
 ---
-\doublespacing
-
 # Analysis
+\onehalfspacing
 
-```{r load.data, cache=TRUE, message=FALSE}
-setwd("~/Desktop/fuuuuuck/NAMCS/thesis/")
-library(dplyr)
-NAMCS.work <- read.csv("data/NAMCS08-11.csv", header = TRUE, stringsAsFactors = TRUE)
-```
+## not rly sure what this section is anymore ....
 
 A quick summary of the data shows that by and large most of the observations continue to choose traditional means of obcuring primary care. Great quote: For our purposes, we do not presume to go quite this far, but we are applying this method as a form of retroduction, using observed evidence to create a research hypothesis that accounts for the observed facts *Sayer, 1992*.
 
@@ -29,9 +24,9 @@ Because I am interested in two somewhat distinct aspects of the patients of Urge
 
 Because urgent care centers have been greatly ignored by sociologists studying medical practices, there was little theoretical guidance in selecting a likely number of subgroups for the analysis. Similarly, because I am interested in understanding how an unsupervised analysis of patient data will reveal trends, it was particuarly important to the analysis that the number of clusters were both methematically acheivable and substantivly small enough for analysis. 
 
-To accomplish this, I began with hierarchal clustering of the random samples chosen from the data. Using a mixed-methods tool to calculate the distance matrix between the various observations, I placed each point into an althgorithm which subsequently minimized the variance between clusters. `r ref("ban1")` shows the banner for the initial agglomerative cluster methods for the behavioral variables. . 
+To accomplish this, I began with hierarchal clustering of the random samples chosen from the data. Using a mixed-methods tool to calculate the distance matrix between the various observations, I placed each point into an althgorithm which subsequently minimized the variance between clusters. **Firuge** shows the banner for the initial agglomerative cluster methods for the behavioral variables. . 
 
-The white lines extending to the right represent clusters which differ from each other. After running the hierarchal, bottom up method for a number of trials, the agglomerative coefficient was always between .73 and .8, indicating that as the height for which the clusters should stop combining. Again, `r ref("ban")` demonstrates that at that height, 8 clusters are have clearly seperated. 
+The white lines extending to the right represent clusters which differ from each other. After running the hierarchal, bottom up method for a number of trials, the agglomerative coefficient was always between .73 and .8, indicating that as the height for which the clusters should stop combining. Again, **fig** demonstrates that at that height, 8 clusters are have clearly seperated. 
 
 
 ### Differences in Demographic and Behavioral Factors Between Clusters
@@ -41,51 +36,7 @@ With cluster assignments established, I then analyzed how the identified groups 
 Beginning with demographic trends, it is immediatly clear that there are large homogenous groups within the selection of patients who utilize urgent care. Of the 8 clusters, 7 are predominantly or exclusively white.
 
 
-
-----------------------------------------------------------------------------------------------------------  
- Cluster         Age             Sex             Race         Urban              Pay Type         Injury                                          
------------  --------------  --------------  ----------  ------------------  -------------------  --------    
-  1            15-24 yr          Male          White      Large cent metro        Worker's comp     Yes     
-    
-  2            65-74 yr          Male          White          Fringe metro             Medicare      No      
-            
-  3            45-64 yr          Male          White      Large cent metro    Private insurance      No     
-        
-  4            25-44 yr        Female          White             Med metro    Private insurance      No     
-    
-  5            65-74 yr        Female          White                 Rural             Medicare      No     
-
-  6            45-64 yr        Female          White      Large cent metro    Private insurance      No     
-    
-  7            45-64 yr          Male          White             Med metro    Private insurance      No       
-            
-  8            25-44 yr        Female          White      Large cent metro    Private insurance      No     
------------  --------------  --------------  ----------  ------------------  -------------------  --------   
-
------------  ---------  --------------------------  --------------  ------------------  --------------
- Clusters     Primary           Seen Before           No. of vis           Major          Day of Wk   
------------  ---------  --------------------------  --------------  ------------------  --------------
-  1             No       Yes, established patient         2            New problem         Tuesday 
-         
-  2             No       Yes, established patient         1          Chronic, routine      Tuesday   
-                
-  3             No       Yes, established patient         1            New problem          Friday
-             
-  4             No                No, new patient        NA            New problem       Wednesday 
-         
-  5            Yes       Yes, established patient         0            New problem        Thursday 
- 
-  6             No       Yes, established patient         8            New problem         Tuesday 
-  
-  7             No       Yes, established patient         3           Chronic, routine      Monday  
-  
-  8             Yes       Yes, established patient         3            New problem          Monday 
---------------------------------------------------------------------------------------------------------
-
-Table: Correlation of Inheritance Factors for Parents and Child \label{tab:inher}
-
-`r ref("inher", type = "table")` shows that I don't know how to make tables. 
-
+** old table location **
 
 
 ## With commentary
@@ -135,17 +86,8 @@ As for the Medicare question, if the clusters which consist of primarily elderly
 
 	The question remains how the observed trends align with the literature that assess the ways Americans are accessing healthcare in an increasingly changing market. From the exploratory analysis outlined above, it is possible to use the findings to test the hypotheses outlined in Chapter 1. In doing so, we we compare our set of urgent care visitors to the larger set of observations in the NAMCS that chose traditional means of accessing primary care, testing the parameters which appeared to cluster together within urgent care seekers as possible predictors for urgent care as an outcome (actually, is this something we want to do? I’ve somewhat done this already way back when and most are significant, esp. white, urban, etc. but it might be interesting to take something like chronic routine problem and see what coefficient I get?). 
 
-
+
 (working on making aggregated/pretty/readable versions of these)
-Table 1. 
-
-Demographic Parameters
-
-
-
-
-
-Table 2. Behavior Parameters
 
 
 

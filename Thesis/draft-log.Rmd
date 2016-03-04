@@ -1,0 +1,44 @@
+---
+title: "draft-1-log"
+output: html_document
+---
+
+# Post-Meeting / Pre-First Draft!
+
+## "crafting the narrative..."
+
+### Intro
+
++ What's happening w/ UCs?
++ Why important to look at them?
++ Quick how on data methods
+
+### Literature Review
+
++ Who's currently looking at this in sociology? (no one ...)
+  + ok but someone has to be saying something
++ Theories of welfare healthcare
+    + UC as an ED replacemnt?
++ Theories of health care as a consumable good?
+
+*Set up hypotheses*
+
+1. UC as welfare extension
+2. UC as consumeristic driven option
+3. UC as convienience?
+4. US as filling a gap
+
+### Methods
+
++ *Data*
+    - describe data set and limitations
+    - specifically regarding eventual outcome variables ie "Prim Care"
++ *Variabels*
+    - summary statistics table
+    - defense of selection
++ *Cluster Anlaysis*
+    - WHY use cluster anlaysis in the first place
+    - defense of number of k's
++ *Logistic Regression*
+    - full model? --> who's using UC as primary care? who's even choosing to go?
+        + two diff outcome variables yikes

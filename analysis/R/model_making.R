@@ -1,27 +1,16 @@
-setwd("~/Desktop/fuuuuuck/NAMCS/thesis/")
+setwd("~/Desktop/Thesis/analysis/R")
 
 # Libraries~
-
 library(dplyr)
 library(Hmisc)
-
-# Useful HMISC things
-
-#describe()
-#describe.default	Describe a variable (generalization of SAS UNIVARIATE)
-#describe.data.frame	Describe all variables in a data frame (generalization of SAS UNIVARIATE)
-
 ##############################################
 
 # Load and clean Data using dplyr...
 
 NAMCS.work <- read.csv("data/NAMCS08-11.csv", header = TRUE, stringsAsFactors = TRUE)
-
-dim(NAMCS.work)
-tbl_df(NAMCS.work)
-
 urgentCareOnly.df <- subset(NAMCS.work, TYPE4CLASS == "Urgent Care Center/Freestanding Clinic")
 
+# clean badness in data
 urgentCareOnly.df[c("VYEAR")][is.na(urgentCareOnly.df[c("VYEAR")])] <- 2011
 urgentCareOnly.df[urgentCareOnly.df == "Blank"] <- NA
 urgentCareOnly.df[urgentCareOnly.df == "Missing Data"] <- NA
@@ -29,13 +18,7 @@ urgentCareOnly.df[urgentCareOnly.df == "Missing data"] <- NA
 
 ##############################################
 
-cont.vars <- c("PCTPOVR" ,
-               "PBAMORER"  ,
-               "URBANRUR",
-               "AGER",
-               "RACER",
-               "SEX",
-               "PAYTYPER")
+source("Variables.R")
 
 Cont.model <- urgentCareOnly.df[cont.vars]
 Cont.model <- na.omit(Cont.model)

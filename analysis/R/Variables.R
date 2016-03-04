@@ -97,3 +97,7 @@ all.vars <- c("VMONTH", "VYEAR", "VDAYR",
               
               "URGCARE"   ,
               "WEEKEND")
+
+continuous.vars <- c("PCTPOVR", "PBAMORER", "URBANRUR", "AGER", "RACER", "SEX", "PAYTYPER")
+behavioral.vars <- c("URBANRUR","PAYTYPER","INJURY", "PRIMCARE", "SENBEFOR", "PASTVIS", "MAJOR", "WEEKEND")
+full.vars <- c("PCTPOVR", "HINCOMER", "PBAMORER", "URBANRUR", "RACER", "WEEKEND", "AGER", "SEX", "URBANRUR","PAYTYPER","INJURY", "PRIMCARE", "SENBEFOR", "PASTVIS", "MAJOR", "WEEKEND")
