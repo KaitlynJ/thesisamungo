@@ -8,54 +8,10 @@ header-includes:
 output: pdf_document
 ---
 \onehalfspacing
-```{r load_pkgs, echo = FALSE, message = FALSE, warning = FALSE}
-# List of packages required for this analysis
-pkg <- c("dplyr", "ggplot2", "knitr", "devtools")
-new.pkg <- pkg[!(pkg %in% installed.packages())]
-if (length(new.pkg))
-  install.packages(new.pkg, repos = "http://cran.rstudio.com")
 
-# Load packages
-library(dplyr)
-library(ggplot2)
-library(knitr)
-```
-```{r prep_data_ch3, cache=TRUE, echo=FALSE, message=FALSE}
-setwd("~/Desktop/Thesis/analysis")
-NAMCS.work <- read.csv("NAMCS08-11.csv", header = TRUE)
-urgentCareOnly.df <- subset(NAMCS.work, TYPE4CLASS == "Urgent Care Center/Freestanding Clinic")
 
-# fixing NAs/blanks
-urgentCareOnly.df[c("VYEAR")][is.na(urgentCareOnly.df[c("VYEAR")])] <- 2011
-urgentCareOnly.df[urgentCareOnly.df == "Blank"] <- NA
-urgentCareOnly.df[urgentCareOnly.df == "Missing Data"] <- NA
-urgentCareOnly.df[urgentCareOnly.df == "Missing data"] <- NA
-```
-```{r demographics_model, echo= FALSE}
 
-cont.vars <- c("PCTPOVR", "PBAMORER", "URBANRUR", "AGER", "RACER", "SEX", "PAYTYPER")
-Cont.model <- urgentCareOnly.df[cont.vars]
-Cont.model <- na.omit(Cont.model)
 
-```
-```{r functions, echo= FALSE}
-
-probtable.func <- function(variable){
-    # get name
-    category <- deparse(substitute(variable))
-    category <- data.frame(name = category, variable = "", Freq = " ", stringsAsFactors = FALSE)
-    # get proportions
-    table.sums <- table(variable)
-    variable.tbl <- round(prop.table(table.sums)*100, 2)
-    variable.df <- as.data.frame(variable.tbl, stringsAsFactors = FALSE)
-    # add id rows
-    variable.df <- cbind(data.frame(name = "", stringsAsFactors = FALSE), variable.df)
-    variable.df <- rbind( variable.df[0,0], category, variable.df[] )
-    
-    variable.df
-}
-
-```
 
 
 # Methods
@@ -108,39 +64,54 @@ Subsequently, some of the same variables were again analyzed with the parameters
 
 \newpage 
 ## Summary Table
-```{r make-tbl-demographics, echo=FALSE}
-#pretty names
-PercentPoverty <- Cont.model$PCTPOVR
-PercentBachelors <- Cont.model$PBAMORER
-UrbanCategory <- Cont.model$URBANRUR
-AgeGroup <- Cont.model$AGER
-Race <- Cont.model$RACER
-Sex <- Cont.model$SEX
-PaymentType <- Cont.model$PAYTYPER
 
-library(dplyr)
-
-
-
-t1 <- probtable.func(Sex) 
-t2 <- probtable.func(AgeGroup)
-t3 <- probtable.func(Race)
-t4 <- probtable.func(PaymentType)
-t5 <- probtable.func(UrbanCategory)
-t6 <- probtable.func(PercentPoverty)
-t7 <- probtable.func(PercentBachelors) 
-
-demographics.tbl <- rbind(t1, t2, t3, t4, t5, t6)
-
-```
 \singlespacing
-```{r table_sums, results = "asis", echo=FALSE}
-kable(demographics.tbl, col.names = c("Variable", "Category", "Percentage"),
-      caption = "Summary Statistics 1 \\label{tab:sums}")
-```
+
+Table: Summary Statistics 1 \label{tab:sums}
+
+Variable         Category                              Percentage 
+---------------  ------------------------------------  -----------
+Sex                                                               
+                 Female                                57.1       
+                 Male                                  42.9       
+AgeGroup                                                          
+                 15-24 years                           8.68       
+                 25-44 years                           22.89      
+                 45-64 years                           29.63      
+                 65-74 years                           13.93      
+                 75 years and over                     12.58      
+                 Under 15 years                        12.3       
+Race                                                              
+                 Black                                 9.15       
+                 Other                                 3.87       
+                 White                                 86.98      
+PaymentType                                                       
+                 All sources of payment are blank      0.44       
+                 Medicaid                              10.67      
+                 Medicare                              26.37      
+                 No charge                             0.58       
+                 Other                                 3.07       
+                 Private insurance                     46.9       
+                 Self-pay                              4.86       
+                 Unknown                               1.93       
+                 Worker's compensation                 5.17       
+UrbanCategory                                                     
+                 Large central metro                   24.6       
+                 Large fringe metro                    14.62      
+                 Medium metro                          34.55      
+                 Micropolitan/noncore (nonmetro)       15.98      
+                 Missing data                          0          
+                 Small metro                           10.25      
+PercentPoverty                                                    
+                 Missing data                          0          
+                 Quartile 1 (Less than 5.00 percent)   18.16      
+                 Quartile 2 (5.00-9.99 percent)        30.24      
+                 Quartile 3 (10.00-19.99 percent)      39.22      
+                 Quartile 4 (20.00 percent or more)    12.38      
 
 Below are the summary statistics for an example sample:
-```{r eval=FALSE}
+
+```r
 summarize_each(sample1, funs(mean))
 ```
 #### insert table here
