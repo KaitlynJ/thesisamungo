@@ -1,6 +1,6 @@
 
 
-cluster.vars <- c("URGCARE","VDAYR","AGER","SEX", "PAYTYPER","RACER", "INJURY","PRIMCARE", 
+cluster.vars <- c("URGCARE","VDAYR","AGER","SEX", "PAYTYPER","RACER", "INJURY","PRIMCARE",
                   "REFER","SENBEFOR","PASTVIS","MAJOR", "PCTPOVR","PBAMORER", "URBANRUR","HINCOMER","AGER","WEEKEND")
 
 # fixing NAs/blanks
@@ -17,7 +17,7 @@ dim(cluster.varset)
 cluster.varset <- na.omit(cluster.varset)
 cluster.varset <-subset(cluster.varset, cluster.varset$URGCARE == "Yes")
 
-cluster.MM <- as.data.frame(model.matrix(~., data=cluster.varset)[,-1]) 
+cluster.MM <- as.data.frame(model.matrix(~., data=cluster.varset)[,-1])
 
 dataset <- cluster.MM
 library(dplyr)
@@ -61,7 +61,7 @@ plot(mod3, what = "scatterplot")
 mod4 = densityMclust(sample)
 summary(mod4)
 plot(mod4, what = "BIC")
-plot(mod4, what = "density", type = "image", 
+plot(mod4, what = "density", type = "image",
      col = "dodgerblue3", grid = 100)
 plot(mod4, what = "density", type = "persp")
 
@@ -99,41 +99,6 @@ plot(fit)
 
 devtools::install_github("kassambara/factoextra")
 data("f")
-
+df <- sample[, 1:2]
 set.seed(123)
-km.sample <- kmeans(sample, 6)
-plotcluster(sample, km.sample$cluster)
-
-
-library(cluster)
-library(HSAUR)
-
-
-
-
-km    <- kmeans(sample, 9)
-dissE <- daisy(sample) 
-dE2   <- dissE^2
-sk2   <- silhouette(km$cl, dE2)
-plot(sk2)
-
-
-
-
-library(cluster)
-library(fpc)
-
-data(iris)
-dat <- iris[, -5] # without known classification 
-# Kmeans clustre analysis
-clus <- kmeans(dat, centers=3)
-# Fig 01
-plotcluster(dat, clus$cluster)
-
-
-
-clusplot(sample, km.sample$cluster, color=TRUE, shade=TRUE, 
-         labels=2, lines=0, cor = FALSE)
-
-
-
+km.res <- kmeans(df, 5, nstart = 25)

@@ -13,7 +13,19 @@ dim(urgentCare.sub)
 urgentCare.sub[c("VYEAR")][is.na(urgentCare.sub[c("VYEAR")])] <- 2011
 urgentCare.sub[urgentCare.sub == "Blank"] <- NA
 urgentCare.sub[urgentCare.sub == "Missing Data"] <- NA
+urgentCare.sub[urgentCare.sub == "Missing data"] <- NA
+urgentCare.sub[urgentCare.sub == "Unknown"] <- NA
+
+
+cluster.vars <- c("URGCARE","VDAYR","AGER","SEX", "PAYTYPER","RACER", "INJURY","PRIMCARE", 
+                  "REFER","SENBEFOR","PASTVIS","MAJOR", "PCTPOVR","PBAMORER", "URBANRUR","HINCOMER","AGER","WEEKEND")
+
+urgentCare.sub <- urgentCare.sub[cluster.vars]
+urgentCare.sub <- na.omit(urgentCare.sub)
+
 dim(urgentCare.sub)
+
+
 
 all.vars <- c("VMONTH",
                   "VYEAR",
@@ -45,59 +57,7 @@ all.vars <- c("VMONTH",
 "NOCHRON",
 "TOTCHRON",   
 "TOTDIAG"  ,  
-"HEALTHED"  , "ASTHMAED"   ,"DIETNUTR"  ,"EXERCISE" ,  "GRWTHDEV" ,  "INJPREV"  ,  "STRESMGT" ,  "TOBACED"  ,  "WTREDUC"    ,"OTHLTHED"   ,
-"TOTHLTED"   ,
-"TOTNONMED"  ,
-"NCMED1",
-"NUMNEW",
-"NUMCONT"  ,  
-"NUMMED" ,    
-"PHYS"   ,    
-"PHYSASST" ,  
-"NPNMW"     , 
-"RNLPN"     ,
-"MHP"        ,
-"OTHPROV" ,
-"NOFU"     ,  
-"RETPRN"    , 
-"REFOTHMD"   ,
-"RETAPPT"    ,
-"TELEPHON"   ,
-"REFERED"    ,
-"ADMITHOS"  ,
-"OTHDISP" ,
-"REGION"   ,
-"MSA"  ,
-"RETYPOFF"   ,
-"SOLO"       ,
-"EMPSTAT"    ,
-"OWNS"      ,
-"LAB"    ,
-"PATEVEN" ,  
-"TELCONR"  ,  
-"ECONR",
-"PRMCARER",   
-"PRMAIDR"  ,  
-"PRPRVTR"   , 
-"PRPATR"    ,
-"PROTHR",
-"PCCPROD",    
-"PCCSAT"  ,   
-"PCCQOC"   ,  
-"PCCPPROF"  , 
-"RACER"      ,
-"AGEDAYS" ,  
-"AGER"  ,
-"SETTYPE",   
-"PCTPOVR" ,  
-"HINCOMER" ,  
-"PBAMORER"  , 
-"URBANRUR"  , 
-"SERVICES" ,
-"ERADMHOS"  ,
-"INJR1",
-"INJDETR1",   
-"INJDETR2" ,  
+"HEALTHED"  , "ASTHMAED"   ,"DIETNUTR"  ,"EXERCISE" ,  "GRWTHDEV" ,  "INJPREV"  ,  "STRESMGT" ,  "TOBACED"  ,  "WTREDUC"    ,"OTHLTHED"   ,"TOTHLTED"   ,"TOTNONMED"  ,"NCMED1","NUMNEW","NUMCONT"  ,  "NUMMED" ,    "PHYS"   ,    "PHYSASST" ,  "NPNMW"     , "RNLPN"     ,"MHP"        ,"OTHPROV" ,"NOFU"     ,  "RETPRN"    , "REFOTHMD"   ,"RETAPPT"    ,"TELEPHON"   ,"REFERED"    ,"ADMITHOS"  ,"OTHDISP" ,"REGION"   ,"MSA"  ,"RETYPOFF"   ,"SOLO"       ,"EMPSTAT"    ,"OWNS"      ,"LAB"    ,"PATEVEN" ,  "TELCONR"  ,  "ECONR","PRMCARER",   "PRMAIDR"  ,  "PRPRVTR"   , "PRPATR"    ,"PROTHR","PCCPROD",    "PCCSAT"  ,   "PCCQOC"   ,  "PCCPPROF"  , "RACER"      ,"AGEDAYS" ,  "AGER"  ,"SETTYPE",   "PCTPOVR" ,  "HINCOMER" ,  "PBAMORER"  , "URBANRUR"  , "SERVICES" ,"ERADMHOS"  ,"INJR1","INJDETR1",   "INJDETR2" ,  
 
 "URGCARE"   ,
 "WEEKEND")
@@ -145,24 +105,16 @@ beh.vars <- c(              "AGER",
                
               
 
-model.sub <- urgentCare.sub[beh.vars]
-y <- na.omit(model.sub)
+y <- urgentCare.sub
 dim(y)
-
-
-
 
 #          Create clusters        #
 ####################################
 library(dplyr)
 library(cluster)
 library(plyr)
-
-sample <- sample_n(y, 200)
-
+library(klaR)
 ##################
-
-
 revalue(sample$PCTPOVR, c("Missing data"="Missing", 
                           "Quartile 1 (Less than 5.00 percent)"="Q1: <5%", 
                           "Quartile 2 (5.00-9.99 percent)" = "Q2: 5-10%",  
@@ -179,37 +131,26 @@ revalue(sample$URBANRUR, c("Micropolitan/noncore (nonmetro)"="Rural",
 
 # k-modes######################################################
 
-library(klaR)
+sample <- urgentCare.sub
 
 #distance matrix
 sample.dsy <- daisy(sample, metric = "gower", stand = TRUE)
+h <- hclust(sample.dsy, method = "ward.D2")
+plot(h, labels= FALSE)
 
+z <- agnes(sample.dsy, method = "ward")
+plot(z, labels=FALSE)
+
+clus8 = cutree(h, 9)
+table(clus8)
 
 # pick #
 install.packages('ape')
 library(ape)
-
 colrs <- c("pink", "blue", "yellow", "green", "purple", "orange", "magenta", "red")
-
-h <- hclust(dsy1, method = "ward.D2")
-plot(h, labels= FALSE)
-
-clus8 = cutree(h, 16)
-table(clus8)
-
-plot(clus8)
-
 plot(as.phylo(h),  type="radial", tip.color = colrs[clus8] )
 title("Phylogenic Repesentation of 8 Sample Clusters")
 
-z <- agnes(dsy1, method = "ward")
-
-plot(z, labels=FALSE)
-
-
-plot(as.phylo(z$[1]), type = "radial")
-
-title
 
 # where to cut
 k <- 9
@@ -218,7 +159,8 @@ table(cutree(z, k))
 #splom(~sample[4:7], groups=sample$PAYTYPER, auto.key=TRUE, varnames = NULL)
 
 
-
+cluster.vars <- c("URGCARE","VDAYR","AGER","SEX", "PAYTYPER","RACER", "INJURY","PRIMCARE", 
+                  "REFER","SENBEFOR","PASTVIS","MAJOR", "PCTPOVR","PBAMORER", "URBANRUR","HINCOMER","AGER","WEEKEND")
 
 
 # EXPERIMENT 1 ----------------------------------
@@ -229,7 +171,13 @@ X.agnes.wardD2 = agnes(dist(y),method="ward")
 
 
 #kmodes(data, modes, iter.max = 10, weighted = FALSE)
-sample.kmode <- kmodes(sample, modes = k, iter.max = 10, weighted = FALSE)
+sample.kmode <- kmodes(sample, modes = 8, iter.max = 10, weighted = FALSE)
+
+sample.kmode$modes
+
+summary(sample.kmode)
+
+
 cl
 cl$modes
 summary(cl)
@@ -242,8 +190,8 @@ sample.clus.km <- lapply(1:k, function(nc)
 sample.clus.km
 
 #sillouette
-dsy2   <- dsy1^2
-sk2   <- silhouette(cl$cluster, dsy2)
+dsy2   <- sample.dsy^2
+sk2   <- silhouette(sample.kmode$cluster, dsy2)
 plot(sk2)
 
 plot(cl$withindiff)
