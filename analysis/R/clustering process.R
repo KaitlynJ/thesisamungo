@@ -1,10 +1,29 @@
 
-fornow.df <- data.frame(dummies.df$looking.df.URGCARE.dum, dummies.df$looking.df.WEALTHY.dum, dummies.df$looking.df.PRIVATE.dum, dummies.df$looking.df.EMERGENT.dum, dummies.df$looking.df.WEEKEND.dum, dummies.df$looking.df.SENBEFORE.dum)
 
+cluster.vars <- c("URGCARE","VDAYR","AGER","SEX", "PAYTYPER","RACER", "INJURY","PRIMCARE", 
+                  "REFER","SENBEFOR","PASTVIS","MAJOR", "PCTPOVR","PBAMORER", "URBANRUR","HINCOMER","AGER","WEEKEND")
 
-dataset <- fornow.df
+# fixing NAs/blanks
+NAMCS.work[c("VYEAR")][is.na(NAMCS.work[c("VYEAR")])] <- 2011     # 2011's got entered blank
+NAMCS.work[NAMCS.work == "Blank"] <- NA
+NAMCS.work[NAMCS.work == "Missing Data"] <- NA
+NAMCS.work[NAMCS.work == "Missing data"] <- NA
+NAMCS.work[NAMCS.work =="Unknown"] <- NA
+
+cluster.varset <- NAMCS.work[cluster.vars]
+cluster.varset$PASTVIS <- as.numeric(cluster.varset$PASTVIS)
+
+dim(cluster.varset)
+cluster.varset <- na.omit(cluster.varset)
+cluster.varset <-subset(cluster.varset, cluster.varset$URGCARE == "Yes")
+
+cluster.MM <- as.data.frame(model.matrix(~., data=cluster.varset)[,-1]) 
+
+dataset <- cluster.MM
 library(dplyr)
+
 sample <- sample_n(dataset, 2500)
+sample <- dataset
 
 colnames(sample) <- c("Urg", "Private Ins", "Emergency", "Weekend", "Return")
 

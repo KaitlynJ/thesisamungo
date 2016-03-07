@@ -7,6 +7,19 @@ header-includes:
 - \usepackage{setspace}
 output: pdf_document
 ---
+```{r rticle_rload, echo=FALSE, warning=FALSE}
+if(!require(devtools))
+  install.packages("devtools", repos = "http://cran.rstudio.com")
+if(!require(rticles)){
+  library(devtools)
+  devtools::install_github("ismayc/rticles")
+  }
+library(rticles)
+
+setwd("~/Desktop/Thesis/Thesis")
+
+```
+
 
 # Appendix 1 {.unnumbered}
 ##K-modes / Why cluster? {.unnumbered}
@@ -23,9 +36,13 @@ Because urgent care centers have been greatly ignored by sociologists studying m
 
 To accomplish this, I began with hierarchal clustering of the random samples chosen from the data. Using a mixed-methods tool to calculate the distance matrix between the various observations, I placed each point into an althgorithm which subsequently minimized the variance between clusters. Figure 1 shows the banner graph for the initial agglomerative cluster methods for the behavioral variables. 
 
+
+
+
 ```{r banr1, results = "asis", echo=FALSE}
-label(path = "figures/banner.png", caption = "Sample Banner Agglomerative Clustering Results", 
-      label = "ban1", type = "figure", options = "h!", scale = 0.35)
+
+rticles::label(path = "figures/banner.png", caption = "Sample Banner Agglomerative Clustering Results", 
+      label = "ban1", type = "figure", scale = 0.35)
 ```
 
 The white lines extending to the right represent clusters which differ from each other. After running the bottom up clustering method for a number of trials, the agglomerative coefficient was always between .73 and .8, indicating that as the height for which the clusters should stop combining. Again, Figure 1 demonstrates that at that height, around 8 clusters are have clearly seperated. 

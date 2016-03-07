@@ -8,7 +8,6 @@ output: word_document
 # Analysis
 \doublespacing
 
-
 A quick summary of the data shows that by and large most of the observations continue to choose traditional means of obcuring primary care. With cluster assignments established, I then analyzed how the identified groups differed from each other in terms of critical demographic chracteristics and behaviors that are described in the literature. In order to better understand the characteristics of individuals choosing to go to urgent care we must understand which chracteristics or bahaviors most distinguished the clusters in the anlaysis. 
 
 ## Identifying Typologies with Clustering
@@ -24,7 +23,7 @@ In fact, if one predominant trend becomes clear from the demographic clustering,
 
 Also informative are the clusters’ most occurring payment types, which complicate some of the theoretical notions of urgent care described in Chapter 1. While the largest clusters were consistently comprised of private insurance payers, Medicare without a doubt plays a role in getting people to urgent care centers. Medicare was listed as the primary payment method around 12 % of the time, a large number when one considers the consumerist theories proposed in chapter one. These clusters are crucial to understanding the decision process behind choosing a health care provider, while simultaneously raising the question of the relationship between the surprising number of elderly patients on Medicare seeking treatment at an urgent care centers.
 
-THe demographic characteristics of urgent care seekers were also clustered with behavioral, visit-level parameters in a second wave of cluster anlaysis, in order to to examine *how* urgent care is utilized by different groups. By far the largest and most homogenous clusters isolated consist of white, privately insured patients in medium to large urban environments. These trends match those found in the demographic clusters, and we can learn even more about this group by examining the cluster segmentation that occurred across their behavioral parameters in the second wave. Of the two clusters which consist almost entirely of white, 25-44-year-old men and women (yellow and light pink in Figure 1 above), both were almost entirely classed as “established patients”, with at least one past visit. Also theoretically interesting, neither cluster had observations whose reason for visiting was “injury related” and neither had recorded visits on weekends. Cluster one in particular (Row 1, Table 2), consisted of 25-44-year-old white females with private insurance, an established history of visiting urgent care, and a reason for their current visit coded as a “chronic, routine problem”. 
+The demographic characteristics of urgent care seekers were also clustered with behavioral, visit-level parameters in a second wave of cluster anlaysis, in order to to examine *how* urgent care is utilized by different groups. By far the largest and most homogenous clusters isolated consist of white, privately insured patients in medium to large urban environments. These trends match those found in the demographic clusters, and we can learn even more about this group by examining the cluster segmentation that occurred across their behavioral parameters in the second wave. Of the two clusters which consist almost entirely of white, 25-44-year-old men and women (yellow and light pink in Figure 1 above), both were almost entirely classed as “established patients”, with at least one past visit. Also theoretically interesting, neither cluster had observations whose reason for visiting was “injury related” and neither had recorded visits on weekends. Cluster one in particular (Row 1, Table 2), consisted of 25-44-year-old white females with private insurance, an established history of visiting urgent care, and a reason for their current visit coded as a “chronic, routine problem”. 
 
 In fact, only 32 visits in the example model were coded as new patients (Figure 2, purple and orange), and examining these two clusters reveals what I referred to earlier as the traditional patient characteristics ascribed to urgent care visits. These two cluster show what many would expect, both consisted of white, privately insured, new patients, and both clusters contain the only observations which occurred on a weekend or were coded as injury related.  These characteristics are in line with what many hold as the purpose of urgent care centers, but they remain a small fraction of the recorded number of visits. Completely contradicting this idea, the other seven of the nine clusters identified have high levels of established patients with chronic or routine problems, with ages ranging for 15 to over 75.
 	
@@ -32,8 +31,93 @@ As for the Medicare question, if the clusters which consist of primarily elderly
 
 ## Logistic Regression Analysis
 
+The initital exploratory analysis shows clear trends, and the next phase of the analysis uses those trends and tests for significance using logistic regression analysis. 
+
+```{r logit_regression, echo=FALSE, warning=FALSE}
+NAMCS.logit <- NAMCS.work
+                        
+# variable selection
+logit.vars <- c("URGCARE","PRIMCARE","PCTPOVR", "HINCOMER", "PBAMORER", "URBANRUR", "RACER", "WEEKEND", "AGER", "SEX","PAYTYPER",
+                "INJURY","SENBEFOR", "PASTVIS", "MAJOR")
+logit.varset <- NAMCS.logit[logit.vars]
+logit.varset <- na.omit(logit.varset)
+
+# recoding
+logit.varset$ZipHighIncome <- as.numeric(logit.varset$HINCOMER == "Quartile 4 ($52,388 or more)")
+logit.varset$HighZipPov <- as.numeric(logit.varset$PCTPOVR == "Quartile 4 (20.00 percent or more)")
+logit.varset$HighEduc<- as.numeric(logit.varset$PBAMORER == "Quartile 4 (31.69 percent or more)")
+levels(logit.varset$URBANRUR) <- list(Urban=c("Large central metro", "Large fringe metro", "Medium metro"), 
+                                      Rural=c("Micropolitan/noncore (nonmetro)", "Small metro"))
+levels(logit.varset$AGER) <- list(YoungAdult=c("Under 15 years", "15-24 years"),
+                                  WorkingAge=c("25-44 years", "45-64 years"),
+                                  Retired=c("65-74 years", "75 years and over"))
+
+levels(logit.varset$PAYTYPER) <- list(PrivateIns=c("Private insurance"),
+                                  Medicaid=c("Medicaid"),
+                                  Medicare=c("Medicare"),
+                                  Other=c("Other", "No charge", "Unknown","Worker's compensation", "All sources of payment are blank", "Self-pay" ))
+
+levels(logit.varset$MAJOR) <- list(NewProblem=c("New problem (less than 3 mos. onset)"),
+                                      RoutineChronic=c("Pre-/Post-surgery", "Chronic problem, routine", "Chronic problem, flare-up"),
+                                      Preventative=c("Preventive care"),
+                                      Other=c("Blank", "No charge", "Pre-/Post-surgery"))
+
+logit.varset$PASTVIS <- as.numeric(logit.varset$PASTVIS)
 
 
+#urgentcareonly model
+UC.varset <-subset(logit.varset, logit.varset$URGCARE == "Yes")
+
+# make model matrices
+dummiesFull.df <- as.data.frame(model.matrix(~., data=logit.varset)[,-1]) 
+dummiesUC.df <- as.data.frame(model.matrix(~.,data = UC.varset)[,-1])
+
+
+dummy.vars <- c("HighEduc", "HighZipPov", "ZipHighIncome", "MAJORPreventative", "MAJORRoutineChronic", "PASTVIS", "SENBEFORYes, established patient", 
+                "INJURYYes", "SEXMale", "AGERRetired", "AGERWorkingAge", "WEEKENDYES", "RACERWhite", "RACEROther", "URBANRURRural", "PRIMCAREYes", "URGCAREYes")
+dummyFull.varset <- dummiesFull.df[dummy.vars]
+dummyUC.varset <- dummiesUC.df[dummy.vars]
+
+names(dummyFull.varset)[names(dummyFull.varset) == 'SENBEFORYes, established patient'] <- 'EstablishedPatient'
+names(dummyUC.varset)[names(dummyUC.varset) == 'SENBEFORYes, established patient'] <- 'EstablishedPatient'
+
+### summary stats ##
+
+#summary(dummy.varset)
+
+## LOGIT ##
+#head(dummy.varset)
+#summary(dummy.varset)
+#sapply(dummy.varset, sd)
+#xtabs(~ URGCAREYes + RACERWhite, data = dummy.varset)
+
+logit.dem <- glm(URGCAREYes ~ INJURYYes + WEEKENDYES+ EstablishedPatient + PASTVIS + MAJORPreventative + MAJORRoutineChronic, data = dummyFull.varset, family = binomial)
+logit.beh <- glm(URGCAREYes ~ AGERWorkingAge + AGERRetired + SEXMale + RACERWhite + ZipHighIncome + URBANRURRural, data = dummyFull.varset, family = binomial)
+logit.full <- glm(URGCAREYes ~ INJURYYes + WEEKENDYES+ EstablishedPatient + PASTVIS + MAJORPreventative + MAJORRoutineChronic + AGERWorkingAge + AGERRetired + SEXMale + RACERWhite + ZipHighIncome + URBANRURRural, data = dummyFull.varset, family = binomial)
+
+
+logit2.dem <- glm(PRIMCAREYes ~ INJURYYes + WEEKENDYES+ EstablishedPatient + PASTVIS + MAJORPreventative + MAJORRoutineChronic, data = dummyUC.varset, family = binomial)
+logit2.beh <- glm(PRIMCAREYes ~ AGERWorkingAge + AGERRetired + SEXMale + RACERWhite + ZipHighIncome + URBANRURRural, data = dummyUC.varset, family = binomial)
+logit2.full <- glm(PRIMCAREYes ~ INJURYYes + WEEKENDYES+ EstablishedPatient + PASTVIS + MAJORPreventative + MAJORRoutineChronic + AGERWorkingAge + AGERRetired + SEXMale + RACERWhite + ZipHighIncome + URBANRURRural, data = dummyUC.varset, family = binomial)
+
+```
+
+
+```{r logit_tables, warning=FALSE, message=FALSE  ,echo=FALSE ,results="asis"}
+
+library(texreg)
+texreg(list(logit.beh, logit.dem, logit.full), 
+       caption = "Logistic model of the decision to go to urgent care.", 
+       fontsize = "small", 
+       custom.coef.names = c("Intercept", "Injury Related Visit", "Weekend Visit", "Established Patient", "Number Past Visits", "Visit Reason: Preventative", 
+                             "Visit Reason: Routine/Chronic", "Age: Working", "Age: Retired", "Male", "Race: White", "High ZIP Income", "Rural"))
+texreg(list(logit2.beh, logit2.dem, logit2.full), 
+       caption = "Logistic model of the decision to use urgent care as primary care", 
+       fontsize = "small",
+       custom.coef.names = c("Intercept", "Injury Related Visit", "Weekend Visit", "Established Patient", "Number Past Visits", "Visit Reason: Preventative", 
+                             "Visit Reason: Routine/Chronic", "Age: Working", "Age: Retired", "Male", "Race: White", "High ZIP Income", "Rural"))
+
+```
 
 
 

@@ -20,6 +20,7 @@ library(dplyr)
 library(ggplot2)
 library(knitr)
 ```
+
 ```{r prep_data_ch3, cache=TRUE, echo=FALSE, message=FALSE}
 setwd("~/Desktop/Thesis/analysis")
 NAMCS.work <- read.csv("NAMCS08-11.csv", header = TRUE)
@@ -31,6 +32,7 @@ urgentCareOnly.df[urgentCareOnly.df == "Blank"] <- NA
 urgentCareOnly.df[urgentCareOnly.df == "Missing Data"] <- NA
 urgentCareOnly.df[urgentCareOnly.df == "Missing data"] <- NA
 ```
+
 ```{r demographics_model, echo= FALSE}
 
 cont.vars <- c("PCTPOVR", "PBAMORER", "URBANRUR", "AGER", "RACER", "SEX", "PAYTYPER")
@@ -38,6 +40,7 @@ Cont.model <- urgentCareOnly.df[cont.vars]
 Cont.model <- na.omit(Cont.model)
 
 ```
+
 ```{r functions, echo= FALSE}
 
 probtable.func <- function(variable){
@@ -64,26 +67,18 @@ The primary goals of this analysis are to 1) offer a better understanding of the
 
 ## Data
 
-An empirical exploration of the hypotheses proposed in chapter two requires data that provides an abundance of variables which may or may not be statistically important but which we cannot initially rule out, as well as a large sample size since the phenomenon is still comparatively rare when thinking about how patients access primary care in the US. Given these initial requirements, I thus chose the National Ambulatory Medical Care Survey (NAMCS), which is a national survey designed and distributed by the American Center for Disease Control (CDC) to provide researchers in the medical and social science fields "accurate and reliable information about the provision and use of ambulatory medical care services in the United States" [@namcs]. 
+An empirical exploration of the hypotheses proposed in chapter two requires data that provides an abundance of variables which may or may not be statistically important but which we cannot initially rule out, as well as a large sample size since the phenomenon is still comparatively rare when thinking about how patients access primary care in the US. Given these initial requirements, I chose the National Ambulatory Medical Care Survey (NAMCS), which is a national survey designed and distributed by the American Center for Disease Control (CDC) to provide researchers in the medical and social science fields "accurate and reliable information about the provision and use of ambulatory medical care services in the United States" [@namcs]. 
 
-For those unfamiliar with healthcare lingo, ambulatory care is defined by the survey as health services or acute care services provided to patients on an outpatient basis (without an overnight stay). Once a year NAMCS surveys randomly selected visits to non-federal employed office-based physicians, which are collected from a representative sample of the United States' medical care facilities. These surveys record over 500 variables on information about how the patients utilize physician services, the conditions most often treated, and the diagnostic and therapeutic services rendered, including medications prescribed. Because it is both representative of the larger trends in the United States and includes specific information regarding urgent care centers which can be used to explore that particular American health care trend in particular, the data set serves the purposes of the current study quite well.  
+For those unfamiliar with healthcare lingo, ambulatory care is defined by the survey as health services or acute care services provided to patients on an outpatient basis (without an overnight stay). Once a year NAMCS surveys randomly selected visits to non-federal employed office-based physicians, which are collected from a representative sample of the United States' medical care facilities. These surveys record over 500 variables on information about how the patients utilize physician services, the conditions most often treated, and the diagnostic and therapeutic services rendered, including medications prescribed. Because it is both representative of the larger trends in the United States and includes specific information regarding urgent care centers which can be used to explore that health care trend in particular, the data set serves the purposes of the current study quite well.  
 
 Some limitations to the data should be noted. There may be related errors given that as the popularity of urgent care centers have risen, so too have the number that participated in the NAMCS. In 2008, there were 842 visits surveyed compared to 1168 surveyed in 2010. There may also be a compounding factor of selection: many urgent care centers are classified as retail clinics by the CDC, and are thus not included in the NAMCS random selection pool. Even with these limitations, the CDC specifically offers the NAMCS as a tool for social scientists, and this analysis depends on their collection methods being statistically expandable. 
 
 
 ## Variable Selection and Summary Statistics
 
-The NAMCS is a large data set: compiling observations for the years 2008-2012 generated a data set of over 100,000 observations with 547 variables. In order to explore such a large amount of data, I began the analysis by utilizing unsupervised statistical learning methods in order to develop descriptive categories of urgent care center patients. The pros of performing an initial analysis of this nature are its ability to efficiently examine a large amount of variables and highlight those that should be included in the analysis. This was motivated by the current lack of statistical analysis and social theory surrounding urgent care centers, which makes it difficult to develop a model from scratch. The results of the clustering act as a guide for the regression techniques by identifying variables with some relationship to urgent care.
+The NAMCS is a large data set: compiling observations for the years 2008-2012 generated a data set of over 100,000 observations with 547 variables. In order to explore such a large amount of data, I began the analysis by utilizing unsupervised statistical learning methods in order to develop descriptive categories of urgent care center patients. The advantages of performing an initial analysis of this nature are its ability to efficiently examine a large amount of variables and highlight those that should be included in later analyses. This choice was motivated by the current lack of statistical analysis and social theory surrounding urgent care centers, which makes it difficult to develop a model from scratch. The results of the clustering act as a guide for the regression techniques by identifying variables with some relationship to urgent care.
 
-For the clustering, I examined the group of visits which were coded as having been at "Urgent Care Centers/Freestanding Clinics" by the NAMCS. While the combined years produced a data set of 123,123 (not kidding) observations, only 3,863 of those occurred at urgent care centers (about 3 percent). Of these visits, I limited the analysis to patients over the age of 18, bringing the sample to 3,224 visits to urgent care centers.
-
-### Patient and Visit Characteristics
-
-Many of the variables chosen to include in the exploratory cluster analysis were selected with an awareness of the historical and sociological understandings of the decision factors which affect how Americans choose their healthcare. Patient demographics including age, race, gender, and socioeconomic status indicators were included, along with regional data for each visit and variables which examined the type and history of the visits to the facility. 
-
-
-Initial clusters included dummy variables for self-pay, private insurance, race (white, black, Hispanic, Asian, 2+), sex, rural, and wealthy. To identify the subsets, I took random samples from the cases which were recording as having been at urgent care centers using the dplyr package sample_n, which allows for a random sampling of rows from a table. from the cases which were recording as having been at urgent care centers. For the three years in question a total of 2459 visits to urgent care were surveyed. In order to get workable training data for the unsupervised clustering, I set aside a random sample of 250 visits for test data, and proceeded to randomly sample from the 2209 cases available, running the analysis on 250 observations at a time. 
-
+For the clustering, I examined the group of visits which were coded as having been at "Urgent Care Centers/Freestanding Clinics" by the NAMCS. While the combined years produced a data set of 123,120 observations, only 3,863 of those occurred at urgent care centers (about 3 percent). Of these visits, I limited the analysis to observations without missing information, bringing the sample to 3,695 visits to urgent care centers.
 
 ## *k*-Modes Cluster Analysis
 
@@ -93,9 +88,15 @@ Because I am interested in two somewhat distinct aspects of the patients of Urge
 
 While clustering methods are increasingly being used to generate scientific hypotheses, this analysis rather aims to apply clustering as a method of reproduction on a phenomenon that is currently vastly under studied. The methodological decisions of this study are divided into three areas: (1) the determination of the number of clusters, (2) the examination of how the clusters differ in terms of multiple parameters, and (3) examining the clusters in light of the theoretical hypotheses posed in the introduction. 
 
+### Patient and Visit Characteristics
+
+Many of the variables chosen to include in the exploratory cluster analysis were selected with an awareness of the historical and sociological understandings of the decision factors which affect how Americans choose their healthcare. Patient demographics including age, race, gender, and socioeconomic status indicators were included, along with regional data for each visit and variables which examined the type and history of the visits to the facility. 
+
+
+Initial clusters included dummy variables for self-pay, private insurance, race (white, black, Hispanic, Asian, 2+), sex, rural, and wealthy. To identify the subsets, I took random samples from the cases which were recording as having been at urgent care centers using the dplyr package sample_n, which allows for a random sampling of rows from a table. from the cases which were recording as having been at urgent care centers. For the three years in question a total of 2459 visits to urgent care were surveyed. In order to get workable training data for the unsupervised clustering, I set aside a random sample of 250 visits for test data, and proceeded to randomly sample from the 2209 cases available, running the analysis on 250 observations at a time. 
+
 
 \newpage 
-## Summary Table
 ```{r make-tbl-demographics, echo=FALSE}
 #pretty names
 PercentPoverty <- Cont.model$PCTPOVR
@@ -117,18 +118,54 @@ t7 <- probtable.func(PercentBachelors)
 demographics.tbl <- rbind(t1, t2, t3, t4, t5, t6)
 
 ```
-
 \singlespacing
 ```{r table_sums, results = "asis", echo=FALSE}
-kable(demographics.tbl, col.names = c("Variable", "Category", "Percentage"),
-      caption = "Summary Statistics 1 \\label{tab:sums}")
+kable(demographics.tbl, 
+      col.names = c("Variable", "Category", "Percentage"),
+      caption = "Observed Proportions of Independant Variables \\label{tab:sums}")
 ```
 
-#### insert table here
-
-
-### Logistic Model Dependant Variable
 \doublespacing
+## Regression: Logistic Modeling of Urgent Care Visits
+
+A logistic regression anlaysis is used in this study to examine the determinants of the odds of using urgent care as primary care. Often, sociologists and other social scientists performing quantitiative analysis on a single dependant variable use a form of analysis called ordinary least squares (OLS) regression, which attempts to fit a line across a set of data points in order to best determine which independant variable has the greatest effect on determining the outcome fo the dependant variable. This method works well for outcome variables which are quantifiable, however in the present study the variable of interest is binary and categorical: a person either uses the urgent care center as their primary care physician or they do not. 
+
+This creates many problems which violate the assumptions of linear models like OLS, and are the reason logisic regression was used instead. Logistic regression avoids the pitfalls of linear models by fitting a curved rather than a straight line to the data. This results in a better estimation of the effects of independant variables upon probabilities because the curvature of the line is able to fit the clustering of the answers at the two poles. 
+
+
+### Operationalization and Recoding of Variables
+####Dependant Variables
+
 The dependent variable analyzed in the logistic model in this study is whether or not a patient went to urgent care. Furthermore, a secondary analysis is conducted on how the patient demographics and visit characteristics relate to whether or not the patient uses urgent care as their primary care physician. Both of these outcome variables are analyzed in light of many visit level characteristics, up to 16 in the full logistic model. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
