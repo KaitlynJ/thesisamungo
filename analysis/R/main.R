@@ -141,7 +141,13 @@ plot(h, labels= FALSE)
 z <- agnes(sample.dsy, method = "ward")
 plot(z, labels=FALSE)
 
-clus8 = cutree(h, 9)
+hcd <- as.dendrogram(h)
+
+
+plot(cut(hcd, h = 4.25)$upper, main = "Upper tree of cut at h=3")
+
+
+clus8 = cutree(h, 10)
 table(clus8)
 
 # pick #
@@ -163,24 +169,18 @@ cluster.vars <- c("URGCARE","VDAYR","AGER","SEX", "PAYTYPER","RACER", "INJURY","
                   "REFER","SENBEFOR","PASTVIS","MAJOR", "PCTPOVR","PBAMORER", "URBANRUR","HINCOMER","AGER","WEEKEND")
 
 
-# EXPERIMENT 1 ----------------------------------
-X.hclustPL.wardD2 = hclust.PL(dist(y),method="ward.D2")
-X.agnes.wardD2 = agnes(dist(y),method="ward")
-
-#identical!
 
 
 #kmodes(data, modes, iter.max = 10, weighted = FALSE)
-sample.kmode <- kmodes(sample, modes = 8, iter.max = 10, weighted = FALSE)
+sample.kmode <- kmodes(sample, modes = 10, iter.max = 5, weighted = FALSE)
 
 sample.kmode$modes
 
+plot(sample,col=sample.kmode$cluster)
+
+
 summary(sample.kmode)
 
-
-cl
-cl$modes
-summary(cl)
 
 ## ways of viewing
 
@@ -197,9 +197,45 @@ plot(sk2)
 plot(cl$withindiff)
 
 clusplot(sample, clus = cl$cluster, color=TRUE, shade=FALSE,
-         labels=0, lines=0, )
+         labels=0, lines=0 )
 
 ########################################################################
+
+
+
+
+
+
+
+
+
+set.seed(1)
+x <- rbind(matrix(rbinom(250, 2, 0.25), ncol = 5),
+           matrix(rbinom(250, 2, 0.75), ncol = 5))
+colnames(x) <- c("a", "b", "c", "d", "e")
+
+## run algorithm on x:
+(cl <- kmodes(x, 2))
+
+## and visualize with some jitter:
+plot(jitter(sample), col = cl$cluster)
+points(cl$modes, col = 1:5, pch = 8)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
