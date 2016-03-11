@@ -6,7 +6,7 @@ output: word_document
 
 ** Need intro to this... make more cohesive **
 
-##Moving away from Primary Care
+## Moving away from Primary Care
 
 The shift towards urgent care centers will undoubtedly have profound consequences for the patient-practitioner relationship and the patient’s role in the medical care system, but so far these consequences remain largely unknown. Fortunately, sociologists have had a long-standing concern with such professional-client interactions, particularly within medicine (Freidson 1961, Bloom 1963, Mechanic 1968), and in order to better understand what effects the shift away from primary care may have on patients, one can look to a large body of research on how institutional and organizational environments directly affect a patient’s experience in health care.
 
