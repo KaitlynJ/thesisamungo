@@ -8,7 +8,15 @@ output: word_document
 # Analysis
 \doublespacing
 
+<<<<<<< HEAD
 A quick summary of the data shows that by and large most of the observations continue to choose traditional means of obcuring primary care. With cluster assignments established, I then analyzed how the identified groups differed from each other in terms of critical demographic chracteristics and behaviors that are described in the literature. In order to better understand the characteristics of individuals choosing to go to urgent care we must understand which chracteristics or bahaviors most distinguished the clusters in the anlaysis. 
+=======
+## not rly sure what this section is anymore ....
+
+HEre new text
+
+A quick summary of the data shows that by and large most of the observations continue to choose traditional means of obcuring primary care. Great quote: For our purposes, we do not presume to go quite this far, but we are applying this method as a form of retroduction, using observed evidence to create a research hypothesis that accounts for the observed facts *Sayer, 1992*.
+>>>>>>> master
 
 ## Identifying Typologies with Clustering
 

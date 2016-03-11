@@ -102,6 +102,10 @@ Race <- Cont.model$RACER
 Sex <- Cont.model$SEX
 PaymentType <- Cont.model$PAYTYPER
 
+library(dplyr)
+
+
+
 t1 <- probtable.func(Sex) 
 t2 <- probtable.func(AgeGroup)
 t3 <- probtable.func(Race)
