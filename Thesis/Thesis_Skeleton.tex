@@ -702,7 +702,7 @@
   observations, only 3,863 of those occurred at urgent care centers (about
   3 percent). Of these visits, I limited the analysis to observations
   without missing information, bringing the sample to 3,695 visits to
-  urgent care centers.
+  urgent care centers. \emph{insert table 3.1}
   
   \section{\texorpdfstring{\emph{k}-Modes Cluster
   Analysis}{k-Modes Cluster Analysis}}\label{k-modes-cluster-analysis}
@@ -716,59 +716,44 @@
   this project, this is extremely useful since we initially only know who
   is going to urgent care and who is not, but would like to understand
   them as a group better before drawing comparisons between patients who
-  visited a traditional primary care clinic. Also a plus for cluster
-  analysis, such inductive methodologies are based only on quantitative
-  similarities among cases, only two factors may be responsible for trends
-  in the data: the actual structure of the observed phenomenon and the
-  methodological decisions I made concerning choosing the cases and
-  variables (including the statistical method used to identify subsets).
+  visited a traditional primary care clinic. Another advantage for cluster
+  analysis is that since such inductive methodologies are based only on
+  quantitative similarities among cases, only two factors may be
+  responsible for trends in the data: the actual structure of the observed
+  phenomenon and the methodological decisions I made concerning choosing
+  the cases and variables (including the statistical method used to
+  identify subsets). A further explanation of the \emph{k}-modes
+  clustering performed on the data is avaiable in Appendix 1.
   
   Because I am interested in two somewhat distinct aspects of the patients
-  of Urgent Care-- both their demographics and their patterns of use --
-  The clustering was performed in two batches of parameters which aimed to
-  help us understand the two different side to a visit to urgent care.
-  Variables for \emph{Age, Sex, Race, Urban Type, \% Neighborhood Poverty,
-  \% Neighborhood college degree attainment, and Pay Type}, what I will
-  refer to as the \emph{demographic variables} from this point forward
+  of Urgent Care -- both their demographics and their patterns of use --
+  The clustering was performed in two batches of parameters. Variables for
+  \emph{Age, Sex, Race, Urban Type, \% Neighborhood Poverty, \%
+  Neighborhood college degree attainment, and Payment Type}, what I will
+  refer to as the \emph{demographic variables} from this point forward,
   were first analyzed for subgroups. Secondly, some of the same variables
-  were again analyzed with the behavior parameters of \emph{Injury
-  related, Primary Caregiver, Seen Before?, Past Visits, Major Reason, and
-  the day of the week}, what I will refer to as the \emph{behavior
-  parameters}.
+  were again analyzed with the behavior parameters of \emph{Injury related
+  visit (y/n), Primary Caregiver, Seen Before?, Past Visits, Major Reason,
+  and the day of the week}, what I will refer to as the \emph{behavior
+  parameters}. The summary statistics for these variables can be found in
+  Table 1 of Appendix 2.
   
-  While clustering methods are increasingly being used to generate
-  scientific hypotheses, this analysis rather aims to apply clustering as
-  a method of reproduction on a phenomenon that is currently vastly under
-  studied. The methodological decisions of this study are divided into
-  three areas: (1) the determination of the number of clusters, (2) the
-  examination of how the clusters differ in terms of multiple parameters,
-  and (3) examining the clusters in light of the theoretical hypotheses
-  posed in the introduction.
-  
-  \subsection{Patient and Visit
+  \subsubsection{Patient and Visit
   Characteristics}\label{patient-and-visit-characteristics}
   
   Many of the variables chosen to include in the exploratory cluster
-  analysis were selected with an awareness of the historical and
+  analysis were selected with both an awareness of the historical and
   sociological understandings of the decision factors which affect how
-  Americans choose their healthcare. Patient demographics including age,
-  race, gender, and socioeconomic status indicators were included, along
-  with regional data for each visit and variables which examined the type
-  and history of the visits to the facility.
-  
-  Initial clusters included dummy variables for self-pay, private
-  insurance, race (white, black, Hispanic, Asian, 2+), sex, rural, and
-  wealthy. To identify the subsets, I took random samples from the cases
-  which were recording as having been at urgent care centers using the
-  dplyr package sample\_n, which allows for a random sampling of rows from
-  a table. from the cases which were recording as having been at urgent
-  care centers. For the three years in question a total of 2459 visits to
-  urgent care were surveyed. In order to get workable training data for
-  the unsupervised clustering, I set aside a random sample of 250 visits
-  for test data, and proceeded to randomly sample from the 2209 cases
-  available, running the analysis on 250 observations at a time.
-  
-  \newpage 
+  Americans choose their healthcare in mind and through an elimination
+  process. Initially, 40 parameters on patient demographics and visit
+  characteristics, along with regional data for each observation, were
+  included in the clustering. To identify the subsets of characteristics,
+  I began by clustering the urgent care observations using all of the
+  initial parameters. Variables were then eliminated which failed to
+  effect an observation's placement within a cluster. Through this process
+  of eliminating variables which did not cluster systematically, the
+  parameters which are used in the following logistic regression analysis
+  were chosen. Table 3.2 shows the proportions of each variable.
   
   \singlespacing
   
@@ -826,25 +811,28 @@
   \section{Regression: Logistic Modeling of Urgent Care
   Visits}\label{regression-logistic-modeling-of-urgent-care-visits}
   
-  A logistic regression anlaysis is used in this study to examine the
-  determinants of the odds of using urgent care as primary care. Often,
-  sociologists and other social scientists performing quantitiative
-  analysis on a single dependant variable use a form of analysis called
-  ordinary least squares (OLS) regression, which attempts to fit a line
-  across a set of data points in order to best determine which independant
-  variable has the greatest effect on determining the outcome fo the
-  dependant variable. This method works well for outcome variables which
-  are quantifiable, however in the present study the variable of interest
-  is binary and categorical: a person either uses the urgent care center
-  as their primary care physician or they do not.
+  \doublespacing
+  
+  Following the cluster analysis, a logistic regression anlaysis is used
+  in this study to examine the determinants of the odds of using urgent
+  care as primary care. Often, sociologists and other social scientists
+  performing quantitiative analysis on a single dependant variable use a
+  form of analysis called ordinary least squares (OLS) regression, which
+  attempts to fit a line across a set of data points in order to best
+  determine which independant variable has the greatest effect on
+  determining the outcome fo the dependant variable. This method works
+  well for outcome variables which are quantifiable, however in the
+  present study the variable of interest is binary and categorical: a
+  person either uses the urgent care center as their primary care
+  physician or they do not.
   
   This creates many problems which violate the assumptions of linear
-  models like OLS, and are the reason logisic regression was used instead.
-  Logistic regression avoids the pitfalls of linear models by fitting a
-  curved rather than a straight line to the data. This results in a better
-  estimation of the effects of independant variables upon probabilities
-  because the curvature of the line is able to fit the clustering of the
-  answers at the two poles.
+  models like OLS, and are the reason logisic regression was chosen
+  instead. Logistic regression avoids the pitfalls of linear models by
+  fitting a curved rather than a straight line to the data. This results
+  in a better estimation of the effects of independant variables upon
+  probabilities because the curvature of the line is able to fit the
+  clustering of the answers at the two poles.
   
   \subsection{Operationalization and Recoding of
   Variables}\label{operationalization-and-recoding-of-variables}
@@ -858,6 +846,28 @@
   their primary care physician. Both of these outcome variables are
   analyzed in light of many visit level characteristics, up to 16 in the
   full logistic model.
+  
+  \subsubsection{Independant Variables}\label{independant-variables}
+  
+  \textbf{\emph{Injury Related Visit}}
+  
+  \textbf{\emph{Weekend Visit}}
+  
+  \textbf{\emph{Established Patient}}
+  
+  \textbf{\emph{Number Past Visits}}
+  
+  \textbf{\emph{Visit Reason}}
+  
+  \textbf{\emph{Age}}
+  
+  \textbf{\emph{Male}}
+  
+  \textbf{\emph{Race}}
+  
+  \textbf{\emph{High ZIP Income}}
+  
+  \textbf{\emph{Rural}}
   
   \chapter{Analysis}\label{analysis}
   
@@ -876,8 +886,8 @@
   \section{Identifying Typologies with
   Clustering}\label{identifying-typologies-with-clustering}
   
-  \subsection{Differences in Demographic and Behavioral Factors of Urgent
-  Care
+  \subsubsection{Differences in Demographic and Behavioral Factors of
+  Urgent Care
   Seekers}\label{differences-in-demographic-and-behavioral-factors-of-urgent-care-seekers}
   
   In order to better understand the characteristics of individuals
@@ -937,7 +947,7 @@
   question of the relationship between the surprising number of elderly
   patients on Medicare seeking treatment at an urgent care centers.
   
-  THe demographic characteristics of urgent care seekers were also
+  The demographic characteristics of urgent care seekers were also
   clustered with behavioral, visit-level parameters in a second wave of
   cluster anlaysis, in order to to examine \emph{how} urgent care is
   utilized by different groups. By far the largest and most homogenous
@@ -985,12 +995,43 @@
   privately insured urbanites, while the second seems to rely on urgent
   care much more as an actually resource for urgent problems.
   
+  \emph{Insert cluster table here, appendix for now}
+  
   \section{Logistic Regression
   Analysis}\label{logistic-regression-analysis}
   
-  The initital exploratory analysis shows clear trends, and the next phase
-  of the analysis uses those trends and tests for significance using
-  logistic regression analysis.
+  The initital exploratory analysis shows clear typologies of urgent care
+  seekers, and the next phase of the analysis uses those trends and tests
+  for significance using logistic regression analysis. Tables 4.1 and 4.2
+  show the results of the two logistic regression models.
+  
+  For the odds of choosing to go to urgent care over other means of
+  ambulatory care, there is a surprising lack of significance for whether
+  or not the visit is injury related, and whether or not it is a weekend.
+  Similarly, visits for routine and chronic issues have a higher chance of
+  leading to an urgent care visit than problems less than 3 mos old. These
+  trends both support Hypothesis 2: that urgent care centers are being
+  used as a new mode of primary care.
+  
+  For the second analysis, the outcome is no longer whether or not the
+  visit was \emph{at} urgent care, but whether or not an urgent care
+  patient listed the urgent care center as their ``Primary Health
+  Provider''. Interestingly, most of the significant variables' effects
+  chagne direction when this is taken as the outcome. While high local
+  income levels had a negative relationship with the decision to go to
+  urgent care, it appears to very positively correlate with those who do
+  use urgent care as their primary care.
+  
+  Many of the visit-specific variables that did not have a significant
+  effect on the odds of choosing urgent care became significant when
+  looking at urgent care as primary care. Unsurprisingly, whether or not
+  the visit was injury related has a negative effect on the odds of the
+  patient specifying that clinic as their PCP.
+  
+  There are some surprising trends in the secondary logistic model which
+  deserve further study. Established patient, for example, have a
+  significant negative correlation with the odds of a patient using urgent
+  care as their primary care physician?
   
   \begin{table}
   \begin{center}
@@ -1087,6 +1128,37 @@
   \label{table:coefficients}
   \end{center}
   \end{table}
+  
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \KeywordTok{library}\NormalTok{(ResourceSelection)}
+  \end{Highlighting}
+  \end{Shaded}
+  
+  \begin{verbatim}
+  Warning: package 'ResourceSelection' was built under R version 3.2.3
+  \end{verbatim}
+  
+  \begin{verbatim}
+  ResourceSelection 0.2-6      2016-02-15
+  \end{verbatim}
+  
+  \begin{Shaded}
+  \begin{Highlighting}[]
+  \NormalTok{h1<-}\StringTok{ }\KeywordTok{hoslem.test}\NormalTok{(dummiesUC.df$PRIMCAREYes, }\KeywordTok{fitted}\NormalTok{(logit2.full, }\DataTypeTok{g =}\DecValTok{10}\NormalTok{))}
+  \NormalTok{h1}
+  \end{Highlighting}
+  \end{Shaded}
+  
+  \begin{verbatim}
+  
+      Hosmer and Lemeshow goodness of fit (GOF) test
+  
+  data:  dummiesUC.df$PRIMCAREYes, fitted(logit2.full, g = 10)
+  X-squared = 10.84, df = 8, p-value = 0.2109
+  \end{verbatim}
+  
+  \section{Revisiting the hypotheses}\label{revisiting-the-hypotheses}
   
   \chapter*{Appendix 1}\label{appendix-1}
   \addcontentsline{toc}{chapter}{Appendix 1}

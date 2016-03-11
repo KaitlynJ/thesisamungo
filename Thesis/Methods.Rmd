@@ -79,24 +79,19 @@ Some limitations to the data should be noted. There may be related errors given 
 The NAMCS is a large data set: compiling observations for the years 2008-2012 generated a data set of over 100,000 observations with 547 variables. In order to explore such a large amount of data, I began the analysis by utilizing unsupervised statistical learning methods in order to develop descriptive categories of urgent care center patients. The advantages of performing an initial analysis of this nature are its ability to efficiently examine a large amount of variables and highlight those that should be included in later analyses. This choice was motivated by the current lack of statistical analysis and social theory surrounding urgent care centers, which makes it difficult to develop a model from scratch. The results of the clustering act as a guide for the regression techniques by identifying variables with some relationship to urgent care.
 
 For the clustering, I examined the group of visits which were coded as having been at "Urgent Care Centers/Freestanding Clinics" by the NAMCS. While the combined years produced a data set of 123,120 observations, only 3,863 of those occurred at urgent care centers (about 3 percent). Of these visits, I limited the analysis to observations without missing information, bringing the sample to 3,695 visits to urgent care centers.
+*insert table 3.1*
 
 ## *k*-Modes Cluster Analysis
 
-This method allows for grouping patients that have similar characteristics across a set of variables by dividing a set of cases into ever more numerous and specific subsets, thus leading to homogeneous empirical types (Rapkin and Luke, 1993). One of the most powerful exploratory aspects of cluster analysis is that you do not need to have a response variable in order to better understand your data. For this project, this is extremely useful since we initially only know who is going to urgent care and who is not, but would like to understand them as a group better before drawing comparisons between patients who visited a traditional primary care clinic. Also a plus for cluster analysis, such inductive methodologies are based only on quantitative similarities among cases, only two factors may be responsible for trends in the data: the actual structure of the observed phenomenon and the methodological decisions I made concerning choosing the cases and variables (including the statistical method used to identify subsets). 
+This method allows for grouping patients that have similar characteristics across a set of variables by dividing a set of cases into ever more numerous and specific subsets, thus leading to homogeneous empirical types (Rapkin and Luke, 1993). One of the most powerful exploratory aspects of cluster analysis is that you do not need to have a response variable in order to better understand your data. For this project, this is extremely useful since we initially only know who is going to urgent care and who is not, but would like to understand them as a group better before drawing comparisons between patients who visited a traditional primary care clinic. Another advantage for cluster analysis is that since such inductive methodologies are based only on quantitative similarities among cases, only two factors may be responsible for trends in the data: the actual structure of the observed phenomenon and the methodological decisions I made concerning choosing the cases and variables (including the statistical method used to identify subsets). A further explanation of the *k*-modes clustering performed on the data is avaiable in Appendix 1.
 
-Because I am interested in two somewhat distinct aspects of the patients of Urgent Care-- both their demographics and their patterns of use -- The clustering was performed in two batches of parameters which aimed to help us understand the two different side to a visit to urgent care. Variables for *Age, Sex, Race, Urban Type, % Neighborhood Poverty, % Neighborhood college degree attainment, and Pay Type*, what I will refer to as the *demographic variables* from this point forward were first analyzed for subgroups. Secondly, some of the same variables were again analyzed with the behavior parameters of *Injury related, Primary Caregiver, Seen Before?, Past Visits, Major Reason, and the day of the week*, what I will refer to as the *behavior parameters*. 
+Because I am interested in two somewhat distinct aspects of the patients of Urgent Care -- both their demographics and their patterns of use -- The clustering was performed in two batches of parameters. Variables for *Age, Sex, Race, Urban Type, % Neighborhood Poverty, % Neighborhood college degree attainment, and Payment Type*, what I will refer to as the *demographic variables* from this point forward, were first analyzed for subgroups. Secondly, some of the same variables were again analyzed with the behavior parameters of *Injury related visit (y/n), Primary Caregiver, Seen Before?, Past Visits, Major Reason, and the day of the week*, what I will refer to as the *behavior parameters*. The summary statistics for these variables can be found in Table 1 of Appendix 2. 
 
-While clustering methods are increasingly being used to generate scientific hypotheses, this analysis rather aims to apply clustering as a method of reproduction on a phenomenon that is currently vastly under studied. The methodological decisions of this study are divided into three areas: (1) the determination of the number of clusters, (2) the examination of how the clusters differ in terms of multiple parameters, and (3) examining the clusters in light of the theoretical hypotheses posed in the introduction. 
+#### Patient and Visit Characteristics
 
-### Patient and Visit Characteristics
-
-Many of the variables chosen to include in the exploratory cluster analysis were selected with an awareness of the historical and sociological understandings of the decision factors which affect how Americans choose their healthcare. Patient demographics including age, race, gender, and socioeconomic status indicators were included, along with regional data for each visit and variables which examined the type and history of the visits to the facility. 
+Many of the variables chosen to include in the exploratory cluster analysis were selected with both an awareness of the historical and sociological understandings of the decision factors which affect how Americans choose their healthcare in mind and through an elimination process. Initially, 40 parameters on patient demographics and visit characteristics, along with regional data for each observation, were included in the clustering. To identify the subsets of characteristics, I began by clustering the urgent care observations using all of the initial parameters. Variables were then eliminated which failed to effect an observation's placement within a cluster. Through this process of eliminating variables which did not cluster systematically, the parameters which are used in the following logistic regression analysis were chosen. Table 3.2 shows the proportions of each variable.
 
 
-Initial clusters included dummy variables for self-pay, private insurance, race (white, black, Hispanic, Asian, 2+), sex, rural, and wealthy. To identify the subsets, I took random samples from the cases which were recording as having been at urgent care centers using the dplyr package sample_n, which allows for a random sampling of rows from a table. from the cases which were recording as having been at urgent care centers. For the three years in question a total of 2459 visits to urgent care were surveyed. In order to get workable training data for the unsupervised clustering, I set aside a random sample of 250 visits for test data, and proceeded to randomly sample from the 2209 cases available, running the analysis on 250 observations at a time. 
-
-
-\newpage 
 ```{r make-tbl-demographics, echo=FALSE}
 #pretty names
 PercentPoverty <- Cont.model$PCTPOVR
@@ -118,26 +113,51 @@ t7 <- probtable.func(PercentBachelors)
 demographics.tbl <- rbind(t1, t2, t3, t4, t5, t6)
 
 ```
+
 \singlespacing
 ```{r table_sums, results = "asis", echo=FALSE}
-kable(demographics.tbl, 
+
+kable(demographics.tbl,
       col.names = c("Variable", "Category", "Percentage"),
       caption = "Observed Proportions of Independant Variables \\label{tab:sums}")
 ```
 
-\doublespacing
 ## Regression: Logistic Modeling of Urgent Care Visits
+\doublespacing
 
-A logistic regression anlaysis is used in this study to examine the determinants of the odds of using urgent care as primary care. Often, sociologists and other social scientists performing quantitiative analysis on a single dependant variable use a form of analysis called ordinary least squares (OLS) regression, which attempts to fit a line across a set of data points in order to best determine which independant variable has the greatest effect on determining the outcome fo the dependant variable. This method works well for outcome variables which are quantifiable, however in the present study the variable of interest is binary and categorical: a person either uses the urgent care center as their primary care physician or they do not. 
+Following the cluster analysis, a logistic regression anlaysis is used in this study to examine the determinants of the odds of using urgent care as primary care. Often, sociologists and other social scientists performing quantitiative analysis on a single dependant variable use a form of analysis called ordinary least squares (OLS) regression, which attempts to fit a line across a set of data points in order to best determine which independant variable has the greatest effect on determining the outcome fo the dependant variable. This method works well for outcome variables which are quantifiable, however in the present study the variable of interest is binary and categorical: a person either uses the urgent care center as their primary care physician or they do not. 
 
-This creates many problems which violate the assumptions of linear models like OLS, and are the reason logisic regression was used instead. Logistic regression avoids the pitfalls of linear models by fitting a curved rather than a straight line to the data. This results in a better estimation of the effects of independant variables upon probabilities because the curvature of the line is able to fit the clustering of the answers at the two poles. 
+This creates many problems which violate the assumptions of linear models like OLS, and are the reason logisic regression was chosen instead. Logistic regression avoids the pitfalls of linear models by fitting a curved rather than a straight line to the data. This results in a better estimation of the effects of independant variables upon probabilities because the curvature of the line is able to fit the clustering of the answers at the two poles. 
 
 
 ### Operationalization and Recoding of Variables
-####Dependant Variables
+
+#### Dependant Variables
 
 The dependent variable analyzed in the logistic model in this study is whether or not a patient went to urgent care. Furthermore, a secondary analysis is conducted on how the patient demographics and visit characteristics relate to whether or not the patient uses urgent care as their primary care physician. Both of these outcome variables are analyzed in light of many visit level characteristics, up to 16 in the full logistic model. 
 
+
+#### Independant Variables
+
+***Injury Related Visit***
+
+***Weekend Visit***
+
+***Established Patient***
+
+***Number Past Visits***
+
+***Visit Reason***
+
+***Age***
+
+***Male***
+
+***Race***
+
+***High ZIP Income***
+
+***Rural***
 
 
 

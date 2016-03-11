@@ -11,7 +11,8 @@ output: word_document
 A quick summary of the data shows that by and large most of the observations continue to choose traditional means of obcuring primary care. With cluster assignments established, I then analyzed how the identified groups differed from each other in terms of critical demographic chracteristics and behaviors that are described in the literature. In order to better understand the characteristics of individuals choosing to go to urgent care we must understand which chracteristics or bahaviors most distinguished the clusters in the anlaysis. 
 
 ## Identifying Typologies with Clustering
-###Differences in Demographic and Behavioral Factors of Urgent Care Seekers
+
+#### Differences in Demographic and Behavioral Factors of Urgent Care Seekers
 
 In order to better understand the characteristics of individuals choosing to go to urgent care, we must first understand which characteristics or behaviors most distinguished the clusters in the cluster analysis, and to do this I used the k-modes clustering algorithm to situation observations into similar groups of patients. With cluster assignments established by the hierarchal agglomerative methods above, I then analyzed how the identified groups or 8 and 12 differed from each other in terms of critical demographic characteristics and visit behaviors that were described in the literature review. 
 
@@ -29,9 +30,21 @@ In fact, only 32 visits in the example model were coded as new patients (Figure 
 	
 As for the Medicare question, if the clusters which consist of primarily elderly patients are examined—rows 5 and 9 in Table 2 (Figure 2, magenta and blue)—we can begin to understand a little better the relatively large percentage of what many would consider non-emergent care utilizers and their relationship to urgent care. Cluster 5 consists entirely of white patients between 65 and 74, whose visits were recorded as routine and who have a minimum of 3 past visits at the same center. Cluster nine on the other hand has a slightly older age range of above 75, and visits which were all considered new problems. Also distinguishing, cluster nine is the only cluster with a majority of rural observations. When compared, it appears that there are two typologies of elderly urgent care seekers, the first of which may be using urgent in much the same ways as the younger and larger clusters of privately insured urbanites, while the second seems to rely on urgent care much more as an actually resource for urgent problems. 
 
+*Insert cluster table here, appendix for now*
+
 ## Logistic Regression Analysis
 
-The initital exploratory analysis shows clear trends, and the next phase of the analysis uses those trends and tests for significance using logistic regression analysis. 
+The initital exploratory analysis shows clear typologies of urgent care seekers, and the next phase of the analysis uses those trends and tests for significance using logistic regression analysis. Tables 4.1 and 4.2 show the results of the two logistic regression models. 
+
+For the odds of choosing to go to urgent care over other means of ambulatory care, there is a surprising lack of significance for whether or not the visit is injury related, and whether or not it is a weekend. Similarly, visits for routine and chronic issues have a higher chance of leading to an urgent care visit than problems less than 3 mos old. These trends both support Hypothesis 2: that urgent care centers are being used as a new mode of primary care.
+
+For the second analysis, the outcome is no longer whether or not the visit was *at* urgent care, but whether or not an urgent care patient listed the urgent care center as their "Primary Health Provider". Interestingly, most of the significant variables' effects chagne direction when this is taken as the outcome. While high local income levels had a negative relationship with the decision to go to urgent care, it appears to very positively correlate with those who do use urgent care as their primary care. 
+
+Many of the visit-specific variables that did not have a significant effect on the odds of choosing urgent care became significant when looking at urgent care as primary care. Unsurprisingly, whether or not the visit was injury related has a negative effect on the odds of the patient specifying that clinic as their PCP. 
+
+There are some surprising trends in the secondary logistic model which deserve further study. Established patient, for example, have a significant negative correlation with the odds of a patient using urgent care as their primary care physician?
+
+
 
 ```{r logit_regression, echo=FALSE, warning=FALSE}
 NAMCS.logit <- NAMCS.work
@@ -100,8 +113,9 @@ logit2.dem <- glm(PRIMCAREYes ~ INJURYYes + WEEKENDYES+ EstablishedPatient + PAS
 logit2.beh <- glm(PRIMCAREYes ~ AGERWorkingAge + AGERRetired + SEXMale + RACERWhite + ZipHighIncome + URBANRURRural, data = dummyUC.varset, family = binomial)
 logit2.full <- glm(PRIMCAREYes ~ INJURYYes + WEEKENDYES+ EstablishedPatient + PASTVIS + MAJORPreventative + MAJORRoutineChronic + AGERWorkingAge + AGERRetired + SEXMale + RACERWhite + ZipHighIncome + URBANRURRural, data = dummyUC.varset, family = binomial)
 
-```
 
+
+```
 
 ```{r logit_tables, warning=FALSE, message=FALSE  ,echo=FALSE ,results="asis"}
 
@@ -109,15 +123,39 @@ library(texreg)
 texreg(list(logit.beh, logit.dem, logit.full), 
        caption = "Logistic model of the decision to go to urgent care.", 
        fontsize = "small", 
-       custom.coef.names = c("Intercept", "Injury Related Visit", "Weekend Visit", "Established Patient", "Number Past Visits", "Visit Reason: Preventative", 
-                             "Visit Reason: Routine/Chronic", "Age: Working", "Age: Retired", "Male", "Race: White", "High ZIP Income", "Rural"))
+       custom.coef.names = c("Intercept", "Injury Related Visit", "Weekend Visit", "Established Patient", "Number Past Visits", "Visit Reason: Preventative", "Visit Reason: Routine/Chronic", "Age: Working", "Age: Retired", "Male", "Race: White", "High ZIP Income", "Rural"))
+
 texreg(list(logit2.beh, logit2.dem, logit2.full), 
        caption = "Logistic model of the decision to use urgent care as primary care", 
        fontsize = "small",
-       custom.coef.names = c("Intercept", "Injury Related Visit", "Weekend Visit", "Established Patient", "Number Past Visits", "Visit Reason: Preventative", 
-                             "Visit Reason: Routine/Chronic", "Age: Working", "Age: Retired", "Male", "Race: White", "High ZIP Income", "Rural"))
+       custom.coef.names = c("Intercept", "Injury Related Visit", "Weekend Visit", "Established Patient", "Number Past Visits", "Visit Reason: Preventative", "Visit Reason: Routine/Chronic", "Age: Working", "Age: Retired", "Male", "Race: White", "High ZIP Income", "Rural"))
+
 
 ```
+
+
+```{r diagnostics}
+
+library(ResourceSelection)
+h1<- hoslem.test(dummiesUC.df$PRIMCAREYes, fitted(logit2.full, g =10))
+h1
+```
+
+
+
+
+## Revisiting the hypotheses
+
+
+
+
+
+
+
+
+
+
+
 
 
 

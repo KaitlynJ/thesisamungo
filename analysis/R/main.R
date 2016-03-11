@@ -176,6 +176,32 @@ sample.kmode <- kmodes(sample, modes = 10, iter.max = 5, weighted = FALSE)
 
 sample.kmode$modes
 
+
+
+sil <- silhouette(sample.kmode$cluster, sample.dsy)
+rownames(sil) <- rownames(sample)
+head(sil[, 1:3])
+plot(fviz_silhouette(sil))
+
+class = sample$PRIMCARE
+table(class)
+library(mclust)
+X = sample[,-1]
+head(X)
+clPairs(X, class)
+
+BIC = mclustBIC(X)
+mod1 = Mclust(X)
+summary(mod1, parameters = TRUE)
+
+
+fviz_cluster(mod1)
+
+
+
+
+
+
 plot(sample,col=sample.kmode$cluster)
 
 
@@ -188,6 +214,15 @@ summary(sample.kmode)
 sample.clus.km <- lapply(1:k, function(nc)
   id[cl$cluster==nc])
 sample.clus.km
+
+sil <- silhouette(, dist(df))
+rownames(sil) <- rownames(USArrests)
+head(sil[, 1:3])
+
+
+
+
+
 
 #sillouette
 dsy2   <- sample.dsy^2

@@ -29,7 +29,7 @@ colnames(sample) <- c("Urg", "Private Ins", "Emergency", "Weekend", "Return")
 
 
 #one way
-class = sample$`PAYTYPERPrivate insurance`
+class = sample$PRIMCARE
 table(class)
 
 X = sample[,-1]
