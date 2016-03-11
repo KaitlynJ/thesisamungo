@@ -27,6 +27,7 @@ lof: false
 header-includes:
   \usepackage{tikz}
   \usepackage{setspace}
+  \pagestyle{plain}
 ---
 
 <!--

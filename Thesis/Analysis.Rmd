@@ -5,22 +5,19 @@ header-includes:
 - \usepackage{longtable,booktabs,setspace}
 output: word_document
 ---
-# Analysis
+# Analysis {.unnumbered}
 \doublespacing
 
-<<<<<<< HEAD
+
 A quick summary of the data shows that by and large most of the observations continue to choose traditional means of obcuring primary care. With cluster assignments established, I then analyzed how the identified groups differed from each other in terms of critical demographic chracteristics and behaviors that are described in the literature. In order to better understand the characteristics of individuals choosing to go to urgent care we must understand which chracteristics or bahaviors most distinguished the clusters in the anlaysis. 
-=======
-## not rly sure what this section is anymore ....
 
-HEre new text
-
+old?
 A quick summary of the data shows that by and large most of the observations continue to choose traditional means of obcuring primary care. Great quote: For our purposes, we do not presume to go quite this far, but we are applying this method as a form of retroduction, using observed evidence to create a research hypothesis that accounts for the observed facts *Sayer, 1992*.
->>>>>>> master
 
-## Identifying Typologies with Clustering
 
-#### Differences in Demographic and Behavioral Factors of Urgent Care Seekers
+## Identifying Typologies with Clustering{.unnumbered}
+
+#### Differences in Demographic and Behavioral Factors of Urgent Care Seekers{.unnumbered}
 
 In order to better understand the characteristics of individuals choosing to go to urgent care, we must first understand which characteristics or behaviors most distinguished the clusters in the cluster analysis, and to do this I used the k-modes clustering algorithm to situation observations into similar groups of patients. With cluster assignments established by the hierarchal agglomerative methods above, I then analyzed how the identified groups or 8 and 12 differed from each other in terms of critical demographic characteristics and visit behaviors that were described in the literature review. 
 
@@ -40,7 +37,7 @@ As for the Medicare question, if the clusters which consist of primarily elderly
 
 *Insert cluster table here, appendix for now*
 
-## Logistic Regression Analysis
+## Logistic Regression Analysis {.unnumbered}
 
 The initital exploratory analysis shows clear typologies of urgent care seekers, and the next phase of the analysis uses those trends and tests for significance using logistic regression analysis. Tables 4.1 and 4.2 show the results of the two logistic regression models. 
 
@@ -94,8 +91,7 @@ dummiesFull.df <- as.data.frame(model.matrix(~., data=logit.varset)[,-1])
 dummiesUC.df <- as.data.frame(model.matrix(~.,data = UC.varset)[,-1])
 
 
-dummy.vars <- c("HighEduc", "HighZipPov", "ZipHighIncome", "MAJORPreventative", "MAJORRoutineChronic", "PASTVIS", "SENBEFORYes, established patient", 
-                "INJURYYes", "SEXMale", "AGERRetired", "AGERWorkingAge", "WEEKENDYES", "RACERWhite", "RACEROther", "URBANRURRural", "PRIMCAREYes", "URGCAREYes")
+dummy.vars <- c("HighEduc", "HighZipPov", "ZipHighIncome", "MAJORPreventative", "MAJORRoutineChronic", "PASTVIS", "SENBEFORYes, established patient", "INJURYYes", "SEXMale", "AGERRetired", "AGERWorkingAge", "WEEKENDYES", "RACERWhite", "RACEROther", "URBANRURRural", "PRIMCAREYes", "URGCAREYes", "PAYTYPERMedicaid", "PAYTYPERMedicare", "PAYTYPEROther")
 dummyFull.varset <- dummiesFull.df[dummy.vars]
 dummyUC.varset <- dummiesUC.df[dummy.vars]
 
@@ -112,14 +108,16 @@ names(dummyUC.varset)[names(dummyUC.varset) == 'SENBEFORYes, established patient
 #sapply(dummy.varset, sd)
 #xtabs(~ URGCAREYes + RACERWhite, data = dummy.varset)
 
-logit.dem <- glm(URGCAREYes ~ INJURYYes + WEEKENDYES+ EstablishedPatient + PASTVIS + MAJORPreventative + MAJORRoutineChronic, data = dummyFull.varset, family = binomial)
+logit.dem <- glm(URGCAREYes ~ INJURYYes + WEEKENDYES+ PAYTYPERMedicaid+PAYTYPERMedicare+PAYTYPEROther+EstablishedPatient + PASTVIS + MAJORPreventative + MAJORRoutineChronic, data = dummyFull.varset, family = binomial)
 logit.beh <- glm(URGCAREYes ~ AGERWorkingAge + AGERRetired + SEXMale + RACERWhite + ZipHighIncome + URBANRURRural, data = dummyFull.varset, family = binomial)
-logit.full <- glm(URGCAREYes ~ INJURYYes + WEEKENDYES+ EstablishedPatient + PASTVIS + MAJORPreventative + MAJORRoutineChronic + AGERWorkingAge + AGERRetired + SEXMale + RACERWhite + ZipHighIncome + URBANRURRural, data = dummyFull.varset, family = binomial)
+logit.full <- glm(URGCAREYes ~ INJURYYes + WEEKENDYES+ PAYTYPERMedicaid+PAYTYPERMedicare+PAYTYPEROther+EstablishedPatient + PASTVIS + MAJORPreventative + MAJORRoutineChronic + AGERWorkingAge + AGERRetired + SEXMale + RACERWhite + ZipHighIncome + URBANRURRural, data = dummyFull.varset, family = binomial)
 
 
 logit2.dem <- glm(PRIMCAREYes ~ INJURYYes + WEEKENDYES+ EstablishedPatient + PASTVIS + MAJORPreventative + MAJORRoutineChronic, data = dummyUC.varset, family = binomial)
+
 logit2.beh <- glm(PRIMCAREYes ~ AGERWorkingAge + AGERRetired + SEXMale + RACERWhite + ZipHighIncome + URBANRURRural, data = dummyUC.varset, family = binomial)
-logit2.full <- glm(PRIMCAREYes ~ INJURYYes + WEEKENDYES+ EstablishedPatient + PASTVIS + MAJORPreventative + MAJORRoutineChronic + AGERWorkingAge + AGERRetired + SEXMale + RACERWhite + ZipHighIncome + URBANRURRural, data = dummyUC.varset, family = binomial)
+
+logit2.full <- glm(PRIMCAREYes ~ INJURYYes + WEEKENDYES + PAYTYPERMedicaid + PAYTYPERMedicare + PAYTYPEROther + EstablishedPatient + PASTVIS + MAJORPreventative + MAJORRoutineChronic + AGERWorkingAge + AGERRetired + SEXMale + RACERWhite + ZipHighIncome + URBANRURRural, data = dummyUC.varset, family = binomial)
 
 
 
@@ -131,12 +129,12 @@ library(texreg)
 texreg(list(logit.beh, logit.dem, logit.full), 
        caption = "Logistic model of the decision to go to urgent care.", 
        fontsize = "small", 
-       custom.coef.names = c("Intercept", "Injury Related Visit", "Weekend Visit", "Established Patient", "Number Past Visits", "Visit Reason: Preventative", "Visit Reason: Routine/Chronic", "Age: Working", "Age: Retired", "Male", "Race: White", "High ZIP Income", "Rural"))
+       custom.coef.names = c("Intercept", "Injury Related Visit", "Weekend Visit", "Medicaid" , "Medicare" , "Other" , "Established Patient", "Number Past Visits", "Visit Reason: Preventative", "Visit Reason: Routine/Chronic", "Age: Working", "Age: Retired", "Male", "Race: White", "High ZIP Income", "Rural"))
 
 texreg(list(logit2.beh, logit2.dem, logit2.full), 
        caption = "Logistic model of the decision to use urgent care as primary care", 
        fontsize = "small",
-       custom.coef.names = c("Intercept", "Injury Related Visit", "Weekend Visit", "Established Patient", "Number Past Visits", "Visit Reason: Preventative", "Visit Reason: Routine/Chronic", "Age: Working", "Age: Retired", "Male", "Race: White", "High ZIP Income", "Rural"))
+       custom.coef.names = c("Intercept", "Injury Related Visit", "Weekend Visit", "Medicaid" , "Medicare" , "Other" , "Established Patient", "Number Past Visits", "Visit Reason: Preventative", "Visit Reason: Routine/Chronic", "Age: Working", "Age: Retired", "Male", "Race: White", "High ZIP Income", "Rural"))
 
 
 ```
@@ -152,7 +150,7 @@ h1
 
 
 
-## Revisiting the hypotheses
+## Revisiting the hypotheses {.unnumbered}
 
 
 

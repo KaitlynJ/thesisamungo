@@ -1,12 +1,12 @@
 ---
 output: word_document
 ---
-# Literature Review
+# Literature Review {.unnumbered}
 \doublespacing
 
 ** Need intro to this... make more cohesive **
 
-## Moving away from Primary Care
+## Moving away from Primary Care {.unnumbered}
 
 The shift towards urgent care centers will undoubtedly have profound consequences for the patient-practitioner relationship and the patient’s role in the medical care system, but so far these consequences remain largely unknown. Fortunately, sociologists have had a long-standing concern with such professional-client interactions, particularly within medicine (Freidson 1961, Bloom 1963, Mechanic 1968), and in order to better understand what effects the shift away from primary care may have on patients, one can look to a large body of research on how institutional and organizational environments directly affect a patient’s experience in health care.
 
@@ -22,7 +22,7 @@ Urgent care centers however have no emphasis on maintaining patient-doctor ties 
 
 Yet while this may seem problematic, a large body of recent sociological literature belongs to a growing number of scholars who are challenging the importance, and even relevance, of the traditional primary care physician in modern medicine. Those who have been observing developments in the patient-physician relationship over the past 30 years argue that the last quarter of the 20th century saw a dramatic reconfiguration of society, especially in regards to health services,  which has had profound effects on an individual’s relationship to the healthcare system. So while some were witnessing what was, for Starr (1982), “the social transformation of medicine,” and for many, “the end of the golden age of doctoring” (McKinlay & Marceau 2002). 
 
-###The end of Medical Professional Dominance in the US?
+###The end of Medical Professional Dominance in the US?{.unnumbered}
 
 Almost since sociologists first became interested in the medical profession, the sociology of medicine was deeply joined with studies of professionalism. In the U.S., Doctors were seen as the paragon of the ‘professional’: respected, organized, in control, and above all else, firmly established in their positions. Such traits led many to study what effects this had on medical care and how such professional dominance of medical practitioners shaped what services were provided. Many found that such dominance allowed the profession to block off areas of study entirely, or to ignore diseases they did not want to pursue. Such “modern doctors” worked within a “sovereign profession” (Starr 1982), serenely dispensing both medical care and authoritative judgment. Freidson (1988, p.384) comments that before 1970’s, U.S. medicine “was at a historically unprecedented peak of prestige, prosperity and political and cultural influence—perhaps as autonomous as it is possible for a profession to be.”
 	
@@ -34,13 +34,13 @@ These shifts in the medical profession occurred parallel to changing norms surro
 
 Urgent care centers fit neatly into such a conceptualization of health services, and thus offer a key area of analysis in better understanding the developing roles of the consumer-patient within the larger healthcare industry. An important aspect of the research on the developing patient-consumers emphasizes the expansion of bargaining power on the part of the patient that came with the shift (Reeder 1972). A patient may now shop around the marketplace of health care, and that many are now choosing urgent care centers is undeniable given the industry’s rapid expansion. 
 
-###What does this mean for health care?
+###What does this mean for health care?{.unnumbered}
 
 In light of such research, sociologists and those who study at the intersection of health and social behaviors have begun to re-examine the importance of a close relationship between doctor and patient in an attempt to respond to the consumer-patient model, developing a growing body of research which seeks to define the most effective components of patient-physician interactions and to reaffirm the place of the primary care physician in modern medicine. Common to most of these studies are the elements of ‘trust, compassion, communication, and clinical competence’ (Heritage and Maynard 2006; Phillips and Bazemore 2010, others at bottom). As an example, a 2002 study on clinical outcomes for low income women over the age of forty found that women who rated highest their doctor's ability to take care of all of their health care needs had 11 times the odds of ‘trusting their physician’ and 6 times the odds of finding their physicians ‘compassionate and communicative’, compared to those with the lowest level of comprehensiveness (O’Malley and Forrest 2002).
 
 With such knowledge that close ties between physicians and patients have a direct impact on the perceived quality of care, the importance of examining the rise of urgent care centers become obvious. If patients are acting as rational consumers, which of them are choosing to receive their care outside of a primary care office, and what consequences does this have for their medical outcomes? The lack of research into the characteristics of urgent care patients make it difficult to answer such questions. Indeed, as of now, there has been no academic attempt to place the rapidly growing industry within the sociology of medicine, nor does there even exist an official definition of what constitutes an urgent care center. 
 
-##Urgent Care Centers as an extension of the Welfare State
+##Urgent Care Centers as an extension of the Welfare State{.unnumbered}
 
 The prevailing understanding of urgent care centers interprets the industry’s growth as a development that grew out of emergency department overcrowding that began during the financial tightening of the 1980’s. Thus, each clinic is often conceptualized as a smaller instance of a traditional hospital’s triage center, supplying many services which one could receive at an emergency department (Anon n.d.; Mehrotra et al. 2008; Rubin 2012). One study which compared emergency department services with urgent care centers found that, for all but the most extreme care and emergent care needs, urgent care centers could handle almost all of emergency department traffic and that their services were remarkably analogous (Anon n.d.). Similarly, the unique features of emergency departments which set them apart from more traditional avenues of care such as the promise to be seen regardless of insurance coverage and the flexible hours are mirrored in most urgent care centers (Weinick and Betancourt n.d.). 
 
@@ -52,7 +52,7 @@ Thus, urgent care centers usage would be expected to closely resemble that of th
 
 ##### Hypothesis 1:  Urgent care centers will experience high levels of visits from uninsured and low SES patients, have low rates of second visits, and higher rates of visits during non-traditional hours (weekends). 
 
-##Urgent Care Centers as a New Model of Primary Care
+##Urgent Care Centers as a New Model of Primary Care{.unnumbered}
 
 Yet another understanding of urgent care centers arises when one considers the larger institutional context within which the overuse of emergency departments and the boom in the urgent care industry occurred. According to medical and organizational sociologists, the institutional narrative of the American healthcare industry since the 1980’s is one of privatization and the transfer of power from professionals and the government towards the private sector and market control (Waitzkin 2000). Urgent Care centers thus fall into a rapidly expanding category of new, privately funded modes of healthcare services—other examples being retail clinics, private hospitals and home care organizations—which are provided and predominantly paid for by private actors (Anon n.d.).
 
@@ -64,7 +64,7 @@ Consequently, if the privatization of healthcare proves to be the primary explan
 
 #####Hypothesis 2:  Urgent care centers will experience high levels of visits from insured patients across SES statuses, have high rates of second visits, and will not have significantly higher rates of visits on weekends.
 
-##Urgent Care Centers: Emergency Rooms for the Wealthy?
+##Urgent Care Centers: Emergency Rooms for the Wealthy?{.unnumbered}
 
 An alternative explanation for the rise of urgent care use combines both of the previous theories by conceptualizing the urgent care center as an occurrence of boundary work by upper middle class and wealthy Americans who have been pushed out of emergency departments by low SES patients. Sociologists have long been interested in the ways that class can be defined and reconstituted through boundary work (Pachucki, Pendergrass, and Lamont 2007).  Research on symbolic boundaries—the conceptual distinctions made by social actors in categorizing people, practices, tastes, attitudes and manners—and their interactions with more durable and institutionalized social differences such as class and race has shown that individuals often use methods of exclusion through organizational settings in order to solidify social boundaries Zietsma and Lawrence 2010.
 	
