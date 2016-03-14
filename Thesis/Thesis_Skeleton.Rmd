@@ -1,18 +1,18 @@
 ---
 author: 'Kaitlyn R. Jackson'
-date: 'Fall 2015'
+date: 'May 2016'
 division: 'History and Social Sciences'
 advisor: 'Jessica F. Epstein'
 department: 'Sociology'
-title: 'urgent care'
-#abstract: >
-#  "`r paste(readLines('abstract.Rmd'), collapse = '\n')`"
+title: 'Consumption and Cooptation of Care: a statistical analysis of visits to urgent care'
+abstract: >
+   `r paste(readLines('abstract.Rmd'), collapse = '\n')`
 # If you'd rather include the preliminary content in files instead of inline
 # like below, use a command like that for the abstract above.  Note that a tab is # needed on the line after the >.
-#acknowledgements: >
-#  I want to thank a few people.
-#dedication: >
-#  To my family.
+acknowledgements: >
+  I want to thank a few people, mostly my mom for going days without me remebering to answer my phone and then always being there when I needed an ear to whine to. I love you I love you I love you.
+dedication: >
+  To Reed: as an institution, as a moment in time, as a community, and as a home. This is probably as cheesey as it gets, but damn this place is special. My experiences here has changed me in some fundamental, unmoveable way and I'll never forget it.
 #preface: >
 #  This is an example of a thesis setup to use the reed thesis document class.
 bibliography: bib/THESIS.bib
@@ -30,13 +30,6 @@ header-includes:
   \pagestyle{plain}
 ---
 
-<!--
-Above is the YAML (YAML Ain't Markup Language) header that includes a lot of metadata used to produce the document.  Be careful with spacing in this header!
-
-If you'd prefer to not include a Dedication, for example, simply delete lines 12 and 13 above or add a # before them to comment them out.  If you have other LaTeX packages you would like to include, delete the # before header-includes and list the packages after hyphens on new lines.
-
-If you'd like to include a comment that won't be produced in your resulting PDF file enclose it in a block like this.
--->
 
 ```{r include_rticles, include = FALSE}
 # This chunk ensures that the rticles package is installed and loaded
@@ -62,19 +55,16 @@ This is the way to split your thesis into chapters and then include each of the 
 ```{r chapter0, child = 'Intro.Rmd'}
 ```
 
-```{r chapter1, child = 'Background.Rmd'}
+```{r chapter1, child = 'Lit_Review.Rmd'}
 ```
 
-```{r chapter2, child = 'Lit_Review.Rmd'}
+```{r chapter2, child = 'Methods.Rmd'}
 ```
 
-```{r chapter3, child = 'Methods.Rmd'}
+```{r chapter3, child = 'Analysis.Rmd'}
 ```
 
-```{r chapter4, child = 'Analysis.Rmd'}
-```
-
-```{r chapter5, child = 'appendix1.Rmd'}
+```{r chapter4, child = 'appendix1.Rmd'}
 ```
 
 <!--

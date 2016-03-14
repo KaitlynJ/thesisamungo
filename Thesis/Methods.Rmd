@@ -143,9 +143,11 @@ The dependent variable analyzed in the logistic model in this study is whether o
 
 #### Independant Variables {.unnumbered}
 
-***Injury Related Visit***
+The following is a description of each variables used in the logistic model, which attempts to examine their effect on the decision to use an urgent care center as the patient's primary care physician. Most of the independant variables used in the logistic regression were recoded as binary categorical variables, and the etails of this recoding is discussed for each below.
 
-***Weekend Visit***
+***Injury Related Visit:*** Recoded as a dummy variable, where a 1 indicates that the visit was coded as being injury related and 0 meaning it was not.
+
+***Weekend Visit*** Again, a recoded dummy variable, where 1 indicates the visit occured on a saturday or a sunday.
 
 ***Established Patient***
 
