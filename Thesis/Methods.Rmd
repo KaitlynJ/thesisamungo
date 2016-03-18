@@ -7,7 +7,8 @@ header-includes:
 - \usepackage{setspace}
 output: pdf_document
 ---
-\doublespacing
+# Methods {.unnumbered}
+\onehalfspacing
 ```{r load_pkgs, echo = FALSE, message = FALSE, warning = FALSE}
 # List of packages required for this analysis
 pkg <- c("dplyr", "ggplot2", "knitr", "devtools")
@@ -60,8 +61,6 @@ probtable.func <- function(variable){
 
 ```
 
-
-# Methods {.unnumbered}
 
 The primary goals of this analysis are to 1) offer a better understanding of the characteristics and use patterns of patients at urgent care centers and 2) to examine empirically the differences between these individuals and those who continue to use traditional means of healthcare. Given these dual interests, the analysis was performed in three stages. First, an exploratory cluster analysis was performed on an abundance of patient characteristics for those who were coded as having gone to urgent care centers. Second, the results of the cluster analysis were used to inform a logistic regression analysis which examines the significant indicators which have an affect on whether a patient will make the initial decision to go to urgent care over traditional primary care. Third, a secondary regression analysis was performed to determine differences between patients using urgent care as primary care and those who do not. 
 
@@ -147,17 +146,17 @@ The following is a description of each variables used in the logistic model, whi
 
 ***Injury Related Visit:*** Recoded as a dummy variable, where a 1 indicates that the visit was coded as being injury related and 0 meaning it was not.
 
-***Weekend Visit*** Again, a recoded dummy variable, where 1 indicates the visit occured on a saturday or a sunday.
+***Weekend Visit*** A recoded dummy variable, where 1 indicates the visit occured on a saturday or a sunday.
 
-***Established Patient***
+***Established Patient***  A categorical variable recoded as 1 = 'Yes, established patient" and 0 indicating either "No, new patient" or "Unknown".
 
 ***Number Past Visits***
 
-***Visit Reason***
+***Visit Reason*** This was a categorical variable with many options. Due to the interests of this analysis, the variable was recoded as three dummy variables: a chronic condition, a new condition (considered so if less than 3 months old), and other.
 
-***Age***
+***Age*** Age was recoded into the variables that were 
 
-***Male***
+***Male*** 
 
 ***Race***
 

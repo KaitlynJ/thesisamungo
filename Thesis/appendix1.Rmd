@@ -7,7 +7,7 @@ header-includes:
 - \usepackage{setspace}
 output: pdf_document
 ---
-```{r rticle_rload, echo=FALSE, warning=FALSE}
+```{r rticle_rload, warning=FALSE, message=FALSE  ,echo=FALSE}
 if(!require(devtools))
   install.packages("devtools", repos = "http://cran.rstudio.com")
 if(!require(rticles)){
@@ -22,6 +22,8 @@ setwd("~/Desktop/Thesis/Thesis")
 
 
 # Appendix 1 {.unnumbered}
+\onehalfspacing
+
 ##K-modes / Why cluster? {.unnumbered}
 
 In the supervised learning world, the data in question has an obvious response variable, which is tested against a null hypothesis based on theory. For this case, we do not know exactly what the outcome of interest is for those patients who went to urgent care, rather we are interested in the characteristics of who is choosing to go there. For such a data set, clustering methods allow us to examine the data in an *unsupervised* manner --- mainly in that we let the statistical software find the patterns rather than test for patterns at the start. 

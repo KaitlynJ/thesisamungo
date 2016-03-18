@@ -6,7 +6,7 @@ header-includes:
 output: word_document
 ---
 # Analysis {.unnumbered}
-\doublespacing
+\onehalfspacing
 
 
 A quick summary of the data shows that by and large most of the observations continue to choose traditional means of obcuring primary care. With cluster assignments established, I then analyzed how the identified groups differed from each other in terms of critical demographic chracteristics and behaviors that are described in the literature. In order to better understand the characteristics of individuals choosing to go to urgent care we must understand which chracteristics or bahaviors most distinguished the clusters in the anlaysis. 
@@ -51,7 +51,7 @@ There are some surprising trends in the secondary logistic model which deserve f
 
 
 
-```{r logit_regression, echo=FALSE, warning=FALSE}
+```{r logit_regression, echo=FALSE, warning=FALSE, message=FALSE, cache=TRUE}
 NAMCS.logit <- NAMCS.work
                         
 # variable selection
@@ -140,7 +140,7 @@ texreg(list(logit2.beh, logit2.dem, logit2.full),
 ```
 
 
-```{r diagnostics}
+```{r diagnostics, warning=FALSE, message=FALSE  ,echo=FALSE}
 
 library(ResourceSelection)
 h1<- hoslem.test(dummiesUC.df$PRIMCAREYes, fitted(logit2.full, g =10))
@@ -153,6 +153,9 @@ h1
 ## Revisiting the hypotheses {.unnumbered}
 
 
+### Hypothesis: Urgent care centers as an extension of the wel-fare state
+
+The premise of this hypothesis is that urgent care centers act much like emergency rooms: they are an option for the uninsured and poor, who, seeking medical attention, choose facilities where they will be treated regardless of their insurance status for acute/ non-routine care. 
 
 
 

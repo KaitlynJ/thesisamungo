@@ -31,7 +31,7 @@ header-includes:
 ---
 
 
-```{r include_rticles, include = FALSE}
+```{r include_rticles, include = FALSE, warning=FALSE, message=FALSE  ,echo=FALSE}
 # This chunk ensures that the rticles package is installed and loaded
 # This rticles package includes the template files for the thesis and also
 # two functions used for labeling and referencing
@@ -58,13 +58,16 @@ This is the way to split your thesis into chapters and then include each of the 
 ```{r chapter1, child = 'Lit_Review.Rmd'}
 ```
 
-```{r chapter2, child = 'Methods.Rmd'}
+```{r chapter2, child = 'theory.Rmd'}
 ```
 
-```{r chapter3, child = 'Analysis.Rmd'}
+```{r chapter3, child = 'Methods.Rmd'}
 ```
 
-```{r chapter4, child = 'appendix1.Rmd'}
+```{r chapter4, child = 'Analysis.Rmd'}
+```
+
+```{r chapter5, child = 'appendix1.Rmd'}
 ```
 
 <!--
