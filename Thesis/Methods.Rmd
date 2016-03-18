@@ -117,6 +117,7 @@ demographics.tbl <- rbind(t1, t2, t3, t4, t5, t6)
 
 ```
 
+\newpage
 \singlespacing
 ```{r table_sums, results = "asis", echo=FALSE}
 
@@ -126,7 +127,7 @@ kable(demographics.tbl,
 ```
 
 ## Regression: Logistic Modeling of Urgent Care Visits {.unnumbered}
-\doublespacing
+\onehalfspacing
 
 Following the cluster analysis, a logistic regression anlaysis is used in this study to examine the determinants of the odds of using urgent care as primary care. Often, sociologists and other social scientists performing quantitiative analysis on a single dependant variable use a form of analysis called ordinary least squares (OLS) regression, which attempts to fit a line across a set of data points in order to best determine which independant variable has the greatest effect on determining the outcome fo the dependant variable. This method works well for outcome variables which are quantifiable, however in the present study the variable of interest is binary and categorical: a person either uses the urgent care center as their primary care physician or they do not. 
 

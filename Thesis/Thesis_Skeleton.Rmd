@@ -22,8 +22,8 @@ csl: csl/apa.csl
 output: 
   rticles::reed_thesis:
     toc: true
-lot: false
-lof: false
+lot: true
+lof: true
 header-includes:
   \usepackage{tikz}
   \usepackage{setspace}

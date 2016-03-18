@@ -8,18 +8,21 @@ output: word_document
 # Analysis {.unnumbered}
 \onehalfspacing
 
-
-A quick summary of the data shows that by and large most of the observations continue to choose traditional means of obcuring primary care. With cluster assignments established, I then analyzed how the identified groups differed from each other in terms of critical demographic chracteristics and behaviors that are described in the literature. In order to better understand the characteristics of individuals choosing to go to urgent care we must understand which chracteristics or bahaviors most distinguished the clusters in the anlaysis. 
-
-old?
 A quick summary of the data shows that by and large most of the observations continue to choose traditional means of obcuring primary care. Great quote: For our purposes, we do not presume to go quite this far, but we are applying this method as a form of retroduction, using observed evidence to create a research hypothesis that accounts for the observed facts *Sayer, 1992*.
-
 
 ## Identifying Typologies with Clustering{.unnumbered}
 
 #### Differences in Demographic and Behavioral Factors of Urgent Care Seekers{.unnumbered}
 
 In order to better understand the characteristics of individuals choosing to go to urgent care, we must first understand which characteristics or behaviors most distinguished the clusters in the cluster analysis, and to do this I used the k-modes clustering algorithm to situation observations into similar groups of patients. With cluster assignments established by the hierarchal agglomerative methods above, I then analyzed how the identified groups or 8 and 12 differed from each other in terms of critical demographic characteristics and visit behaviors that were described in the literature review. 
+
+
+```{r cluster_table, results = "asis", echo=FALSE}
+
+rticles::label(path = "figures/clusters.png", caption = "Identified patient typologies of urgent care centers visits (2008-2012).", 
+      label = "clus1", type = "figure", scale = .35)
+```
+
 
 Beginning with demographic trends, the cluster analysis makes immediately clear that there are distinct homogenous groups within the selection of patients who utilize urgent care. Race in particular is immediately noticeable for its lack of variety: of the 12 clusters, 9 are predominantly or exclusively white, an unsurprising trend when one looks at the summary statistics (of the 3863 urgent care visits included in the data, 87% (3352) of those were white individuals). Table 1 shows the modes of each cluster for an illustrative sample of patients, and it is immediately clear that the majority of urgent care goers are white, but that within clusters of white patients there is further segmentation. 
 
@@ -119,22 +122,31 @@ logit2.beh <- glm(PRIMCAREYes ~ AGERWorkingAge + AGERRetired + SEXMale + RACERWh
 
 logit2.full <- glm(PRIMCAREYes ~ INJURYYes + WEEKENDYES + PAYTYPERMedicaid + PAYTYPERMedicare + PAYTYPEROther + EstablishedPatient + PASTVIS + MAJORPreventative + MAJORRoutineChronic + AGERWorkingAge + AGERRetired + SEXMale + RACERWhite + ZipHighIncome + URBANRURRural, data = dummyUC.varset, family = binomial)
 
+summary(logit2.full)
+
+psudeor2 <- 1 - (logit.full$deviance / logit.full$null.deviance)
+
+psudeor2
+
+1−ResidualDevianceNullDeviance
 
 
 ```
 
+
+\singlespacing
 ```{r logit_tables, warning=FALSE, message=FALSE  ,echo=FALSE ,results="asis"}
 
 library(texreg)
 texreg(list(logit.beh, logit.dem, logit.full), 
        caption = "Logistic model of the decision to go to urgent care.", 
        fontsize = "small", 
-       custom.coef.names = c("Intercept", "Injury Related Visit", "Weekend Visit", "Medicaid" , "Medicare" , "Other" , "Established Patient", "Number Past Visits", "Visit Reason: Preventative", "Visit Reason: Routine/Chronic", "Age: Working", "Age: Retired", "Male", "Race: White", "High ZIP Income", "Rural"))
+       custom.coef.names = c("Intercept", "Injury Related Visit", "Weekend Visit", "Medicaid" , "Medicare" , "SelfPay", "Established Patient", "Number Past Visits", "Visit Reason: Preventative", "Visit Reason: Routine/Chronic", "Age: Working", "Age: Retired", "Male", "Race: White", "High ZIP Income", "Rural"))
 
 texreg(list(logit2.beh, logit2.dem, logit2.full), 
        caption = "Logistic model of the decision to use urgent care as primary care", 
        fontsize = "small",
-       custom.coef.names = c("Intercept", "Injury Related Visit", "Weekend Visit", "Medicaid" , "Medicare" , "Other" , "Established Patient", "Number Past Visits", "Visit Reason: Preventative", "Visit Reason: Routine/Chronic", "Age: Working", "Age: Retired", "Male", "Race: White", "High ZIP Income", "Rural"))
+       custom.coef.names = c("Intercept", "Injury Related Visit", "Weekend Visit", "Medicaid" , "Medicare" , "SelfPay" , "Established Patient", "Number Past Visits", "Visit Reason: Preventative", "Visit Reason: Routine/Chronic", "Age: Working", "Age: Retired", "Male", "Race: White", "High ZIP Income", "Rural"))
 
 
 ```
@@ -148,12 +160,10 @@ h1
 ```
 
 
-
-
 ## Revisiting the hypotheses {.unnumbered}
+\onehalfspacing
 
-
-### Hypothesis: Urgent care centers as an extension of the wel-fare state
+### Hypothesis: Urgent care centers as an extension of the wel-fare state {.unnumbered}
 
 The premise of this hypothesis is that urgent care centers act much like emergency rooms: they are an option for the uninsured and poor, who, seeking medical attention, choose facilities where they will be treated regardless of their insurance status for acute/ non-routine care. 
 
