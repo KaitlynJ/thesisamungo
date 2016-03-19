@@ -2,7 +2,7 @@
 author: 'Kaitlyn R. Jackson'
 date: 'May 2016'
 division: 'History and Social Sciences'
-advisor: 'Jessica F. Epstein'
+advisor: 'Jessica Epstein'
 department: 'Sociology'
 title: 'Consumption and Cooptation of Care: a statistical analysis of visits to urgent care'
 abstract: >
@@ -10,14 +10,14 @@ abstract: >
 # If you'd rather include the preliminary content in files instead of inline
 # like below, use a command like that for the abstract above.  Note that a tab is # needed on the line after the >.
 acknowledgements: >
-  I want to thank a few people, mostly my mom for going days without me remebering to answer my phone and then always being there when I needed an ear to whine to. I love you I love you I love you.
+  I want to thank a few people, mostly my mom. Will fill in when this is dOnE.
 dedication: >
-  To Reed: as an institution, as a moment in time, as a community, and as a home. This is probably as cheesey as it gets, but damn this place is special. My experiences here has changed me in some fundamental, unmoveable way and I'll never forget it.
+  Right now? to coffee
 #preface: >
 #  This is an example of a thesis setup to use the reed thesis document class.
 bibliography: bib/THESIS.bib
 # Download your specific bibliography database file and refer to it in the line above.
-csl: csl/apa.csl
+csl: csl/american-sociological-association.csl
 # Download your specific csl file and refer to it in the line above.
 output: 
   rticles::reed_thesis:
@@ -27,6 +27,8 @@ lof: true
 header-includes:
   \usepackage{tikz}
   \usepackage{setspace}
+  \usepackage{amsmath}
+  \usepackage{natbib}
   \pagestyle{plain}
 ---
 
@@ -67,7 +69,13 @@ This is the way to split your thesis into chapters and then include each of the 
 ```{r chapter4, child = 'Analysis.Rmd'}
 ```
 
-```{r chapter5, child = 'appendix1.Rmd'}
+```{r chapter5, child = 'conclusion.Rmd'}
+```
+
+```{r chapter6, child = 'appendix2.Rmd'}
+```
+
+```{r chapter7, child = 'appendix1.Rmd'}
 ```
 
 <!--
