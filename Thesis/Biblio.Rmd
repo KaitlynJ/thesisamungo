@@ -4,32 +4,14 @@ output: pdf_document
 
 \backmatter
 
-<!-- 
-If you'd like to change the name of the bibliography to something else,
-delete "References" and replace it.
--->
+# Bibliography  {.unnumbered}
 
-# References
-
-<!--
-To remove the indentation of the first entry.
--->
 \noindent
-
-<!--
-To create a hanging indent and spacing between entries.  These three lines may need to be removed for styles that don't require the hanging indent.
--->
-
 \setlength{\parindent}{-0.20in}
 \setlength{\leftskip}{0.20in}
 \setlength{\parskip}{8pt}
 
-
-<!--
-This is just for testing with more citations for the bibliography at the end.  Add other entries into the list here if you'd like them to appear in the bibliography even if they weren't explicitly cited in the document.
--->
-
 ---
 nocite: | 
-  @blane_use_2003
+  @HEALTH_TRACKING_2012, @OMALLEY_2013,,@SHORTLIFFE_1958,@HCUP,@WEINECK_NOAPPT,@UC_Market,@WEINECK_2009,@rubin_urgent_2012,,@CONSUMER_HEALTH,@ullman_PATIENTS,@many_ER,,@petersen_nonurgent_1998,@mechanic_sociology_1966,@shaw_2013,@mehrotra_retail_2008,@pitts_where_2010,@wang_why_2010,@reich_contradictions_2014,@wright_medical_2010,@boyer_examining_2010,@timmermans_continued_2010,@barker_electronic_2008,@reeder_patient-client_1972,@egbert_reduction_1964,@lupton_consumerism_1997,@lupton_caveat_1991,@phillips_primary_2010,@draper_primary-care_1975,@laws_emergence_2008,@weinick_urgent_2009-1,@potter_relationship_2005,@kaba_evolution_2007,@heritage_problems_2006,@may_clinical_2007,@yee_surge_2013,@southerton_boundaries_2002,@lamont_study_2002,@miller_primary_2010,@namcs
 ...

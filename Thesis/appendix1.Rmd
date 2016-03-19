@@ -21,8 +21,8 @@ setwd("~/Desktop/Thesis/Thesis")
 ```
 
 
-# Appendix 1 {.unnumbered}
-\onehalfspacing
+# Appendix B {.unnumbered}
+\doublespacing
 
 #### K-modes / Why cluster? {.unnumbered}
 
