@@ -2,6 +2,11 @@
 
 *.csv
 *.dta
+*.docx
+*.pdf
+
+Thesis/Thesis_Skeleton_cache
+Thesis/Thesis_Skeleton_cache/*
 
 
 # History files
