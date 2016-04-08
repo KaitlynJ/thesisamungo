@@ -2,7 +2,22 @@
 output: word_document
 ---
 # Model Building: theories of urgent care use {.unnumbered}
-\doublespacing
+\onehalfspacing
+
+```{r comments_analysis}
+
+# the research setup is that the hypotheses have urgent care facilities as the units of analysis but your models have patients as the units of analysis. I’ll repeat the same comment I had about the lit review: to make the connection between the hypotheses and your models more explicit, reframe them so they are from the perspective of patients. So, for H1 for example rather than “Urgent care centers will experience high levels of visits from uninsured and low SES patients” it could be something like “Uninsured and low SES patients will be more likely to visit an urgent care center than [the reference category]”.
+
+# One of your main theories is that urgent care centers solve the problem of overcrowded emergency departments. But it doesn’t look like you compare urgent care patients to emergency department patients directly. Why? That seems crucial to developing the argument that people are using urgent care centers for primary care.
+
+# Connected to the previous point, if the data allow it I would recommend replacing Table 2’s binary outcome with three outcomes: the decision to go to an urgent care center vs a primary care physician vs an emergency department. And for that setup, the preferable model would be a multinomial logistic regression. If that analysis is too advanced, you could do two separate logistic regressions: one comparing urgent care to primary care, and one comparing urgent care to emergency. But having all those comparisons in one model would be ideal.
+
+
+
+```
+
+
+
 
 As mentioned previously, urgent care centers are an obviously understudied phenomenon, and the following section applies the sociological background discussed in the last chapter to better understand their role in the healthcare system. The conceptualization of urgent care as a new source of primary care for patients is contrasted against two other theories of urgent care center usage. The first applies theory to the widely matriculated explanation of urgent care by the media and health economists: that urgent care is a response to unavailability in primary care, developing out of consumer demand for quick and cost-efficient care. The second draws from the sociological research that focused on emergency departments (an oft cited cousin of urgent care centers), and explores the possibility that the industry has developed as a response to overcrowding and overuse of emergency departments in the past 20 years.
 

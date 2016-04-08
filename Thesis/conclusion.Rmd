@@ -16,8 +16,9 @@ output: pdf_document
 # Conclusion {.unnumbered}
   \setcounter{chapter}{6}
 	\setcounter{section}{0}
-  \doublespacing
+  \onehalfspacing
   
 In this thesis, I have attempted to examine the relatively new phenomenon of urgent care centers and their use patterns, reviewing where the sociology of medicine has been and where the American health care system is now. While the analysis was limited by the data availability, the observed groupings of urgent care patients and the significant factors for the decision to use it as urgent care allow us to begin to answer questions about who's going to urgent care and their reasoning. 
 
 With the rapidly increasing amount of data, further research into urgent care centers could benefit from a times series study, in order to answer some of the questions raised about whether or not patient behavior is changing or just dispersing. Additionally, there are an increasing number of health care practices which resemble urgent care, retail clinics located inside large stores being just one example, that could shed further light on the modern patient as a health consumer. 
+

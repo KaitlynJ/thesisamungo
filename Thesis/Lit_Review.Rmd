@@ -2,7 +2,24 @@
 output: word_document
 ---
 # Theoretical and Historical Foundations {.unnumbered}
-\doublespacing
+\onehalfspacing
+
+```{r jess}
+# apparently this is super jargony??
+```
+
+```{r from_matt}
+
+# I think the most e cient way to connect them more clearly is to prioritize the parts of your theoretical/historical narrative that explain the actions of patients.
+
+# Perhaps one thing to consider is moving the “Patient Choices” section beginning on page 11 to the beginning of the “Theoretical and Historical Foundations” chapter. If those arguments give the initial motivation for that chapter, they may also help you decide what needs more - and less - attention in the rest of the lit review.
+
+# Your lit review moves the reader toward thinking that urgent care is replacing primary care and the strong relationships patients have had with doctors. I get the sense that your assumption is that urgent care patients would have otherwise gone to primary care physicians or emergency departments. But these new urgent care facilities may also be attracting patients who would have otherwise not gone to any doctor. Is there anything theoretical to add about that possibility?
+
+# You discuss that patients have become increasingly demanding, attributing this to market-based theories about choice and beliefs about “shopping” for second options. Is there anything in the literature about other non-market explanations for patients becoming choosier? Speculating on whether things like WebMD or the popularity of media personalities like Dr Oz or Dr Phil have changed expectations about how people engage with medical institutions could be neat.
+
+```
+
 
 In this chapter, the quantitative, visit level analysis of urgent care centers that follows later will be located in the longer-term primary care trends of the American healthcare system. To comprehend the how and the why of urgent care centers, one must have some understanding of the complicated and tangled history of the medical profession in the US, and how infrastructural changes and epistomological shifts have led to the current state of affairs. The existing sociological research on the patient and practitioner, and the evolution of this relationship over the last half-century, are vitally important to beginning to understand how and at what level urgent care centers may be operating, since changes in the last half century have had drastic effects on this relationship.
 
@@ -18,6 +35,10 @@ At the center of this prestige was the Physician. In the traditional Parsonian m
 Similar views of the doctor occur profusely throughout early to mid twentieth century literature on the profession, and is even visible today, though often as either a past to be reminisced on, or a goal to be returned to. A person's doctor, traditionally, was an extremely integrated, close, and important connection in a person's life. This was a relationship built, for some on trust, agency, and mutual understanding, while for others on power imbalance, technocratic authority and affective neutrality. When one thinks of the healthcare industry today, it is hard to call to mind the professional cohesion previously discussed. While doctors remain one of the more highly respected career choices in America, their prestige has certainly dropped since the 20th century [@heritage_problems_2006]. The term doctor is now applicable to a wide variety of sub-professions and specialties and the medical profession has become extremely diversified. While this may not have necessitated a drastic change in the societal role of the doctor, social scientists interested in this changing relationship have identified many possible sources of erosion.
 
 #### The 21st century state has switched sides {.unnumbered}
+
+```{r state_notes}
+#you write that the state is “no longer supportive of health care.” This feels too strong given Obamacare, despite your suggestion that the ACA fits the “no longer supportive” narrative. You can still argue that it does, of course, but that claim needs more evidence. I expect most people think the ACA indicates greater governmental engagement and support with health care.
+```
 
 The government was an active and powerful ally in the rise of the medical profession during the 20th century (Alford, 1975). Political policies and government agencies served as buffers against what was 'legitimate' medicine and what was not, reaching the point where physicians achieved an almost monopolistic power over medical care. More than any other profession, the state served as legitimator and ally to medical professionals: state licensing for example, made it impossible for any other health care provider to legitimately practice medicine (Freidson, 1970a).
 
@@ -47,7 +68,7 @@ These shifts in the professional dominance of the medical professional occurred 
 
 > "The general practitioner of revered memory knew his patients… and provided continuing care through the course of minor ailments and majors emergencies. His deficiencies… were partly offset by intimate knowledge of his patients, the support he gave them, and the trust and confidence his services engendered.”
 
-\doublespacing
+\onehalfspacing
 
 Intimate knowledge like that of a family practitioner who has known his patients for years is, according to both sociological and psychological research, the basis of a functional and stable doctor-patient relationship. A major sociological conceptualization of such relationships begins by speculating that the bureaucratization of modern social institutions has had drastic consequences on an individual's relationship to others and healthcare: as opportunities for close personal contacts diminish, problems which were originally handled in familial, social, and religious contexts are said to be transferred to ‘formal sustaining practitioners’ (Mechanic 1966). In modern societies, the prescribed structure of the 'doctor' and the 'patient' then provides a legitimization for the expression of intimacy and the request for help (1996). In other words, along with physical complaints and ailments, patients have coexisting and equally important socio-emotional needs, and sociologists of medicine have viewed addressing these needs as an essential task of the primary care physician.
 

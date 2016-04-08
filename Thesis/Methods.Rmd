@@ -8,7 +8,7 @@ header-includes:
 output: pdf_document
 ---
 # Methods {.unnumbered}
-\doublespacing
+\onehalfspacing
 
 ```{r load_pkgs_m, echo = FALSE, message = FALSE, warning = FALSE}
 # List of packages required for this analysis
@@ -67,6 +67,20 @@ The dependent variable analyzed in the logistic model in this study is whether o
 
 
 #### Independant Variables {.unnumbered}
+
+```{r more_detail}
+
+# What is the age range?
+
+# You say race was recoded. . . but from what existing categories? And do you actually need four categories since 87% of your cases are white? It looks like the models eventually distinguish white from non-white. If race is binary, your list of independent variables should say that.
+# How is a “high zip income” defined? What is the dollar cuto ?ff Is this variable the same as “Percent Poverty” in Appendix A?
+
+# The urban/rural dummy you describe and have in your models does not match the more specific categories in Figure 1 (large metro vs rural vs medium metro vs large fringe metro) and the Appendix A table (which also includes “small metro”). As you revise, make sure the reader can find a description of every variable you show.
+
+
+```
+
+
 
 The following is a description of each variables used in the logistic model, which attempts to examine their effect on the decision to use an urgent care center as the patient's primary care physician. Most of the independent variables used in the logistic regression were recoded as binary categorical variables, and the details of this recoding is discussed for each below. Table 1 in Appendix 1 contains the summary statistics for the parameters used in the models.
 
