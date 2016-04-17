@@ -8,7 +8,9 @@ header-includes:
 output: pdf_document
 ---
 # Methods {.unnumbered}
-\onehalfspacing
+  \setcounter{chapter}{4}
+	\setcounter{section}{0}
+  \doublespacing
 
 ```{r load_pkgs_m, echo = FALSE, message = FALSE, warning = FALSE}
 # List of packages required for this analysis

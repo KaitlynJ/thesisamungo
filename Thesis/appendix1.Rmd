@@ -10,19 +10,17 @@ output: pdf_document
 ```{r rticle_rload, warning=FALSE, message=FALSE  ,echo=FALSE}
 if(!require(devtools))
   install.packages("devtools", repos = "http://cran.rstudio.com")
-if(!require(rticles)){
+if(!require(reedtemplates)){
   library(devtools)
-  devtools::install_github("ismayc/rticles")
+  devtools::install_github("ismayc/reedtemplates")
   }
-library(rticles)
-
-setwd("~/Desktop/Thesis/Thesis")
+library(reedtemplates)
 
 ```
 
 
 # Appendix B {.unnumbered}
-\onehalfspacing
+\doublespacing
 
 #### K-modes / Why cluster? {.unnumbered}
 
@@ -43,7 +41,7 @@ To accomplish this, I began with hierarchal clustering of the random samples cho
 
 ```{r banr1, results = "asis", echo=FALSE}
 
-rticles::label(path = "figures/banner.png", caption = "Sample Banner Agglomerative Clustering Results", 
+reedtemplates::label(path = "figures/banner.png", caption = "Sample Banner Agglomerative Clustering Results", 
       label = "ban1", type = "figure", scale = 0.35)
 ```
 

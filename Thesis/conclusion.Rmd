@@ -16,7 +16,7 @@ output: pdf_document
 # Conclusion {.unnumbered}
   \setcounter{chapter}{6}
 	\setcounter{section}{0}
-  \onehalfspacing
+  \doublespacing
   
 In this thesis, I have attempted to examine the relatively new phenomenon of urgent care centers and their use patterns, reviewing where the sociology of medicine has been and where the American health care system is now. While the analysis was limited by the data availability, the observed groupings of urgent care patients and the significant factors for the decision to use it as urgent care allow us to begin to answer questions about who's going to urgent care and their reasoning. 
 

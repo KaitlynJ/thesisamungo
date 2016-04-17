@@ -2,7 +2,9 @@
 output: word_document
 ---
 # Model Building: theories of urgent care use {.unnumbered}
-\onehalfspacing
+  \setcounter{chapter}{3}
+	\setcounter{section}{0}
+  \doublespacing
 
 ```{r comments_analysis}
 
@@ -19,7 +21,7 @@ output: word_document
 
 
 
-As mentioned previously, urgent care centers are an obviously understudied phenomenon, and the following section applies the sociological background discussed in the last chapter to better understand their role in the healthcare system. The conceptualization of urgent care as a new source of primary care for patients is contrasted against two other theories of urgent care center usage. The first applies theory to the widely matriculated explanation of urgent care by the media and health economists: that urgent care is a response to unavailability in primary care, developing out of consumer demand for quick and cost-efficient care. The second draws from the sociological research that focused on emergency departments (an oft cited cousin of urgent care centers), and explores the possibility that the industry has developed as a response to overcrowding and overuse of emergency departments in the past 20 years.
+Urgent care centers are an obviously understudied phenomenon in modern medicine, and the following section applies the sociological background discussed in the last chapter to better understand their role in the healthcare system and why patients might choose to pursue primary care at such facilities. The conceptualization of urgent care as a new source of primary care for patients is contrasted against two other theories of urgent care center usage. The first applies theory to the widely matriculated explanation of urgent care by the media and health economists: that urgent care is a response to unavailability in primary care, developing out of consumer demand for quick and cost-efficient care. The second draws from the sociological research that focused on emergency departments (an oft cited cousin of urgent care centers), and explores the possibility that the industry has developed as a response to overcrowding and overuse of emergency departments in the past 20 years.
 
 ## H1: An extension of the Welfare State {.unnumbered}
 

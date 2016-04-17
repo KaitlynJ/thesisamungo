@@ -6,7 +6,9 @@ header-includes:
 output: word_document
 ---
 # Analysis {.unnumbered}
-\doublespacing
+  \setcounter{chapter}{5}
+	\setcounter{section}{0}
+  \doublespacing
 
 Before examining the question of why an individual would use urgent care as their primary care physician, an exploratory cluster analysis of urgent care visits between 2008 and 2012 was performed. The goal here was not predictive; rather, for the purposes of this analysis, clustering was used as a form of reproduction--observed trends were used to generate research hypotheses which account for the observed groupings. Following this, two logistic regressions were performed on the characteristics which were identified through the clustering, with the goal of obtaining a model which addresses whether or not an individual would a) choose to go to urgent care and b) use urgent care as their primary care physician. 
 
@@ -21,7 +23,7 @@ In order to better examine the hypotheses about individuals choosing to go to ur
 
 ```{r cluster_table, results = "asis", echo=FALSE}
 
-rticles::label(path = "figures/clusters.png", caption = "Identified patient typologies of urgent care centers visits (2008-2012).", 
+reedtemplates::label(path = "figures/clusters.png", caption = "Identified patient typologies of urgent care centers visits (2008-2012).", 
       label = "clus1", 
       type = "figure", 
       scale = .45,

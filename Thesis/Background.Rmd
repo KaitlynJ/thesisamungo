@@ -1,6 +1,0 @@
----
-output: word_document
----
-# Background Information{.unnumbered}
-\onehalfspacing
-

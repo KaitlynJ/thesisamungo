@@ -20,7 +20,7 @@ bibliography: bib/THESIS.bib
 csl: csl/american-sociological-association.csl
 # Download your specific csl file and refer to it in the line above.
 output: 
-  rticles::reed_thesis:
+  reedtemplates::reed_thesis:
     toc: true
 lot: true
 lof: true

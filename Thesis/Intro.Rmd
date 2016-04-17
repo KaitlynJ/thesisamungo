@@ -3,7 +3,10 @@ output: word_document
 ---
 
 # Introduction {.unnumbered}
-\onehalfspacing
+  \setcounter{chapter}{1}
+	\setcounter{section}{0}
+  \doublespacing
+
 
 The days of having a local doctor who cared for all of a patient's health needs are long gone. In their place, a rapidly expanding and complex network of healthcare providers and services have developed, increasingly placing the burden on the patient to make the appropriate choice. In particular, the past twenty years have seen a surge in a new type of medical practice known as urgent care centers, and the industry shows no sign of slowing down. Yet given such rapid expansion of the industry, it is surprising that little academic research has taken urgent care as its subject. In part a response to this oversight, the following analysis will use a representative sample of urgent care center visits to examine the use patterns of these facilities in recent years. I investigate three central questions regarding urgent care: what are the typologies of patients using urgent care, how can we use this information to situate urgent care centers into the larger complex of the American healthcare system, and what does the sociological research offer to an understanding of this relatively new phenomenon? 
 
