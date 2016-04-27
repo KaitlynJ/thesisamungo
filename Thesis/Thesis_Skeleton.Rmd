@@ -29,6 +29,8 @@ header-includes:
   \usepackage{setspace}
   \usepackage{amsmath}
   \usepackage{natbib}
+  \usepackage{rotating}
+  \usepackage{longtable}
   \pagestyle{plain}
 ---
 

@@ -1,9 +1,11 @@
 base
 devtools
-rticles
+reedtemplates
+foreign
+psych
 dplyr
 ggplot2
 knitr
-reedtemplates
+nnet
+reshape2
 texreg
-ResourceSelection

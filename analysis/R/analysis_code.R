@@ -1,9 +1,21 @@
 # Analysis Code
 
+setwd("~/Desktop/Thesis/analysis")
+NAMCS <- read.csv("NAMCS08-11.csv", header = TRUE)
+NAMCS.logit <- NAMCS
 
+# fixing NAs/blanks
+NAMCS.logit[c("VYEAR")][is.na(NAMCS.logit[c("VYEAR")])] <- 2011     # 2011's got entered blank
+NAMCS.logit[NAMCS.logit == "Blank"] <- NA
+NAMCS.logit[NAMCS.logit == "Missing Data"] <- NA
+NAMCS.logit[NAMCS.logit == "Missing data"] <- NA
+NAMCS.logit[NAMCS.logit =="Unknown"] <- NA
 
-
-
+# variable selection
+logit.vars <- c("URGCARE","PRIMCARE","PCTPOVR", "HINCOMER", "PBAMORER", "URBANRUR", "RACER", "WEEKEND", "AGER", "SEX","PAYTYPER",
+                "INJURY","SENBEFOR", "PASTVIS", "MAJOR")
+logit.varset <- NAMCS.logit[logit.vars]
+logit.varset <- na.omit(logit.varset)
 
 #cluster table
 reedtemplates::label(path = "figures/clusters.png", caption = "Identified patient typologies of urgent care centers visits (2008-2012).", 
@@ -14,9 +26,68 @@ reedtemplates::label(path = "figures/clusters.png", caption = "Identified patien
                      options = "h!")
 
 
+
+
 # Logistic Model
 
 NAMCS.logit <- NAMCS.work
+
+require(foreign)
+require(nnet)
+require(ggplot2)
+require(reshape2)
+
+with(ml, table(ses, prog))
+
+
+logit.varset$result <- 
+  
+UrgentCare <- NAMCS.logit[NAMCS.logit$RETYPOFF=="Freestanding clinic/urgicenter",]
+PrimaryUrgent <- UrgentCare[UrgentCare$PRIMCARE=="Yes",]
+Traditional <- NAMCS.logit[NAMCS.logit$RETYPOFF =="Private solo or group practice",]
+
+logit.work <- rbind(UrgentCare, PrimaryUrgent, Traditional)
+
+detach(logit.work)
+
+
+NAMCS.logit <- NAMCS
+NAMCS.logit[c("VYEAR")][is.na(NAMCS.logit[c("VYEAR")])] <- 2011     # 2011's got entered blank
+NAMCS.logit[NAMCS.logit == "Blank"] <- NA
+NAMCS.logit[NAMCS.logit == "Missing Data"] <- NA
+NAMCS.logit[NAMCS.logit == "Missing data"] <- NA
+NAMCS.logit[NAMCS.logit =="Unknown"] <- NA
+
+
+
+
+
+
+
+levels(logit.work$RETYPOFF)
+
+table(logit.work$RETYPOFF)
+logit.work <- logit.work[logit.work$RETYPOFF %in% c("Private solo or group practice", "Freestanding clinic/urgicenter"), ]
+
+logit.work$outcome <- ifelse(logit.work$RETYPOFF == "Private solo or group practice", "Traditional", 
+                             ifelse((logit.work$RETYPOFF == "Freestanding clinic/urgicenter") & (logit.work$PRIMCARE == "Yes"), "UrgentPrimary","Urgent"))
+table(logit.work$outcome)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # variable selection
 logit.vars <- c("URGCARE","PRIMCARE","PCTPOVR", "HINCOMER", "PBAMORER", "URBANRUR", "RACER", "WEEKEND", "AGER", "SEX","PAYTYPER",

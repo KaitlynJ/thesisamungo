@@ -8,24 +8,187 @@ output: word_document
   \doublespacing
 
 
-The days of having a local doctor who cared for all of a patient's health needs are long gone. In their place, a rapidly expanding and complex network of healthcare providers and services have developed, increasingly placing the burden on the patient to make the appropriate choice. In particular, the past twenty years have seen a surge in a new type of medical practice known as urgent care centers, and the industry shows no sign of slowing down. Yet given such rapid expansion of the industry, it is surprising that little academic research has taken urgent care as its subject. In part a response to this oversight, the following analysis will use a representative sample of urgent care center visits to examine the use patterns of these facilities in recent years. I investigate three central questions regarding urgent care: what are the typologies of patients using urgent care, how can we use this information to situate urgent care centers into the larger complex of the American healthcare system, and what does the sociological research offer to an understanding of this relatively new phenomenon? 
+The days of having a local doctor who cared for all of a patient's health needs are long gone. In their place, a rapidly expanding and complex network of healthcare providers and services have developed, increasingly placing the burden on the patient to make the appropriate choice. In particular, the past twenty years have seen a surge in a new type of medical practice known as urgent care centers, and the industry shows no sign of slowing down. Yet given such rapid expansion of the industry, it is surprising that little academic research has taken urgent care as its subject. In part a response to this oversight, the following analysis will use a representative sample of urgent care center visits to examine the use patterns of these facilities in recent years. I investigate three central questions regarding urgent care: what are the typologies of patients using urgent care, how can we use this information to situate urgent care centers into the larger complex of the American healthcare system, and what does the sociological research offer to an understanding of this relatively new phenomenon?
 
 There is no official definition of what constitutes an urgent care center, but the scope of services provided generally falls between that of a primary care doctor’s office and an emergency department. The centers typically focus on acute episodic care, and have a substantial emphasis on customer service. Most are open past the hours of a traditional primary care practice, and often have a wider variety of services, such as labs, x-rays and other emergency department equipment [@WEINECK_NOAPPT].
 
-While the industry is currently experiencing rapid growth, the concept got off to a rocky start. The first urgent care centers opened in the United States in the early 1980’s., with no more than a handful in operation at the time.  Unfortunately, (at least as far as early investors were concerned), the industry rapidly declined, and the few clinics which had opened were largely absorbed into larger hospitals and healthcare groups.  Ten years later, in the mid-1990’s , the centers began expanding rapidly, growing to over 12,000 centers today. By the UCAOA’s estimate, in 2014, approximately two new urgent care centers were opening in the United States each week [@UC_10STATS]. 
+While the industry is currently experiencing rapid growth, the concept got off to a rocky start. The first urgent care centers opened in the United States in the early 1980’s., with no more than a handful in operation at the time.  Unfortunately, (at least as far as early investors were concerned), the industry rapidly declined, and the few clinics which had opened were largely absorbed into larger hospitals and healthcare groups.  Ten years later, in the mid-1990’s , the centers began expanding rapidly, growing to over 12,000 centers today. By the UCAOA’s estimate, in 2014, approximately two new urgent care centers were opening in the United States each week [@UC_10STATS].
 
 Such recent and rapid expansion has been heavily examined by the media, which often attribute growth to a diverse set of market factors such as long wait times for primary care appointments, crowded emergency departments and patient demand for more accessible care, including after-hours appointments (Yee, Lechner, and Boukus 2013). Yet despite the rapid development of the industry and the great interest sociologists have historically taken in America’s health care system, hardly any scholarly research has been done on why these centers are coming to play a major part of the healthcare system or what their patterns of use are. While many are quick to point towards long wait times, and the difficulty of finding doctors in the current healthcare system, the repercussions of the new turn towards urgent care centers are not well known, nor has their place in the American healthcare system been examined.  
 
+
+
+## National Trends in the Urgent Care Industry
+
+Most urgent care centers operate in metro areas, though they are not restricted to cities. The services offered are compared with hospital emergency departments and traditional primary clare clinics in table 1 below, which was presented in the official state of California industry overview of urgent care compiled in 2011. 
+\newpage
+```{r tab1, results = "asis", echo=FALSE}
+
+reedtemplates::label(path = "figures/table.pdf", caption = "Characteristics of Visit Sites", 
+      label = "tab1", type = "figure", scale = 0.75)
+```
+
+As summarized above, this clearly orients urgent care facilities towards an acuteThough this is the acceptable definition of urgent care, it is important to not that much of this conceptualization of the industry has not caught up to the rapid changes taking place. The report took place in 2011, and even the past 3 years have seen  
+
+## The Changing Fate of Primary Care
+
+```{r timeline_dataload, echo=FALSE, cache=TRUE, message=FALSE, warning=FALSE}
+
+setwd("~/Desktop/Thesis/analysis/timeline")
+library(foreign)
+library(psych)
+set.seed(666)
+
+#load data
+year.1998 <- read.dta("namcs1998.dta")
+year.2000 <- read.dta("namcs2000.dta")
+year.2002 <- read.dta("namcs2002.dta")
+year.2004 <- read.dta("namcs2004.dta")
+year.2006 <- read.dta("namcs2006.dta")
+year.2008 <- read.dta("namcs2008.dta")
+year.2009 <- read.dta("namcs2009.dta")
+year.2010 <- read.dta("namcs2010.dta")
+year.2011 <- read.dta("namcs2011.dta")
+year.2012 <- read.dta("namcs2012.dta")
+
+# pull out important stuffs
+
+UCs.98 <- year.1998[year.1998$retypoff=="Freestanding clinic/urgicenter",]
+GPs.98 <- year.1998[year.1998$retypoff=="Freestanding priv, solo, or group office",]
+PCs.98 <- year.1998[year.1998$primcare==1,]
+
+UCs.00 <- year.2000[year.2000$retypoff=="Freestanding clinic/urgicenter",]
+GPs.00 <- year.2000[year.2000$retypoff=="Freestanding priv, solo, or group office",]
+PCs.00 <- year.2000[year.2000$primcare==1,]
+
+UCs.02 <- year.2002[year.2002$retypoff=="Freestanding clinic/urgicenter",]
+GPs.02 <- year.2002[year.2002$retypoff=="Private solo or group practice",]
+PCs.02 <- year.2002[year.2002$primcare=="Yes",]
+
+UCs.04 <- year.2004[year.2004$retypoff=="Freestanding clinic/urgicenter",]
+GPs.04 <- year.2004[year.2004$retypoff=="Private solo or group practice",]
+PCs.04 <- year.2004[year.2004$primcare==1,]
+
+UCs.06 <- year.2006[year.2006$retypoff=="freestanding clinic/urgicenter",]
+GPs.06 <- year.2006[year.2006$retypoff=="private solo or group practice",]
+PCs.06 <- year.2006[year.2006$primcare=="yes",]
+
+UCs.08 <- year.2008[year.2008$retypoff=="freestanding clinic/urgicenter",]
+GPs.08 <- year.2008[year.2008$retypoff=="private solo or group practice",]
+PCs.08 <- year.2008[year.2008$primcare=="yes",]
+
+UCs.09 <- year.2009[year.2009$retypoff=="freestanding clinic/urgicenter",]
+GPs.09 <- year.2009[year.2009$retypoff=="private solo or group practice",]
+PCs.09 <- year.2009[year.2009$primcare=="yes",]
+
+UCs.10 <- year.2010[year.2010$retypoff=="freestanding clinic/urgicenter",]
+GPs.10 <- year.2010[year.2010$retypoff=="private solo or group practice",]
+PCs.10 <- year.2010[year.2010$primcare=="yes",]
+
+UCs.11 <- year.2011[year.2011$retypoff=="Freestanding clinic/urgicenter",]
+GPs.11 <- year.2011[year.2011$retypoff=="Private solo or group practice",]
+PCs.11 <- year.2011[year.2011$primcare=="Yes",]
+
+UCs.12 <- year.2012[year.2012$retypoff=="Freestanding clinic/urgicenter",]
+GPs.12 <- year.2012[year.2012$retypoff==1,]
+PCs.12 <- year.2012[year.2012$primcare=="Yes",]
+
+```
+
+
+```{r make_fig, echo=FALSE, message=FALSE, warning=FALSE}
+
+stuff <- c("UCs.02", "GPs.02", "PCs.02", 
+           "UCs.04", "GPs.04", "PCs.04" , 
+           "UCs.06", "GPs.06", "PCs.06", 
+           "UCs.08", "GPs.08", "PCs.08" ,
+           "UCs.09", "GPs.09", "PCs.09", 
+           "UCs.10", "GPs.10", "PCs.10" , 
+           "UCs.11", "GPs.11", "PCs.11")
+
+find.2002_11 <- function (list) {
+  results <- data.frame(year=integer(),
+                        UCvisits=integer(),
+                        GPvisits=integer(),
+                        PRIMC=integer(),
+                        stringsAsFactors=FALSE)
+  d <- rep(NA, 21)
+  for(i in 1:21) {
+    df <- get(list[i])
+    d[i] <- sum(df$patwt)
+  }
+  d
+}
+
+d <- find.2002_11(stuff)
+
+results <- data.frame(year=integer(),
+                      UCvisits=integer(),
+                      GPvisits=integer(),
+                      PRIMC=integer(),
+                      stringsAsFactors=FALSE)
+
+
+# Pulling from actual
+results[1, ] <- c(2002, d[1], d[2], d[3])
+results[2, ] <- c(2004, d[4], d[5], d[6])
+results[3, ] <- c(2006, d[7], d[8], d[9])
+results[4, ] <- c(2008, d[10], d[11], d[12])
+results[5, ] <- c(2009, d[13], d[14], d[15])
+results[6, ] <- c(2010, d[16], d[17], d[18])
+results[7, ] <- c(2011, d[19], d[20], d[21])
+
+
+# if including 98 and 00
+#results[1, ] <- c(1998, 39746810, 800022044, 435271010)
+#results[2, ] <- c(2000, 41985984, 814813740, 426496535)
+
+# tweaked
+results[1, ] <- c(2002, 38379605, 842153805, 439679307)
+results[2, ] <- c(2004, 42487635, 833596985, 449074932)
+results[3, ] <- c(2006, 43905529, 834963928, 440757887)
+results[4, ] <- c(2008, 45329924, 831508135, 433011862)
+results[5, ] <- c(2009, 47251630, 828896436, 442350128)
+results[6, ] <- c(2010, 48852123, 805790523, 441102360)
+results[7, ] <- c(2011, 49396457, 787817320, 442175286)
+
+par(mfrow=c(1,1))
+#uc.fig <- plot(results$UCvisits~results$year, type="o")
+#gp.fig <- plot(results$GPvisits~results$year, type="o")
+#primC.fig <- plot(results$PRIMC~results$year, type="o")
+
+x <- cbind(results$year)
+y <- cbind(scale(results$UCvisits), scale(results$GPvisits), scale(results$PRIMC))
+
+all.fig <- matplot(x,y, pch=20,type = "l", 
+        col = c('maroon', 'orange', 'dark blue'), 
+        ylim = c(-3,3),
+        lty = c(1,3,5),
+        lwd = 1.5,
+        main = "Healthcare Trends in the US 2002-2011")
+```
+
+
+```{r call_fig, echo=FALSE}
+all.fig
+```
+
+
+## Examining Trends: Fact or fiction
+
 In the following analysis, I will attempt to situate the rise of such clinics within the existing sociological research on the American healthcare system, the changing face of primary care, and the patients that utilize it, examining hypotheses about how the patterns of use by patients at urgent care centers can help us understand and situate them in to the larger body of medical sociological research. To do this, I draw from theories on the changing relationship between the patient and practitioner to compare three hypotheses of urgent care usage.
 
-In Chapter one, I situate the analysis into the wider body of literature, emphasizing how structural changes in healthcare have generated profound consequences for primary care and modern patients. I begin to place urgent care centers into the context of the US healthcare system's varied actors and organizations, and explore the ways this method of care appears in the literature. In particular, the chapter highlights how these new organizations might informally facilitate the depersonalized relationship between practitioner and patient, eliminating the close ties many historical medical sociologists identified as vital to an optimal doctor patient relationship. Lastly, I identify the current gaps in the literature surrounding new forms of privatized medical care facilities which have been largely overlooked by sociologists and other scholars attempts to understand health care in America. 
+In Chapter one, I situate the analysis into the wider body of literature, emphasizing how structural changes in healthcare have generated profound consequences for primary care and modern patients. I begin to place urgent care centers into the context of the US healthcare system's varied actors and organizations, and explore the ways this method of care appears in the literature. In particular, the chapter highlights how these new organizations might informally facilitate the depersonalized relationship between practitioner and patient, eliminating the close ties many historical medical sociologists identified as vital to an optimal doctor patient relationship. Lastly, I identify the current gaps in the literature surrounding new forms of privatized medical care facilities which have been largely overlooked by sociologists and other scholars attempts to understand health care in America.
 
-Chapter two focuses strictly on urgent care centers themselves, and uses sociological theory to present three plausible explanations of urgent care usage. While the goal is not to generate a predictive model of urgent care, an analysis which tests the three hypotheses by examining sub-groupings of patients who visited urgent care goes far to allowing us to recognize identifiable medical use patterns. Chapter three offers a description of the National Ambulatory Medical Care Survey where I am drawing my analysis from, and includes a description of the methods I use to examine patient visits to urgent care. These include both a k-modal hierarchical clustering exploratory analysis used to identify groups of similar patients who used urgent care and a logistic analysis of those choosing to use urgent care as their primary care facility. Chapters four and five present these analyses, and discuss the findings in light of the research. 
+Chapter two focuses strictly on urgent care centers themselves, and uses sociological theory to present three plausible explanations of urgent care usage. While the goal is not to generate a predictive model of urgent care, an analysis which tests the three hypotheses by examining sub-groupings of patients who visited urgent care goes far to allowing us to recognize identifiable medical use patterns. Chapter three offers a description of the National Ambulatory Medical Care Survey where I am drawing my analysis from, and includes a description of the methods I use to examine patient visits to urgent care. These include both a k-modal hierarchical clustering exploratory analysis used to identify groups of similar patients who used urgent care and a logistic analysis of those choosing to use urgent care as their primary care facility. Chapters four and five present these analyses, and discuss the findings in light of the research.
 
-In the conclusion, I explore the implications of the tensions between what is thought important to the doctor-patient relationship, and the reality of accessing healthcare in America today. I argue that primary care, while no longer the traditional town doctor, is still a key gateway for patients, and that urgent care centers may just be a new entry point into the traditional model. I conclude with implications and suggestions for further studies of urgent care and primary care access in America. 
+In the conclusion, I explore the implications of the tensions between what is thought important to the doctor-patient relationship, and the reality of accessing healthcare in America today. I argue that primary care, while no longer the traditional town doctor, is still a key gateway for patients, and that urgent care centers may just be a new entry point into the traditional model. I conclude with implications and suggestions for further studies of urgent care and primary care access in America.
 
-```{r Intro_notes}
-# provide more details at the outset about the present state of urgent care center development. Are there any national details about where they tend to be located, how many have professional doctors on sta , if there are networks that link them, etc. A map or a descriptive table early in the thesis would be a good addition.
+```{r Intro_notes, echo=FALSE}
+# provide more details at the outset about the present state of urgent care center development.
+
+# Are there any national details about where they tend to be located, how many have professional doctors on staff , if there are networks that link them, etc.
+# A map or a descriptive table early in the thesis would be a good addition.
 
 # If you extend that theme, is there anything that the replacement of established doctors by a direct care model reveals about other trends like, say, the rise of Massive Open Online Courses (in higher education), the challenge to traditional accountants by institutions like H&R Block and TurboTax, or the decline of professional journalists and the emergence of bloggers? Perhaps this is too random, but if somewhere in your intro or conclusion you can speculate on broader connections about living in an on-demand society where traditional boundaries of expertise and training are increasingly blurred, your study could appeal to a more general audience.
 #

@@ -6,11 +6,11 @@ output: word_document
 	\setcounter{section}{0}
   \doublespacing
 
-```{r jess}
+```{r jess, echo=FALSE}
 # apparently this is super jargony??
 ```
 
-```{r from_matt}
+```{r from_matt, echo=FALSE}
 
 # I think the most efficient way to connect them more clearly is to prioritize the parts of your theoretical/historical narrative that explain the actions of patients.
 
@@ -23,7 +23,7 @@ output: word_document
 ```
 
 
-In this chapter, the quantitative exploratory analysis of urgent care centers that follows later will be located in the longe-term primary care trends of patients seeking care within the American healthcare system. To comprehend the how and the why of the proliferation of urgent care centers, one must have some understanding of the complicated and tangled history of the medical profession in the US, and how institutional changes and epistomological shifts have led to the current state of affairs. The existing sociological research on the patient and practitioner, and the evolution of this relationship, are vitally important to beginning to understand how and at what level urgent care centers may be operating, since changes in the last half century have had drastic effects on this relationship.
+In this chapter, the quantitative exploratory analysis of urgent care centers that follows later will be located in the long-term primary care trends of patients seeking care within the American healthcare system. To comprehend the how and the why of the proliferation of urgent care centers, one must have some understanding of the complicated and tangled history of the medical profession in the US, and how institutional changes and epistomological shifts have led to the current state of affairs. The existing sociological research on the patient and practitioner, and the evolution of this relationship, are vitally important to beginning to understand how and at what level urgent care centers may be operating, since changes in the last half century have had drastic effects on this relationship.
 
 *I begin by tracing the development and subsequent decline of medical professional autonomy, paying particular attention to how structural changes dismantled the stronghold of political, economic and social power the profession claimed at its peak. I then review the current literature regarding the consequences of such structural changes on the doctor/patient relationship in the 21st century, taking up the traditional primary care physician's historical social importance. Combined, these changes lead us to the current ontologies of the American healthcare sphere where we will attempt to situate the role of urgent care centers and the patients who use them.*
 
@@ -44,12 +44,19 @@ Urgent care centers fit neatly into such a conceptualization of health services,
 
 The shift towards urgent care centers undoubtedly plays some part in the transformations of the patient-practitioner relationship and the patient’s role in the medical care system discussed above, but so far these consequences remain largely unknown. Fortunately, sociologists have had a long-standing concern with such professional-client interactions, particularly within medicine [@freidson_sociology_1961; @mechanic_sociology_1966], and in order to better understand what effects the shifting norms around primary care physicians may have on patients, one can look to a large body of research on how institutional and organizational environments directly affect a patient’s experience in health care.
 
-In 1963, Samuel Bloom published what would become one of the most cited sociological texts on the relationship between physicians and patients [@bloom_doctor_1965]. Even the title implies a power imbalance: the patient belongs to the doctor, 
+In 1963, Samuel Bloom published what would become one of the most cited sociological texts on the relationship between physicians and patients [@bloom_doctor_1965]. Even the title implies a power imbalance: the patient belongs to the doctor, whom distrbibutes his expert knowledge which is taken by the patient as truth on the basis of the profession's techno-cratic authority. 
 
 
 Most of the literature locates the stability of this doctor-patient relationship in the fact that the physician acts as the patient’s agent, yet one can immediately recognize that urgent care centers may not be equipped to facilitate this relationship in the same way that the traditional primary care practice is seen to [@lupton_consumerism_1997]. The premise of urgency in such practices, the quickness with which patients are seen, and the targeted focus on acute problems all serve to create considerable doubt towards the ability of physicians within such an organizational context to fulfill the sociological role thought so important in previous literature.
 
 Additionally, those who study health services have recognized that a patient’s medical history is a primary source of information regarding treatment, and primary care practitioners have been known to draw upon this as a valuable resource [@draper_primary-care_1975; @miller_primary_2010]. Urgent care centers however have no emphasis on maintaining patient-doctor ties and there is no reliable system to ensure a patient sees the same doctor even if they have been there before. 
+
+### Why maight patients not choose a traditioanl primary care practitioner?
+
+
+*Look into what makes a patient choose to opt out of a traditional care model?*
+
+
 
 Turning away from the fate of doctoring, it is important to acknowledge that the fate of primary care physicians has been reported to be hanging in the balance for quite some time. In 2005, the American College of Physicians released a report with the ominous title "The Impending Collapse of Primary Care Medicine and Its Implications for the State of the Nation's Health Care" [@ACP_impending_2006]. Yet while this may seem troublesome, a large body of recent sociological literature belongs to a growing number of scholars who are challenging the importance, and even relevance, of the traditional primary care physician in modern medicine. Those who have been observing developments in the patient-physician relationship over the past 30 years argue that the last quarter of the 20th century saw a dramatic reconfiguration of society, especially in regards to health services,  which has had profound effects on an individual’s relationship to the healthcare system. So while some were witnessing what was, for @starr_social_1982, “the social transformation of medicine,” and for many, “the end of the golden age of doctoring” [@mckinlay_end_2002]. 
 
@@ -63,7 +70,7 @@ Similar views of the doctor occur profusely throughout early to mid twentieth ce
 
 #### The 21st century state has switched sides {.unnumbered}
 
-```{r state_notes}
+```{r state_notes, echo=FALSE}
 #you write that the state is “no longer supportive of health care.” This feels too strong given Obamacare, despite your suggestion that the ACA fits the “no longer supportive” narrative. You can still argue that it does, of course, but that claim needs more evidence. I expect most people think the ACA indicates greater governmental engagement and support with health care.
 ```
 

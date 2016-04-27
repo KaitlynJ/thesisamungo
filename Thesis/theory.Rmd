@@ -6,7 +6,7 @@ output: word_document
 	\setcounter{section}{0}
   \doublespacing
 
-```{r comments_analysis}
+```{r comments_analysis, echo=FALSE}
 
 # the research setup is that the hypotheses have urgent care facilities as the units of analysis but your models have patients as the units of analysis. I’ll repeat the same comment I had about the lit review: to make the connection between the hypotheses and your models more explicit, reframe them so they are from the perspective of patients. So, for H1 for example rather than “Urgent care centers will experience high levels of visits from uninsured and low SES patients” it could be something like “Uninsured and low SES patients will be more likely to visit an urgent care center than [the reference category]”.
 

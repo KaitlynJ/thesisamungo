@@ -70,7 +70,7 @@ The dependent variable analyzed in the logistic model in this study is whether o
 
 #### Independant Variables {.unnumbered}
 
-```{r more_detail}
+```{r more_detail, echo=FALSE}
 
 # What is the age range?
 
