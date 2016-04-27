@@ -3,10 +3,10 @@ header-includes:
 - \usepackage{graphicx,latexsym}
 - \usepackage{amssymb,amsthm,amsmath}
 - \usepackage{longtable,booktabs,setspace}
-output: word_document
+output: pdf_document
 ---
 # Analysis {.unnumbered}
-\doublespacing
+
 
 Before examining the question of why an individual would use urgent care as their primary care physician, an exploratory cluster analysis of urgent care visits between 2008 and 2012 was performed. The goal here was not predictive; rather, for the purposes of this analysis, clustering was used as a form of reproduction--observed trends were used to generate research hypotheses which account for the observed groupings. Following this, two logistic regressions were performed on the characteristics which were identified through the clustering, with the goal of obtaining a model which addresses whether or not an individual would a) choose to go to urgent care and b) use urgent care as their primary care physician. 
 
@@ -21,7 +21,7 @@ In order to better examine the hypotheses about individuals choosing to go to ur
 
 ```{r cluster_table, results = "asis", echo=FALSE}
 
-rticles::label(path = "figures/clusters.png", caption = "Identified patient typologies of urgent care centers visits (2008-2012).", 
+reedtemplates::label(path = "figures/clusters.png", caption = "Identified patient typologies of urgent care centers visits (2008-2012).", 
       label = "clus1", 
       type = "figure", 
       scale = .45,
@@ -49,21 +49,194 @@ As for the Medicare question, if the clusters which consist of primarily elderly
 
 In the end, the observed typologies appear to correspond relatively well with all three hypotheses presented, with the exception of a relatively large number of very young urgent care goers who did not list it as their primary care physician. The explanation for this is probably as simple as them having a pediatrician, and using urgent care as a quick supplement, which somewhat supports hypothesis 3. What the cluster analysis really does is inform the analysis about which variables were identified as important to urgent care seekers. Using these, we can now turn to a logistic regression in order to understand better how each parameter influences decisions regarding urgent care
 
+## Testing Hypotheses
+
+
+```{r load_data_analysis, echo=FALSE, warning=FALSE, message=FALSE, cache=TRUE}
+
+if(!require(nnet))
+  install.packages("nnet", repos = "http://cran.rstudio.com")
+
+library(foreign)
+library(ggplot2)
+library(reshape2)
+
+# load in data
+setwd("~/Desktop/Thesis/analysis")
+NAMCS <- read.csv("NAMCS08-11.csv", header = TRUE)
+
+# fixing NAs/blanks
+NAMCS[c("VYEAR")][is.na(NAMCS[c("VYEAR")])] <- 2011
+NAMCS[NAMCS == "Blank"] <- NA
+NAMCS[NAMCS == "Missing Data"] <- NA
+NAMCS[NAMCS == "Missing data"] <- NA
+
+yr.2010 <- NAMCS[NAMCS$YEAR=="2010",]
+traditional <- yr.2010[yr.2010$RETYPOFF == "Private solo or group practice",]
+
+
+```
+
+I test the hypotheses presented in the previous chapter using a series of logistic and multinomial logistic regressions. I find that while the data shows evidence for the first two theories, there is little evidence to support the theory that urgent care is being used solely as is often stated in the press. There appears to be clear significant indicators for individuals choosing to use urgent care as their primary care facility which follow the first hypothesis presented in the previous chapter. The data shows that for specific demographics, urgent care is a viable option for their primary care needs, adding evidence to the shifting tides of American primary care.  
+
+## Multinomial Logistic Regression Analysis {.unnumbered}
+
+The multinomial logistic regression tests the effect of our independant variables on four outcomes: 1) a visit to a traditional clinic whom the patient does *not* identify as their primary care provider, 2) a visit to a traditional clinic whom the patient identifies as their primary care provider, 3) a visit to urgent care, not identified as the patient's primary care facility, and finally 4) a visit to urgent care where the patient identified the facility as their primary care provider. 
+
+In order to understand the results of a multinomial logistic regression, it is important to keep in mind the reference group. Here, the group of patients who's visits occured at traditional practices, but who did not identify that practice as their primary care provider was used as the reference group. Thus, the three models show the effects for each of the idenpendant variables for the three other decisions in comparison to that initial reference point. The results of the regression are summarized in Table 5.4.
+
+
+```{r multinomial_logit, cache=TRUE, echo=FALSE, warning=FALSE, message=FALSE}
+
+# select which variables will be included in model
+variables <- c("RETYPOFF", "URGCARE","PRIMCARE","PCTPOVR", "HINCOMER", 
+               "PBAMORER", "URBANRUR", "RACER", "WEEKEND", 
+               "AGE", "SEX","PAYTYPER", "INJURY","SENBEFOR", "PASTVIS", "MAJOR")
+logistic <- NAMCS[variables]
+logistic <- na.omit(logistic)
+
+################################################################################################################
+#                   Recoding for logisitic model and creating outcome variable                                 #
+#                       - Using normative valuation for dummies                                                #
+################################################################################################################
+
+# drop visits that weren't to urgent care or trad. office
+logistic <- logistic[logistic$RETYPOFF %in% c("Private solo or group practice", "Freestanding clinic/urgicenter"), ]
+
+levels(logistic$PRIMCARE) <- list("Yes" = c("Blank", "Unknown", "Yes"), "No" = "No")
+
+# create multinom outcome variable
+
+traditional <- data.frame(logistic[logistic$RETYPOFF == "Private solo or group practice",])
+urgentcare <- data.frame(logistic[logistic$RETYPOFF == "Freestanding clinic/urgicenter",])
+
+traditional$outcome <-ifelse((traditional$PRIMCARE == "Yes"), "Traditional Primary", "Traditional")
+urgentcare$outcome <-ifelse((urgentcare$PRIMCARE == "Yes"), "Urgent Care Primary", "Urgent Care")
+
+logistic <- rbind(traditional, urgentcare)
+
+
+# split by upper and lower two quartiles
+levels(logistic$PCTPOVR) <- list("Low ZIP Poverty" = c("Quartile 1 (Less than 5.00 percent)", 
+                                                       "Quartile 2 (5.00-9.99 percent)",
+                                                       "Quartile 3 (10.00-19.99 percent)"), 
+                                 "High ZIP Poverty" = c("Quartile 4 (20.00 percent or more)"))
+
+# split by if in highest quartile = wealthy
+levels(logistic$HINCOMER) <- list("Low ZIP Income" = c("Quartile 1 ($32,793 or less)",
+                                                      "Quartile 2 ($32,794-$40,626)",
+                                                      "Quartile 3 ($40,627-$52,387)"), 
+                                 "High ZIP Income" = c("Quartile 4 ($52,388 or more)"))
+
+# split by if in highest quartile = high education
+levels(logistic$PBAMORER) <- list("Low ZIP Education" = c("Quartile 1 (Less than 12.84 percent)",
+                                                      "Quartile 2 (12.84-19.66 percent)",
+                                                      "Quartile 3 (19.67-31.68 percent)"), 
+                                 "High ZIP Education" = c("Quartile 4 (31.69 percent or more)"))
+
+levels(logistic$URBANRUR) <- list("Rural" = c("Micropolitan/noncore (nonmetro)"),
+                                  "Medium Metro" = c("Medium metro", "Small metro"),
+                                  "Large Metro" = c("Large central metro", "Large fringe metro"))
+
+# just re-ordering for white as reference group
+levels(logistic$RACER) <- list("White" = "White", "Black" = "Black", "Other" = "Other")
+
+# make age numeric
+logistic$AGE <- as.numeric(logistic$AGE)
+
+# re-order so that male is reference
+levels(logistic$SEX) <- list("Male" = "Male", "Female" = "Female")
+
+# Private insurance as reference group
+levels(logistic$PAYTYPER) <- list("Private Insurance" = c("Private insurance", "All sources of payment are blank"),
+                                  "Medicaid" = "Medicaid",
+                                  "Medicare" = "Medicare",
+                                  "Worker's Comp" = "Worker's compensation",
+                                  "Self-Pay/Other" = c("No charge", "Self-pay", "Other", "Unknown"))
+
+
+
+# IF NA then 0 previous visits...
+logistic$PASTVIS[logistic$PASTVIS=="Not applicable"] <- c("0")
+logistic$PASTVIS <- as.numeric(logistic$PASTVIS)
+
+# recode with new problem as reference
+levels(logistic$MAJOR) <- list("Acute" = "New problem (less than 3 mos. onset)",
+                               "Routine" = c("Pre-/Post-surgery", "Blank", "Preventive care"),
+                               "Chronic" = c("Chronic problem, flare-up", "Chronic problem, routine"))
+
+logit.full <- subset(logistic, select = -c(RETYPOFF, URGCARE, PRIMCARE))
+
+logit.1 <- subset(logit.full, select = c(outcome, PCTPOVR, HINCOMER, PBAMORER, URBANRUR))
+
+logit.2 <- subset(logit.full, select = c(outcome, AGE, SEX, RACER, PAYTYPER))
+
+logit.3 <- subset(logit.full, select = c(outcome, INJURY, MAJOR, SENBEFOR, PASTVIS, WEEKEND))
+
+log.mm <- as.data.frame(model.matrix(~ . - outcome, data=logit.full)[,-1]) 
+log.mm$outcome <- logit.full$outcome
+
+log1.mm <- as.data.frame(model.matrix(~ . - outcome, data=logit.1)[,-1]) 
+log1.mm$outcome <- logit.1$outcome
+
+log2.mm <- as.data.frame(model.matrix(~ . - outcome, data=logit.2)[,-1]) 
+log2.mm$outcome <- logit.2$outcome
+
+log3.mm <- as.data.frame(model.matrix(~ . - outcome, data=logit.3)[,-1]) 
+log3.mm$outcome <- logit.3$outcome
+
+```
+
+
+
+```{r make_them, echo=FALSE, warning=FALSE, message=FALSE}
+library(nnet)
+model1 <- multinom(outcome ~ ., data = log1.mm)
+model2 <- multinom(outcome ~ ., data = log2.mm)
+model3 <- multinom(outcome ~ ., data = log3.mm)
+fullmodel <- multinom(outcome ~ ., data = log.mm)
+
+
+```
+
+
+
+
+\singlespacing
+```{r logit_tables2, warning=FALSE, message=FALSE, echo=FALSE ,results="asis"}
+
+library(texreg)
+texreg(list(model1), 
+       caption = "Multinomial Logistic model: location effects", 
+       fontsize = "footnotesize",
+       bold = 0.0001,
+       custom.model.names = c("M1", "M2", "M3"))
+
+texreg(list(model2), 
+       caption = "Multinomial Logistic model: demographic effects", 
+       fontsize = "footnotesize",
+       bold = 0.0001,
+       custom.model.names = c("M1", "M2", "M3"))
+
+texreg(list(model3), 
+       caption = "Multinomial Logistic model: visit characteristics", 
+       fontsize = "footnotesize",
+       bold = 0.0001,
+       custom.model.names = c("M1", "M2", "M3"))
+
+```
+
+\doublespacing
+
+
 
 ## Logistic Regression Analysis {.unnumbered}
 
 The initial exploratory analysis shows clear typologies of urgent care seekers which align with the hypotheses presented in the previous chapter, and the next phase of the analysis uses those trends and tests for significance using logistic regression analysis. Tables 5.1 and 5.2 show the results of the two logistic regression models. 
 
-The first table is a model of the initial decision to go to urgent care. For the odds of choosing to go to urgent care over other means of ambulatory care, there is no significance for whether or not the visit is injury related, and whether or not it is a weekend. This supports the observations from the cluster analysis, and provides further evidence against the demand oriented hypothesis. Similarly, visits for routine and chronic issues have a higher chance of leading to an urgent care visit than problems less than 3 mos old. These trends both support Hypothesis 3: that urgent care centers are being used as a new mode of primary care.
-
-For the second analysis, the outcome is no longer whether or not the visit was *at* urgent care, but whether or not an urgent care patient listed the urgent care center as their "Primary Health Provider". Interestingly, most of the significant variables' effects change direction when this is taken as the outcome. While high local income levels had a negative relationship with the decision to go to urgent care, it appears to very positively correlate with those who do use urgent care as their primary care. 
-
-Many of the visit-specific variables that did not have a significant effect on the odds of choosing urgent care became significant when looking at urgent care as primary care. Unsurprisingly, whether or not the visit was injury related has a negative effect on the odds of the patient specifying that clinic as their primary care. 
-
-There are some surprising trends in the secondary logistic model which deserve further study. Established patient, for example, have a significant negative correlation with the odds of a patient using urgent care as their primary care physician, as did number of past visits. A further look into the structure of the data reveals a plausible explanation: while 94% of patients who listed the urgent care center as their primary care physician were recorded as Established patients, this group as a whole only constitutes a third of the total number of visits to urgent care. In other words, there were two-thirds as many urgent care visits who were established patients, yet did *not* list the facility as their primary care office, and this trend is similar for number of past visits. 
-
 
 ```{r logit_regression, echo=FALSE, warning=FALSE, message=FALSE, cache=TRUE}
+NAMCS.work <- NAMCS
 NAMCS.logit <- NAMCS.work
                         
 # variable selection
@@ -72,7 +245,7 @@ logit.vars <- c("URGCARE","PRIMCARE","PCTPOVR", "HINCOMER", "PBAMORER", "URBANRU
 logit.varset <- NAMCS.logit[logit.vars]
 logit.varset <- na.omit(logit.varset)
 
-# recoding
+# recoding for old logit
 logit.varset$ZipHighIncome <- as.numeric(logit.varset$HINCOMER == "Quartile 4 ($52,388 or more)")
 logit.varset$HighZipPov <- as.numeric(logit.varset$PCTPOVR == "Quartile 4 (20.00 percent or more)")
 logit.varset$HighEduc<- as.numeric(logit.varset$PBAMORER == "Quartile 4 (31.69 percent or more)")
@@ -149,7 +322,7 @@ logit2.full <- glm(PRIMCAREYes ~ INJURYYes + WEEKENDYES + PAYTYPERMedicaid + PAY
 library(texreg)
 texreg(list(logit.beh, logit.dem, logit.full), 
        caption = "Logistic model of the decision to go to urgent care.", 
-       fontsize = "small", 
+       fontsize = "footnotesize", 
        custom.coef.names = c("Intercept", "Injury Related Visit", "Weekend Visit", "Medicaid" , "Medicare" , "SelfPay", "Established Patient", "Number Past Visits", "Visit Reason: Preventative", "Visit Reason: Routine/Chronic", "Age: Working", "Age: Retired", "Male", "Race: White", "High ZIP Income", "Rural"))
 
 texreg(list(logit2.beh, logit2.dem, logit2.full), 
@@ -159,6 +332,16 @@ texreg(list(logit2.beh, logit2.dem, logit2.full),
 
 
 ```
+
+\doublespacing
+
+The first table is a model of the initial decision to go to urgent care. For the odds of choosing to go to urgent care over other means of ambulatory care, there is no significance for whether or not the visit is injury related, and whether or not it is a weekend. This supports the observations from the cluster analysis, and provides further evidence against the demand oriented hypothesis. Similarly, visits for routine and chronic issues have a higher chance of leading to an urgent care visit than problems less than 3 mos old. These trends both support Hypothesis 3: that urgent care centers are being used as a new mode of primary care.
+
+For the second analysis, the outcome is no longer whether or not the visit was *at* urgent care, but whether or not an urgent care patient listed the urgent care center as their "Primary Health Provider". Interestingly, most of the significant variables' effects change direction when this is taken as the outcome. While high local income levels had a negative relationship with the decision to go to urgent care, it appears to very positively correlate with those who do use urgent care as their primary care. 
+
+Many of the visit-specific variables that did not have a significant effect on the odds of choosing urgent care became significant when looking at urgent care as primary care. Unsurprisingly, whether or not the visit was injury related has a negative effect on the odds of the patient specifying that clinic as their primary care. 
+
+There are some surprising trends in the secondary logistic model which deserve further study. Established patient, for example, have a significant negative correlation with the odds of a patient using urgent care as their primary care physician, as did number of past visits. A further look into the structure of the data reveals a plausible explanation: while 94% of patients who listed the urgent care center as their primary care physician were recorded as Established patients, this group as a whole only constitutes a third of the total number of visits to urgent care. In other words, there were two-thirds as many urgent care visits who were established patients, yet did *not* list the facility as their primary care office, and this trend is similar for number of past visits. 
 
 
 ```{r diagnostics, warning=FALSE, message=FALSE  ,echo=FALSE}
@@ -187,7 +370,7 @@ texreg(list(logit2.beh, logit2.dem, logit2.full),
 
 ## Revisiting the hypotheses {.unnumbered}
 \doublespacing
-Returning to the theoretical explanations for urgent care, it appears that while no one theory explains the totality of urgent care center usage, I observed much more evidence for hypotheses 1 and 3 than for 2---uprising given that the theory behind hypothesis two is the one most often cited in popular press stories about urgent care. There seems to be plenty of observable evidence to support hypothesis 3: there were a number of clusters which not only corresponded to the predicted trends for that hypothesis, but which directly stated that they use urgent care as their primary care provider.
+Returning to the theoretical explanations for urgent care, it appears that while no one theory explains the totality of urgent care center usage, I observed much more evidence for hypotheses 1 and 3 than for 2---unsuprising given that the theory behind hypothesis two is the one most often cited in popular press stories about urgent care. There seems to be plenty of observable evidence to support hypothesis 3: there were a number of clusters which not only corresponded to the predicted trends for that hypothesis, but which directly stated that they use urgent care as their primary care provider.
 
 
 

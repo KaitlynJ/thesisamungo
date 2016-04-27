@@ -10,7 +10,7 @@ output: pdf_document
 # Appendix A {.unnumbered}
 
 \newpage
-\onehalfspacing
+\doublespacing
 
 ```{r load_pkgs, echo = FALSE, message = FALSE, warning = FALSE}
 # List of packages required for this analysis
