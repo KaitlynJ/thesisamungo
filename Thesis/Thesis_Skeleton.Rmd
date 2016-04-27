@@ -6,13 +6,13 @@ advisor: 'Jessica Epstein'
 department: 'Sociology'
 title: 'Consumption and Cooptation of Care: a statistical analysis of visits to urgent care'
 abstract: >
-   `r paste(readLines('abstract.Rmd'), collapse = '\n')`
+   Urgent care centers are a relatively new and emergent phenomemnon in the American health care system, yet little to no academic reasearch has been performed on how they are situated in the larger sociological understanding of the healthcare system. This thesis attempts to further such an understanding by examining the typologies of patients which are the users of urgent care, and further, who of those uses such centers as their primary care physicians.
 # If you'd rather include the preliminary content in files instead of inline
 # like below, use a command like that for the abstract above.  Note that a tab is # needed on the line after the >.
 acknowledgements: >
   I want to thank a few people, mostly my mom. Will fill in when this is dOnE.
 dedication: >
-  Right now? to coffee
+  To my family, both blood and those I found at Reed.
 #preface: >
 #  This is an example of a thesis setup to use the reed thesis document class.
 bibliography: bib/THESIS.bib
@@ -22,8 +22,10 @@ csl: csl/american-sociological-association.csl
 output: 
   reedtemplates::reed_thesis:
     toc: true
+    toc_depth: 2
 lot: true
 lof: true
+#space_between_paragraphs: true
 header-includes:
   \usepackage{tikz}
   \usepackage{setspace}
@@ -31,6 +33,7 @@ header-includes:
   \usepackage{natbib}
   \usepackage{rotating}
   \usepackage{longtable}
+  \usepackage{booktabs}
   \pagestyle{plain}
 ---
 
@@ -79,6 +82,8 @@ This is the way to split your thesis into chapters and then include each of the 
 
 ```{r chapter7, child = 'appendix1.Rmd'}
 ```
+
+
 
 <!--
 The bib chunk below must go last in this document according to how R Markdown renders.  More info is at http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html

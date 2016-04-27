@@ -1,7 +1,7 @@
 ---
 output: word_document
 ---
-# Theoretical and Historical Foundations {.unnumbered}
+# Theoretical Foundations {.unnumbered}
   \setcounter{chapter}{2}
 	\setcounter{section}{0}
   \doublespacing
@@ -51,7 +51,7 @@ Most of the literature locates the stability of this doctor-patient relationship
 
 Additionally, those who study health services have recognized that a patient’s medical history is a primary source of information regarding treatment, and primary care practitioners have been known to draw upon this as a valuable resource [@draper_primary-care_1975; @miller_primary_2010]. Urgent care centers however have no emphasis on maintaining patient-doctor ties and there is no reliable system to ensure a patient sees the same doctor even if they have been there before. 
 
-### Why maight patients not choose a traditioanl primary care practitioner?
+### Why maight patients not choose a traditioanl primary care practitioner? {.unnumbered}
 
 
 *Look into what makes a patient choose to opt out of a traditional care model?*

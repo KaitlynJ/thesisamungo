@@ -61,7 +61,6 @@ urgent care}
 \division{History and Social Sciences}
 \advisor{Jessica Epstein}
 %If you have two advisors for some reason, you can use the following
-\altadvisor{}
 %%% Remember to use the correct department!
 \department{Sociology}
 % if you're writing a thesis in an interdisciplinary major,
@@ -101,7 +100,7 @@ dOnE.
 }
 
 \Dedication{
-Right now? to coffee
+To my family, both blood and those I found at Reed.
 }
 
 \Preface{
@@ -120,7 +119,7 @@ their primary care physicians.
 
 \usepackage{tikz} \usepackage{setspace} \usepackage{amsmath}
 \usepackage{natbib} \usepackage{rotating} \usepackage{longtable}
-\pagestyle{plain}
+\usepackage{booktabs} \pagestyle{plain}
 
 %%
 %% End Preamble
@@ -143,7 +142,7 @@ their primary care physicians.
   % Add table of abbreviations?
 
       \hypersetup{linkcolor=black}
-    \setcounter{tocdepth}{2}
+    \setcounter{tocdepth}{1}
     \tableofcontents
   
       \listoftables
@@ -161,7 +160,7 @@ their primary care physicians.
     \end{abstract}
   
       \begin{dedication}
-      Right now? to coffee
+      To my family, both blood and those I found at Reed.
     \end{dedication}
   
   \mainmatter % here the regular arabic numbering starts
@@ -176,18 +175,27 @@ their primary care physicians.
   health needs are long gone. In their place, a rapidly expanding and
   complex network of healthcare providers and services have developed,
   increasingly placing the burden on the patient to make the appropriate
-  choice. In particular, the past twenty years have seen a surge in a new
-  type of medical practice known as urgent care centers, and the industry
-  shows no sign of slowing down. Yet given such rapid expansion of the
-  industry, it is surprising that little academic research has taken
-  urgent care as its subject. In part a response to this oversight, the
-  following analysis will use a representative sample of urgent care
-  center visits to examine the use patterns of these facilities in recent
-  years. I investigate three central questions regarding urgent care: what
-  are the typologies of patients using urgent care, how can we use this
-  information to situate urgent care centers into the larger complex of
-  the American healthcare system, and what does the sociological research
-  offer to an understanding of this relatively new phenomenon?
+  choice for their primary care needs. In particular, the past twenty
+  years have seen a surge in a new type of medical practice known as
+  urgent care centers and the industry shows no sign of slowing down.
+  
+  Given such rapid expansion of the industry, it is surprising that little
+  academic research has taken urgent care as its subject. In part a
+  response to this oversight, in the following analysis I will use a
+  nationally representative sampling of urgent care visits to examine the
+  use patterns of these facilities in recent years. I investigate three
+  central questions regarding urgent care: what are the typologies of
+  patients using urgent care as their primary care providers, how can we
+  use this information to situate urgent care centers as a viable patient
+  option in the larger complex of the American healthcare system and what
+  can the sociological research on patient decision processes and
+  healthcare offer to a broader understanding of this relatively new
+  phenomenon?
+  
+  \section*{National Trends in the Urgent Care
+  Industry}\label{national-trends-in-the-urgent-care-industry}
+  \addcontentsline{toc}{section}{National Trends in the Urgent Care
+  Industry}
   
   There is no official definition of what constitutes an urgent care
   center, but the scope of services provided generally falls between that
@@ -224,19 +232,16 @@ their primary care physicians.
   are not well known, nor has their place in the American healthcare
   system been examined.
   
-  \section{National Trends in the Urgent Care
-  Industry}\label{national-trends-in-the-urgent-care-industry}
-  
   Most urgent care centers operate in metro areas, though they are not
   restricted to cities. The services offered are compared with hospital
   emergency departments and traditional primary clare clinics in table 1
   below, which was presented in the official state of California industry
-  overview of urgent care compiled in 2011. \newpage
+  overview of urgent care compiled in 2011.
   
-  \begin{figure}[htbp]
+  \begin{figure}[h!]
   \centering
-  \includegraphics[scale = 0.75,angle = 0]{figures/table.pdf}
-  \caption[Characteristics of Visit Sites]{\normalsize{Characteristics of Visit Sites}}
+  \includegraphics[angle = 0,scale = 1]{figures/table.pdf}
+  \caption[Comparison of the Characteristics of Three Care Options]{\small{Characteristics comparison of Urgent Care, Traditional Pactices and Emergency Rooms. Source: California's 2015 report on the Urgent Care Industry.}}
   \label{fig:tab1}
   \end{figure}
   
@@ -244,19 +249,28 @@ their primary care physicians.
   an acuteThough this is the acceptable definition of urgent care, it is
   important to not that much of this conceptualization of the industry has
   not caught up to the rapid changes taking place. The report took place
-  in 2011, and even the past 3 years have seen
+  in 2011, and even the past 3 years have seen y scholarly research has
+  been done on why these centers are coming to play a major part of the
+  healthcare system or what their patterns of use are. While many are
+  quick to point towards long wait times, and the difficulty of finding
+  doctors in the current healthcare system, the repercussions of the new
+  turn towards urgent care centers are not well known, nor has their place
+  in the American healthcare sy.
   
-  \section{The Changing Fate of Primary
+  \section*{The Changing Fate of Primary
   Care}\label{the-changing-fate-of-primary-care}
+  \addcontentsline{toc}{section}{The Changing Fate of Primary Care}
   
-  \begin{center}\includegraphics{Thesis_Skeleton_files/figure-latex/make_fig-1} \end{center}
+  \begin{figure}[h!]
+  \centering
+  \includegraphics[angle = 0,scale = 0.25]{figures/trends.png}
+  \caption[Comparison of Health Care Trends]{\small{Comparison of Visit Estimates for Urgent Care, Traditional Clinics and Primary Care (2000-2011). Data from NAMCS.}}
+  \label{fig:trends}
+  \end{figure}
   
-  \begin{verbatim}
-  NULL
-  \end{verbatim}
-  
-  \section{Examining Trends: Fact or
+  \subsection*{Examining Trends: Fact or
   fiction}\label{examining-trends-fact-or-fiction}
+  \addcontentsline{toc}{subsection}{Examining Trends: Fact or fiction}
   
   In the following analysis, I will attempt to situate the rise of such
   clinics within the existing sociological research on the American
@@ -306,9 +320,8 @@ their primary care physicians.
   suggestions for further studies of urgent care and primary care access
   in America.
   
-  \chapter*{Theoretical and Historical
-  Foundations}\label{theoretical-and-historical-foundations}
-  \addcontentsline{toc}{chapter}{Theoretical and Historical Foundations}
+  \chapter*{Theoretical Foundations}\label{theoretical-foundations}
+  \addcontentsline{toc}{chapter}{Theoretical Foundations}
   
   \setcounter{chapter}{2} \setcounter{section}{0} \doublespacing
   
@@ -426,8 +439,10 @@ their primary care physicians.
   patient-doctor ties and there is no reliable system to ensure a patient
   sees the same doctor even if they have been there before.
   
-  \subsection{Why maight patients not choose a traditioanl primary care
+  \subsection*{Why maight patients not choose a traditioanl primary care
   practitioner?}\label{why-maight-patients-not-choose-a-traditioanl-primary-care-practitioner}
+  \addcontentsline{toc}{subsection}{Why maight patients not choose a
+  traditioanl primary care practitioner?}
   
   \emph{Look into what makes a patient choose to opt out of a traditional
   care model?}
@@ -450,8 +465,8 @@ their primary care physicians.
   medicine,'' and for many, ``the end of the golden age of doctoring''
   (McKinlay and Marceau 2002).
   
-  \section*{\texorpdfstring{The Rise and Fall of the \emph{Golden Age of
-  Doctoring}}{The Rise and Fall of the Golden Age of Doctoring}}\label{the-rise-and-fall-of-the-golden-age-of-doctoring}
+  \section*{The Rise and Fall of the \emph{Golden Age of
+  Doctoring}}\label{the-rise-and-fall-of-the-golden-age-of-doctoring}
   \addcontentsline{toc}{section}{The Rise and Fall of the \emph{Golden Age
   of Doctoring}}
   
@@ -1024,7 +1039,7 @@ their primary care physicians.
   designed and distributed by the American Center for Disease Control
   (CDC) to provide researchers in the medical and social science fields
   ``accurate and reliable information about the provision and use of
-  ambulatory medical care services in the United States'' (Anon n.d.).
+  ambulatory medical care services in the United States'' (Anon. n.d.).
   
   For those unfamiliar with healthcare lingo, ambulatory care is defined
   by the survey as health services or acute care services provided to
@@ -1079,8 +1094,8 @@ their primary care physicians.
   without missing information, bringing the sample to 3,695 visits to
   urgent care centers. \emph{insert table 3.1}
   
-  \section*{\texorpdfstring{\emph{k}-Modes Cluster
-  Analysis}{k-Modes Cluster Analysis}}\label{k-modes-cluster-analysis}
+  \section*{\emph{k}-Modes Cluster
+  Analysis}\label{k-modes-cluster-analysis}
   \addcontentsline{toc}{section}{\emph{k}-Modes Cluster Analysis}
   
   This method allows for grouping patients that have similar
@@ -1265,8 +1280,8 @@ their primary care physicians.
   
   \begin{figure}[h!]
   \centering
-  \includegraphics[scale = 0.45,angle = 90]{figures/clusters.png}
-  \caption[Identified patient typologies of urgent care centers visits (2008-2012).]{\normalsize{Identified patient typologies of urgent care centers visits (2008-2012).}}
+  \includegraphics[angle = 90,scale = 0.45]{figures/clusters.png}
+  \caption[Identified patient typologies of urgent care centers visits (2008-2012).]{\small{Identified patient typologies of urgent care centers visits (2008-2012).}}
   \label{fig:clus1}
   \end{figure}
   
@@ -1385,7 +1400,8 @@ their primary care physicians.
   turn to a logistic regression in order to understand better how each
   parameter influences decisions regarding urgent care
   
-  \section{Testing Hypotheses}\label{testing-hypotheses}
+  \section*{Testing Hypotheses}\label{testing-hypotheses}
+  \addcontentsline{toc}{section}{Testing Hypotheses}
   
   I test the hypotheses presented in the previous chapter using a series
   of logistic and multinomial logistic regressions. I find that while the
@@ -1472,23 +1488,24 @@ their primary care physicians.
   \singlespacing
   
   \begin{table}
+  \caption{Multinomial Logistic model: location effects}
   \begin{center}
   \begin{footnotesize}
   \begin{tabular}{l c c c }
   \hline
-   & Traditional Primary & Urgent Care & Urgent Care Primary \\
+   & TP & UC & UCP \\
   \hline
   (Intercept)                  & $\mathbf{-0.36}^{***}$ & $\mathbf{-3.04}^{***}$ & $\mathbf{-4.07}^{***}$ \\
                                & $(0.02)$               & $(0.05)$               & $(0.09)$               \\
   `PCTPOVRHigh ZIP Poverty`    & $0.02$                 & $-0.05$                & $0.04$                 \\
                                & $(0.02)$               & $(0.07)$               & $(0.09)$               \\
-  `HINCOMERHigh ZIP Income`    & $-0.06^{***}$          & $\mathbf{-0.38}^{***}$ & $\mathbf{-0.42}^{***}$ \\
+  `HINCOMERHigh ZIP Income`    & $\mathbf{-0.06}^{***}$ & $\mathbf{-0.38}^{***}$ & $\mathbf{-0.42}^{***}$ \\
                                & $(0.02)$               & $(0.06)$               & $(0.09)$               \\
   `PBAMORERHigh ZIP Education` & $\mathbf{-0.22}^{***}$ & $0.09$                 & $-0.08$                \\
                                & $(0.02)$               & $(0.06)$               & $(0.08)$               \\
   `URBANRURMedium Metro`       & $\mathbf{-0.19}^{***}$ & $\mathbf{0.29}^{***}$  & $0.31^{**}$            \\
                                & $(0.02)$               & $(0.06)$               & $(0.10)$               \\
-  `URBANRURLarge Metro`        & $-0.08^{***}$          & $\mathbf{-0.43}^{***}$ & $0.29^{**}$            \\
+  `URBANRURLarge Metro`        & $\mathbf{-0.08}^{***}$ & $\mathbf{-0.43}^{***}$ & $0.29^{**}$            \\
                                & $(0.02)$               & $(0.07)$               & $(0.10)$               \\
   \hline
   AIC                          & 153956.44              & 153956.44              & 153956.44              \\
@@ -1500,17 +1517,17 @@ their primary care physicians.
   \multicolumn{4}{l}{\tiny{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
   \end{tabular}
   \end{footnotesize}
-  \caption{Multinomial Logistic model: location effects}
   \label{table:coefficients}
   \end{center}
   \end{table}
   
   \begin{table}
+  \caption{Multinomial Logistic model: demographic effects}
   \begin{center}
   \begin{footnotesize}
   \begin{tabular}{l c c c }
   \hline
-   & Traditional Primary & Urgent Care & Urgent Care Primary \\
+   & TP & UC & UCP \\
   \hline
   (Intercept)              & $\mathbf{-0.44}^{***}$ & $\mathbf{-2.97}^{***}$ & $\mathbf{-4.17}^{***}$ \\
                            & $(0.02)$               & $(0.06)$               & $(0.09)$               \\
@@ -1540,18 +1557,18 @@ their primary care physicians.
   \multicolumn{4}{l}{\tiny{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
   \end{tabular}
   \end{footnotesize}
-  \caption{Multinomial Logistic model: demographic effects}
   \label{table:coefficients}
   \end{center}
   \end{table}
   
   \begin{table}
+  \caption{Multinomial Logistic model: visit characteristics}
   \begin{center}
-  \begin{footnotesize}
-  \begin{tabular}{l c c c }
-  \hline
-   & Traditional Primary & Urgent Care & Urgent Care Primary \\
-  \hline
+  \begin{scriptsize}
+  \begin{tabular}{l@{} c@{} c@{} c@{} }
+  \toprule
+   & TP & UC & UCP \\
+  \midrule
   (Intercept)                        & $\mathbf{-1.55}^{***}$ & $\mathbf{-2.84}^{***}$ & $\mathbf{-5.00}^{***}$ \\
                                      & $(0.03)$               & $(0.05)$               & $(0.13)$               \\
   INJURYYes                          & $\mathbf{-0.49}^{***}$ & $\mathbf{0.54}^{***}$  & $-0.17$                \\
@@ -1566,20 +1583,81 @@ their primary care physicians.
                                      & $(0.00)$               & $(0.00)$               & $(0.00)$               \\
   WEEKENDYES                         & $\mathbf{0.40}^{***}$  & $\mathbf{1.43}^{***}$  & $0.20$                 \\
                                      & $(0.07)$               & $(0.11)$               & $(0.27)$               \\
-  \hline
+  \midrule
   AIC                                & 142939.51              & 142939.51              & 142939.51              \\
   BIC                                & 143138.26              & 143138.26              & 143138.26              \\
   Log\ Likelihood                    & -71448.76              & -71448.76              & -71448.76              \\
   Deviance                           & 142897.51              & 142897.51              & 142897.51              \\
   Num.\ obs.                         & 95234                  & 95234                  & 95234                  \\
-  \hline
+  \bottomrule
   \multicolumn{4}{l}{\tiny{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
   \end{tabular}
-  \end{footnotesize}
-  \caption{Multinomial Logistic model: visit characteristics}
+  \end{scriptsize}
   \label{table:coefficients}
   \end{center}
   \end{table}
+  
+  \begin{sidewaystable}
+  \caption{Multinomial Logistic model: visit characteristics}
+  \begin{center}
+  \begin{tiny}
+  \begin{tabular}{l@{} c@{} c@{} c@{} c@{} c@{} c@{} c@{} c@{} c@{} c@{} c@{} c@{} }
+  \toprule
+   & TP & UC & UCP & TP & UC & UCP & TP & UC & UCP & TP & UC & UCP \\
+  \midrule
+  (Intercept)                        & $\mathbf{-0.36}^{***}$ & $\mathbf{-3.04}^{***}$ & $\mathbf{-4.07}^{***}$ & $\mathbf{-0.44}^{***}$ & $\mathbf{-2.97}^{***}$ & $\mathbf{-4.17}^{***}$ & $\mathbf{-1.55}^{***}$ & $\mathbf{-2.84}^{***}$ & $\mathbf{-5.00}^{***}$ & $\mathbf{-1.25}^{***}$ & $\mathbf{-2.49}^{***}$ & $\mathbf{-5.31}^{***}$ \\
+                                     & $(0.02)$               & $(0.05)$               & $(0.09)$               & $(0.02)$               & $(0.06)$               & $(0.09)$               & $(0.03)$               & $(0.05)$               & $(0.13)$               & $(0.04)$               & $(0.09)$               & $(0.17)$               \\
+  `PCTPOVRHigh ZIP Poverty`          & $0.02$                 & $-0.05$                & $0.04$                 &                        &                        &                        &                        &                        &                        & $-0.02$                & $-0.11$                & $-0.05$                \\
+                                     & $(0.02)$               & $(0.07)$               & $(0.09)$               &                        &                        &                        &                        &                        &                        & $(0.02)$               & $(0.07)$               & $(0.09)$               \\
+  `HINCOMERHigh ZIP Income`          & $\mathbf{-0.06}^{***}$ & $\mathbf{-0.38}^{***}$ & $\mathbf{-0.42}^{***}$ &                        &                        &                        &                        &                        &                        & $\mathbf{-0.10}^{***}$ & $\mathbf{-0.38}^{***}$ & $\mathbf{-0.42}^{***}$ \\
+                                     & $(0.02)$               & $(0.06)$               & $(0.09)$               &                        &                        &                        &                        &                        &                        & $(0.02)$               & $(0.06)$               & $(0.09)$               \\
+  `PBAMORERHigh ZIP Education`       & $\mathbf{-0.22}^{***}$ & $0.09$                 & $-0.08$                &                        &                        &                        &                        &                        &                        & $\mathbf{-0.16}^{***}$ & $0.14^{*}$             & $-0.05$                \\
+                                     & $(0.02)$               & $(0.06)$               & $(0.08)$               &                        &                        &                        &                        &                        &                        & $(0.02)$               & $(0.06)$               & $(0.08)$               \\
+  `URBANRURMedium Metro`             & $\mathbf{-0.19}^{***}$ & $\mathbf{0.29}^{***}$  & $0.31^{**}$            &                        &                        &                        &                        &                        &                        & $\mathbf{-0.21}^{***}$ & $\mathbf{0.28}^{***}$  & $0.31^{**}$            \\
+                                     & $(0.02)$               & $(0.06)$               & $(0.10)$               &                        &                        &                        &                        &                        &                        & $(0.02)$               & $(0.06)$               & $(0.10)$               \\
+  `URBANRURLarge Metro`              & $\mathbf{-0.08}^{***}$ & $\mathbf{-0.43}^{***}$ & $0.29^{**}$            &                        &                        &                        &                        &                        &                        & $\mathbf{-0.13}^{***}$ & $\mathbf{-0.46}^{***}$ & $0.24^{*}$             \\
+                                     & $(0.02)$               & $(0.07)$               & $(0.10)$               &                        &                        &                        &                        &                        &                        & $(0.02)$               & $(0.07)$               & $(0.10)$               \\
+  AGE                                &                        &                        &                        & $-0.00$                & $\mathbf{-0.01}^{***}$ & $0.00$                 &                        &                        &                        & $0.00$                 & $\mathbf{-0.01}^{***}$ & $0.00$                 \\
+                                     &                        &                        &                        & $(0.00)$               & $(0.00)$               & $(0.00)$               &                        &                        &                        & $(0.00)$               & $(0.00)$               & $(0.00)$               \\
+  SEXFemale                          &                        &                        &                        & $\mathbf{-0.06}^{***}$ & $-0.07$                & $0.12^{*}$             &                        &                        &                        & $\mathbf{-0.12}^{***}$ & $-0.04$                & $0.09$                 \\
+                                     &                        &                        &                        & $(0.01)$               & $(0.04)$               & $(0.06)$               &                        &                        &                        & $(0.01)$               & $(0.04)$               & $(0.06)$               \\
+  RACERBlack                         &                        &                        &                        & $\mathbf{0.21}^{***}$  & $-0.14$                & $\mathbf{0.40}^{***}$  &                        &                        &                        & $\mathbf{0.23}^{***}$  & $-0.09$                & $\mathbf{0.40}^{***}$  \\
+                                     &                        &                        &                        & $(0.02)$               & $(0.08)$               & $(0.09)$               &                        &                        &                        & $(0.03)$               & $(0.08)$               & $(0.10)$               \\
+  RACEROther                         &                        &                        &                        & $\mathbf{0.19}^{***}$  & $-0.22$                & $0.21$                 &                        &                        &                        & $\mathbf{0.22}^{***}$  & $-0.10$                & $0.27$                 \\
+                                     &                        &                        &                        & $(0.03)$               & $(0.12)$               & $(0.14)$               &                        &                        &                        & $(0.04)$               & $(0.12)$               & $(0.14)$               \\
+  PAYTYPERMedicaid                   &                        &                        &                        & $\mathbf{0.63}^{***}$  & $\mathbf{0.46}^{***}$  & $\mathbf{0.66}^{***}$  &                        &                        &                        & $\mathbf{0.50}^{***}$  & $\mathbf{0.40}^{***}$  & $\mathbf{0.53}^{***}$  \\
+                                     &                        &                        &                        & $(0.02)$               & $(0.07)$               & $(0.10)$               &                        &                        &                        & $(0.03)$               & $(0.08)$               & $(0.10)$               \\
+  PAYTYPERMedicare                   &                        &                        &                        & $\mathbf{-0.53}^{***}$ & $0.13^{*}$             & $-0.10$                &                        &                        &                        & $\mathbf{-0.53}^{***}$ & $0.08$                 & $-0.16$                \\
+                                     &                        &                        &                        & $(0.02)$               & $(0.06)$               & $(0.08)$               &                        &                        &                        & $(0.02)$               & $(0.06)$               & $(0.08)$               \\
+  `PAYTYPERWorker's Comp`            &                        &                        &                        & $\mathbf{-1.19}^{***}$ & $\mathbf{1.86}^{***}$  & $-0.05$                &                        &                        &                        & $\mathbf{-1.04}^{***}$ & $\mathbf{1.66}^{***}$  & $-0.10$                \\
+                                     &                        &                        &                        & $(0.09)$               & $(0.09)$               & $(0.29)$               &                        &                        &                        & $(0.10)$               & $(0.10)$               & $(0.30)$               \\
+  `PAYTYPERSelf-Pay/Other`           &                        &                        &                        & $\mathbf{-0.32}^{***}$ & $0.19^{*}$             & $0.33^{**}$            &                        &                        &                        & $\mathbf{-0.19}^{***}$ & $0.18^{*}$             & $\mathbf{0.42}^{***}$  \\
+                                     &                        &                        &                        & $(0.03)$               & $(0.07)$               & $(0.10)$               &                        &                        &                        & $(0.03)$               & $(0.08)$               & $(0.10)$               \\
+  INJURYYes                          &                        &                        &                        &                        &                        &                        & $\mathbf{-0.49}^{***}$ & $\mathbf{0.54}^{***}$  & $-0.17$                & $\mathbf{-0.44}^{***}$ & $\mathbf{0.24}^{***}$  & $-0.15$                \\
+                                     &                        &                        &                        &                        &                        &                        & $(0.03)$               & $(0.06)$               & $(0.10)$               & $(0.03)$               & $(0.06)$               & $(0.10)$               \\
+  MAJORRoutine                       &                        &                        &                        &                        &                        &                        & $\mathbf{-0.61}^{***}$ & $\mathbf{-0.62}^{***}$ & $\mathbf{-0.90}^{***}$ & $\mathbf{-0.62}^{***}$ & $\mathbf{-0.64}^{***}$ & $\mathbf{-0.92}^{***}$ \\
+                                     &                        &                        &                        &                        &                        &                        & $(0.02)$               & $(0.06)$               & $(0.08)$               & $(0.02)$               & $(0.06)$               & $(0.08)$               \\
+  MAJORChronic                       &                        &                        &                        &                        &                        &                        & $\mathbf{-1.24}^{***}$ & $\mathbf{-0.36}^{***}$ & $\mathbf{-1.06}^{***}$ & $\mathbf{-1.16}^{***}$ & $\mathbf{-0.36}^{***}$ & $\mathbf{-1.04}^{***}$ \\
+                                     &                        &                        &                        &                        &                        &                        & $(0.02)$               & $(0.05)$               & $(0.07)$               & $(0.02)$               & $(0.05)$               & $(0.07)$               \\
+  `SENBEFORYes, established patient` &                        &                        &                        &                        &                        &                        & $\mathbf{1.64}^{***}$  & $\mathbf{-0.21}^{***}$ & $\mathbf{1.63}^{***}$  & $\mathbf{1.67}^{***}$  & $-0.17^{**}$           & $\mathbf{1.68}^{***}$  \\
+                                     &                        &                        &                        &                        &                        &                        & $(0.03)$               & $(0.05)$               & $(0.14)$               & $(0.03)$               & $(0.05)$               & $(0.14)$               \\
+  PASTVIS                            &                        &                        &                        &                        &                        &                        & $\mathbf{0.01}^{***}$  & $-0.00$                & $\mathbf{0.01}^{***}$  & $\mathbf{0.01}^{***}$  & $-0.00$                & $\mathbf{0.01}^{***}$  \\
+                                     &                        &                        &                        &                        &                        &                        & $(0.00)$               & $(0.00)$               & $(0.00)$               & $(0.00)$               & $(0.00)$               & $(0.00)$               \\
+  WEEKENDYES                         &                        &                        &                        &                        &                        &                        & $\mathbf{0.40}^{***}$  & $\mathbf{1.43}^{***}$  & $0.20$                 & $\mathbf{0.33}^{***}$  & $\mathbf{1.59}^{***}$  & $0.17$                 \\
+                                     &                        &                        &                        &                        &                        &                        & $(0.07)$               & $(0.11)$               & $(0.27)$               & $(0.07)$               & $(0.12)$               & $(0.27)$               \\
+  \midrule
+  AIC                                & 153956.44              & 153956.44              & 153956.44              & 151611.81              & 151611.81              & 151611.81              & 142939.51              & 142939.51              & 142939.51              & 139918.91              & 139918.91              & 139918.91              \\
+  BIC                                & 154126.79              & 154126.79              & 154126.79              & 151867.34              & 151867.34              & 151867.34              & 143138.26              & 143138.26              & 143138.26              & 140486.76              & 140486.76              & 140486.76              \\
+  Log\ Likelihood                    & -76960.22              & -76960.22              & -76960.22              & -75778.91              & -75778.91              & -75778.91              & -71448.76              & -71448.76              & -71448.76              & -69899.46              & -69899.46              & -69899.46              \\
+  Deviance                           & 153920.44              & 153920.44              & 153920.44              & 151557.81              & 151557.81              & 151557.81              & 142897.51              & 142897.51              & 142897.51              & 139798.91              & 139798.91              & 139798.91              \\
+  Num.\ obs.                         & 95234                  & 95234                  & 95234                  & 95234                  & 95234                  & 95234                  & 95234                  & 95234                  & 95234                  & 95234                  & 95234                  & 95234                  \\
+  \bottomrule
+  \multicolumn{13}{l}{\tiny{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+  \end{tabular}
+  \end{tiny}
+  \label{table:coefficients}
+  \end{center}
+  \end{sidewaystable}
   
   \doublespacing
   
@@ -1602,44 +1680,44 @@ their primary care physicians.
   \hline
    & Model 1 & Model 2 & Model 3 \\
   \hline
-  Intercept                     & $-3.69^{***}$ & $-3.04^{***}$ & $-3.13^{***}$ \\
-                                & $(0.06)$      & $(0.09)$      & $(0.11)$      \\
-  Injury Related Visit          & $0.11^{*}$    &               & $-0.01$       \\
-                                & $(0.04)$      &               & $(0.05)$      \\
-  Weekend Visit                 & $0.06$        &               & $-0.10$       \\
-                                & $(0.05)$      &               & $(0.07)$      \\
-  Medicaid                      & $0.02$        &               & $-0.03$       \\
-                                & $(0.03)$      &               & $(0.04)$      \\
-  Medicare                      & $0.29^{***}$  &               & $0.26^{***}$  \\
-                                & $(0.05)$      &               & $(0.05)$      \\
-  SelfPay                       & $-0.34^{***}$ &               & $-0.36^{***}$ \\
-                                & $(0.04)$      &               & $(0.04)$      \\
-  Established Patient           & $0.06$        &               & $0.06$        \\
-                                & $(0.04)$      &               & $(0.04)$      \\
-  Number Past Visits            &               & $0.49^{***}$  & $0.48^{***}$  \\
-                                &               & $(0.05)$      & $(0.05)$      \\
-  Visit Reason: Preventative    &               & $0.99^{***}$  & $1.04^{***}$  \\
-                                &               & $(0.10)$      & $(0.10)$      \\
-  Visit Reason: Routine/Chronic &               & $-0.13^{*}$   & $-0.19^{**}$  \\
-                                &               & $(0.06)$      & $(0.06)$      \\
-  Age: Working                  &               & $0.10^{*}$    & $0.13^{*}$    \\
-                                &               & $(0.04)$      & $(0.06)$      \\
-  Age: Retired                  &               & $0.23^{***}$  & $0.21^{***}$  \\
-                                &               & $(0.05)$      & $(0.05)$      \\
-  Male                          &               & $-0.43^{***}$ & $-0.44^{***}$ \\
-                                &               & $(0.08)$      & $(0.08)$      \\
-  Race: White                   &               & $-0.00$       & $-0.00$       \\
-                                &               & $(0.00)$      & $(0.00)$      \\
-  High ZIP Income               &               & $-0.56^{***}$ & $-0.55^{***}$ \\
-                                &               & $(0.06)$      & $(0.06)$      \\
-  Rural                         &               & $-0.09^{*}$   & $-0.08^{*}$   \\
-                                &               & $(0.04)$      & $(0.04)$      \\
+  Intercept                     & $\mathbf{-3.69}^{***}$ & $\mathbf{-3.04}^{***}$ & $\mathbf{-3.13}^{***}$ \\
+                                & $(0.06)$               & $(0.09)$               & $(0.11)$               \\
+  Injury Related Visit          & $0.11^{*}$             &                        & $-0.01$                \\
+                                & $(0.04)$               &                        & $(0.05)$               \\
+  Weekend Visit                 & $0.06$                 &                        & $-0.10$                \\
+                                & $(0.05)$               &                        & $(0.07)$               \\
+  Medicaid                      & $0.02$                 &                        & $-0.03$                \\
+                                & $(0.03)$               &                        & $(0.04)$               \\
+  Medicare                      & $\mathbf{0.29}^{***}$  &                        & $\mathbf{0.26}^{***}$  \\
+                                & $(0.05)$               &                        & $(0.05)$               \\
+  SelfPay                       & $\mathbf{-0.34}^{***}$ &                        & $\mathbf{-0.36}^{***}$ \\
+                                & $(0.04)$               &                        & $(0.04)$               \\
+  Established Patient           & $0.06$                 &                        & $0.06$                 \\
+                                & $(0.04)$               &                        & $(0.04)$               \\
+  Number Past Visits            &                        & $\mathbf{0.49}^{***}$  & $\mathbf{0.48}^{***}$  \\
+                                &                        & $(0.05)$               & $(0.05)$               \\
+  Visit Reason: Preventative    &                        & $\mathbf{0.99}^{***}$  & $\mathbf{1.04}^{***}$  \\
+                                &                        & $(0.10)$               & $(0.10)$               \\
+  Visit Reason: Routine/Chronic &                        & $-0.13^{*}$            & $-0.19^{**}$           \\
+                                &                        & $(0.06)$               & $(0.06)$               \\
+  Age: Working                  &                        & $0.10^{*}$             & $0.13^{*}$             \\
+                                &                        & $(0.04)$               & $(0.06)$               \\
+  Age: Retired                  &                        & $\mathbf{0.23}^{***}$  & $\mathbf{0.21}^{***}$  \\
+                                &                        & $(0.05)$               & $(0.05)$               \\
+  Male                          &                        & $\mathbf{-0.43}^{***}$ & $\mathbf{-0.44}^{***}$ \\
+                                &                        & $(0.08)$               & $(0.08)$               \\
+  Race: White                   &                        & $-0.00$                & $-0.00$                \\
+                                &                        & $(0.00)$               & $(0.00)$               \\
+  High ZIP Income               &                        & $\mathbf{-0.56}^{***}$ & $\mathbf{-0.55}^{***}$ \\
+                                &                        & $(0.06)$               & $(0.06)$               \\
+  Rural                         &                        & $-0.09^{*}$            & $-0.08^{*}$            \\
+                                &                        & $(0.04)$               & $(0.04)$               \\
   \hline
-  AIC                           & 31001.63      & 30698.93      & 30588.75      \\
-  BIC                           & 31069.06      & 30795.26      & 30742.88      \\
-  Log Likelihood                & -15493.81     & -15339.47     & -15278.38     \\
-  Deviance                      & 30987.63      & 30678.93      & 30556.75      \\
-  Num. obs.                     & 112722        & 112722        & 112722        \\
+  AIC                           & 31001.63               & 30698.93               & 30588.75               \\
+  BIC                           & 31069.06               & 30795.26               & 30742.88               \\
+  Log Likelihood                & -15493.81              & -15339.47              & -15278.38              \\
+  Deviance                      & 30987.63               & 30678.93               & 30556.75               \\
+  Num. obs.                     & 112722                 & 112722                 & 112722                 \\
   \hline
   \multicolumn{4}{l}{\tiny{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
   \end{tabular}
@@ -1656,44 +1734,44 @@ their primary care physicians.
   \hline
    & Model 1 & Model 2 & Model 3 \\
   \hline
-  Intercept                     & $-0.06$       & $-4.58^{***}$ & $-3.62^{***}$ \\
-                                & $(0.13)$      & $(0.25)$      & $(0.29)$      \\
-  Injury Related Visit          & $-0.36^{***}$ &               & $-0.28^{*}$   \\
-                                & $(0.10)$      &               & $(0.12)$      \\
-  Weekend Visit                 & $-0.01$       &               & $0.05$        \\
-                                & $(0.11)$      &               & $(0.17)$      \\
-  Medicaid                      & $-0.30^{***}$ &               & $-0.16$       \\
-                                & $(0.08)$      &               & $(0.09)$      \\
-  Medicare                      & $-0.35^{**}$  &               & $-0.43^{***}$ \\
-                                & $(0.11)$      &               & $(0.12)$      \\
-  SelfPay                       & $-0.21^{*}$   &               & $-0.21^{*}$   \\
-                                & $(0.09)$      &               & $(0.10)$      \\
-  Established Patient           & $-0.95^{***}$ &               & $-0.94^{***}$ \\
-                                & $(0.10)$      &               & $(0.11)$      \\
-  Number Past Visits            &               & $-0.63^{***}$ & $-0.50^{***}$ \\
-                                &               & $(0.13)$      & $(0.13)$      \\
-  Visit Reason: Preventative    &               & $-1.02^{**}$  & $-1.12^{***}$ \\
-                                &               & $(0.32)$      & $(0.33)$      \\
-  Visit Reason: Routine/Chronic &               & $3.69^{***}$  & $3.63^{***}$  \\
-                                &               & $(0.22)$      & $(0.23)$      \\
-  Age: Working                  &               & $0.02^{***}$  & $0.02^{***}$  \\
-                                &               & $(0.00)$      & $(0.00)$      \\
-  Age: Retired                  &               & $1.04^{***}$  & $1.10^{***}$  \\
-                                &               & $(0.13)$      & $(0.14)$      \\
-  Male                          &               & $-0.32^{***}$ & $-0.31^{**}$  \\
-                                &               & $(0.09)$      & $(0.09)$      \\
-  Race: White                   &               &               & $-0.03$       \\
-                                &               &               & $(0.14)$      \\
-  High ZIP Income               &               &               & $-0.20$       \\
-                                &               &               & $(0.15)$      \\
-  Rural                         &               &               & $-0.25$       \\
-                                &               &               & $(0.14)$      \\
+  Intercept                     & $-0.06$                & $\mathbf{-4.58}^{***}$ & $\mathbf{-3.62}^{***}$ \\
+                                & $(0.13)$               & $(0.25)$               & $(0.29)$               \\
+  Injury Related Visit          & $\mathbf{-0.36}^{***}$ &                        & $-0.28^{*}$            \\
+                                & $(0.10)$               &                        & $(0.12)$               \\
+  Weekend Visit                 & $-0.01$                &                        & $0.05$                 \\
+                                & $(0.11)$               &                        & $(0.17)$               \\
+  Medicaid                      & $\mathbf{-0.30}^{***}$ &                        & $-0.16$                \\
+                                & $(0.08)$               &                        & $(0.09)$               \\
+  Medicare                      & $-0.35^{**}$           &                        & $\mathbf{-0.43}^{***}$ \\
+                                & $(0.11)$               &                        & $(0.12)$               \\
+  SelfPay                       & $-0.21^{*}$            &                        & $-0.21^{*}$            \\
+                                & $(0.09)$               &                        & $(0.10)$               \\
+  Established Patient           & $\mathbf{-0.95}^{***}$ &                        & $\mathbf{-0.94}^{***}$ \\
+                                & $(0.10)$               &                        & $(0.11)$               \\
+  Number Past Visits            &                        & $\mathbf{-0.63}^{***}$ & $\mathbf{-0.50}^{***}$ \\
+                                &                        & $(0.13)$               & $(0.13)$               \\
+  Visit Reason: Preventative    &                        & $-1.02^{**}$           & $\mathbf{-1.12}^{***}$ \\
+                                &                        & $(0.32)$               & $(0.33)$               \\
+  Visit Reason: Routine/Chronic &                        & $\mathbf{3.69}^{***}$  & $\mathbf{3.63}^{***}$  \\
+                                &                        & $(0.22)$               & $(0.23)$               \\
+  Age: Working                  &                        & $\mathbf{0.02}^{***}$  & $\mathbf{0.02}^{***}$  \\
+                                &                        & $(0.00)$               & $(0.00)$               \\
+  Age: Retired                  &                        & $\mathbf{1.04}^{***}$  & $\mathbf{1.10}^{***}$  \\
+                                &                        & $(0.13)$               & $(0.14)$               \\
+  Male                          &                        & $\mathbf{-0.32}^{***}$ & $-0.31^{**}$           \\
+                                &                        & $(0.09)$               & $(0.09)$               \\
+  Race: White                   &                        &                        & $-0.03$                \\
+                                &                        &                        & $(0.14)$               \\
+  High ZIP Income               &                        &                        & $-0.20$                \\
+                                &                        &                        & $(0.15)$               \\
+  Rural                         &                        &                        & $-0.25$                \\
+                                &                        &                        & $(0.14)$               \\
   \hline
-  AIC                           & 4027.38       & 3611.24       & 3507.18       \\
-  BIC                           & 4070.48       & 3654.34       & 3605.69       \\
-  Log Likelihood                & -2006.69      & -1798.62      & -1737.59      \\
-  Deviance                      & 4013.38       & 3597.24       & 3475.18       \\
-  Num. obs.                     & 3488          & 3488          & 3488          \\
+  AIC                           & 4027.38                & 3611.24                & 3507.18                \\
+  BIC                           & 4070.48                & 3654.34                & 3605.69                \\
+  Log Likelihood                & -2006.69               & -1798.62               & -1737.59               \\
+  Deviance                      & 4013.38                & 3597.24                & 3475.18                \\
+  Num. obs.                     & 3488                   & 3488                   & 3488                   \\
   \hline
   \multicolumn{4}{l}{\tiny{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
   \end{tabular}
@@ -1784,7 +1862,6 @@ their primary care physicians.
   \addcontentsline{toc}{chapter}{Appendix A}
   
   \newpage
-  
   \doublespacing
   
   \singlespacing
@@ -1899,9 +1976,9 @@ their primary care physicians.
   between clusters. Figure 1 shows the banner graph for the initial
   agglomerative cluster methods for the behavioral variables.
   
-  \begin{figure}[htbp]
+  \begin{figure}[h!tbp]
   \centering
-  \includegraphics[scale = 0.35,angle = 0]{figures/banner.png}
+  \includegraphics[angle = 0,scale = 0.35]{figures/banner.png}
   \caption[Sample Banner Agglomerative Clustering Results]{\normalsize{Sample Banner Agglomerative Clustering Results}}
   \label{fig:ban1}
   \end{figure}
@@ -1967,275 +2044,227 @@ their primary care physicians.
   \setlength{\parindent}{-0.20in} \setlength{\leftskip}{0.20in}
   \setlength{\parskip}{8pt}
   
-  \hypertarget{refs}{}
-  \hypertarget{ref-ACPux5fimpendingux5f2006}{}
   , ACP. 2006. \emph{The Impending Collapse of Primary Care Medicine and
   Its Implications for the State of the Nation's Health Care}. American
   College of Physicians. Retrieved April 15, 2016
   (\url{http://www.providersedge.com/ehdocs/ehr_articles/The_Impending_Collapse_of_Primary_Care_Medicine_and_Its_Implications_for_the_State_of_the_Nation-s_Healthcare.pdf}).
   
-  \hypertarget{ref-CONSUMERux5fHEALTH}{}
   Anon. n.d. ``A Study of Consumer Attitudes About Health Care: The Role
   of the Emergency Room on JSTOR.'' Retrieved September 21, 2015a
   (\url{http://www.jstor.org/stable/3763675}).
   
-  \hypertarget{ref-manyux5fER}{}
   Anon. n.d. ``Many Emergency Department Visits Could Be Managed At Urgent
   Care Centers And Retail Clinics - ProQuest.'' Retrieved September 21,
   2015b
   (\url{http://search.proquest.com/docview/755047690/TextGraphic/1?accountid=13475}).
   
-  \hypertarget{ref-namcs}{}
   Anon. n.d. ``NAMCS/NHAMCS - Questionnaires, Datasets, and Related
   Documentation.'' Retrieved March 4, 2016c
   (\url{http://www.cdc.gov/nchs/ahcd/ahcd_questionnaires.htm\#documentation}).
   
-  \hypertarget{ref-UCux5fMarket}{}
   Anon. n.d. ``Urgent Care Centers in the US Market Research IBISWorld.''
   Retrieved September 16, 2015d
   (\url{http://www.ibisworld.com/industry/urgent-care-centers.html}).
   
-  \hypertarget{ref-barkerux5felectronicux5f2008}{}
   Barker, Kristin K. 2008. ``Electronic Support Groups, Patient-Consumers,
   and Medicalization: The Case of Contested Illness.'' \emph{Journal of
   Health and Social Behavior} 49(1):20--36. Retrieved November 24, 2015
   (\url{http://www.jstor.org/stable/27638733}).
   
-  \hypertarget{ref-UCux5f10STATS}{}
   Becker. n.d. ``10 Statistics on Urgent Care Centers.'' Retrieved
   September 21, 2015
   (\url{http://www.beckershospitalreview.com/hospital-management-administration/10-statistics-on-urgent-care-centers.html}).
   
-  \hypertarget{ref-bloomux5fdoctorux5f1965}{}
   Bloom, Samuel William. 1965. \emph{The Doctor and His Patient.}
   Collier-Macmillan: Free Press ;
   
-  \hypertarget{ref-boyerux5fexaminingux5f2010}{}
   Boyer, Carol A. and Karen E. Lutfey. 2010. ``Examining Critical Health
   Policy Issues Within and Beyond the Clinical Encounter:
   Patient---Provider Relationships and Help-Seeking Behaviors.''
-  \emph{Journal of Health and Social Behavior} 51:S80--S93. Retrieved
+  \emph{Journal of Health and Social Behavior} 51:S80--93. Retrieved
   November 24, 2015 (\url{http://www.jstor.org/stable/20798318}).
   
-  \hypertarget{ref-HEALTHux5fTRACKINGux5f2012}{}
   Center for Studying Health System Change. 2012. \emph{Health Tracking
   Household Survey, 2010 {[}United States{]}: Version 1}. Retrieved
   September 15, 2015
   (\url{http://www.icpsr.umich.edu/HMCA/studies/34141/version/1}).
   
-  \hypertarget{ref-draperux5fprimary-careux5f1975}{}
   Draper, Peter and Helen L. Smits. 1975. ``The Primary-Care Practitioner
   --- Specialist or Jack-of-All-Trades.'' \emph{New England Journal of
   Medicine} 293(18):903--7. Retrieved November 24, 2015
   (\url{http://www.nejm.org/doi/abs/10.1056/NEJM197510302931805}).
   
-  \hypertarget{ref-egbertux5freductionux5f1964}{}
   Egbert, Lawrence D., George E. Battit, Claude E. Welch, and Marshall K.
   Bartlett. 1964. ``Reduction of Postoperative Pain by Encouragement and
   Instruction of Patients: A Study of Doctor-Patient Rapport.'' \emph{New
   England Journal of Medicine} 270(16):825--27. Retrieved November 24,
   2015 (\url{http://www.nejm.org/doi/abs/10.1056/NEJM196404162701606}).
   
-  \hypertarget{ref-freidsonux5fsociologyux5f1961}{}
   Freidson, Eliot. 1961. ``The Sociology of Medicine.'' \emph{Current
   Sociology} 10(3):123--40. Retrieved April 15, 2016
   (\url{http://csi.sagepub.com/content/10/3/123}).
   
-  \hypertarget{ref-grayux5ftrustux5f1997}{}
   Gray, B. H. 1997. ``Trust and Trustworthy Care in the Managed Care
   Era.'' \emph{Health Affairs} 16(1):34--49. Retrieved April 15, 2016
   (\url{http://content.healthaffairs.org/content/16/1/34}).
   
-  \hypertarget{ref-HCUP}{}
   HCUP. n.d. ``HCUP Fast Stats.'' Retrieved September 15, 2015
   (\url{http://www.hcup-us.ahrq.gov/faststats/StatePayerServlet?state1=OR}).
   
-  \hypertarget{ref-heritageux5fproblemsux5f2006}{}
   Heritage, John and Douglas W. Maynard. 2006. ``Problems and Prospects in
   the Study of Physician-Patient Interaction: 30 Years of Research.''
   \emph{Annual Review of Sociology} 32:351--74. Retrieved November 24,
   2015 (\url{http://www.jstor.org/stable/29737743}).
   
-  \hypertarget{ref-hibbardux5fconsumerismux5f1987}{}
   Hibbard, Judith H. and Edward C. Weeks. 1987. ``Consumerism in Health
   Care: Prevalence and Predictors.'' \emph{Medical Care} 25(11):1019--32.
   Retrieved April 15, 2016 (\url{http://www.jstor.org/stable/3765391}).
   
-  \hypertarget{ref-kabaux5fevolutionux5f2007}{}
   Kaba, R. and P. Sooriakumaran. 2007. ``The Evolution of the
   Doctor-Patient Relationship.'' \emph{International Journal of Surgery}
   5(1):57--65. Retrieved November 24, 2015
   (\url{http://www.sciencedirect.com/science/article/pii/S1743919106000094}).
   
-  \hypertarget{ref-lamontux5fstudyux5f2002}{}
-  Lamont, Michèle and Virág Molnár. 2002. ``The Study of Boundaries in the
-  Social Sciences.'' \emph{Annual Review of Sociology} 28:167--95.
+  Lamont, Mich{è}le and Vir{á}g Moln{á}r. 2002. ``The Study of Boundaries
+  in the Social Sciences.'' \emph{Annual Review of Sociology} 28:167--95.
   Retrieved November 24, 2015 (\url{http://www.jstor.org/stable/3069239}).
   
-  \hypertarget{ref-lawsux5femergenceux5f2008}{}
   Laws, Margaret and Mary Kate Scott. 2008. ``The Emergence Of
   Retail-Based Clinics In The United States: Early Observations.''
-  \emph{Health Affairs} 27(5):1293--8. Retrieved November 24, 2015
+  \emph{Health Affairs} 27(5):1293--98. Retrieved November 24, 2015
   (\url{http://content.healthaffairs.org/content/27/5/1293}).
   
-  \hypertarget{ref-luptonux5fconsumerismux5f1997}{}
   Lupton, Deborah. 1997. ``Consumerism, Reflexivity and the Medical
   Encounter.'' \emph{Social Science \& Medicine} 45(3):373--81. Retrieved
   November 24, 2015
   (\url{http://www.sciencedirect.com/science/article/pii/S027795369600353X}).
   
-  \hypertarget{ref-luptonux5fcaveatux5f1991}{}
   Lupton, Deborah, Cam Donaldson, and Peter Lloyd. 1991. ``Caveat Emptor
   or Blissful Ignorance? Patients and the Consumerist Ethos.''
   \emph{Social Science \& Medicine} 33(5):559--68. Retrieved November 24,
   2015
   (\url{http://www.sciencedirect.com/science/article/pii/027795369190213V}).
   
-  \hypertarget{ref-mayux5fclinicalux5f2007}{}
   May, Carl. 2007. ``The Clinical Encounter and the Problem of Context.''
   \emph{Sociology} 41(1):29--45. Retrieved November 24, 2015
   (\url{http://soc.sagepub.com/content/41/1/29}).
   
-  \hypertarget{ref-mckinlayux5fendux5f2002}{}
   McKinlay, John B. and Lisa D. Marceau. 2002. ``The End of the Golden Age
   of Doctoring.'' \emph{International Journal of Health Services}
   32(2):379--416. Retrieved April 15, 2016
   (\url{http://joh.sagepub.com/content/32/2/379}).
   
-  \hypertarget{ref-mechanicux5fsociologyux5f1966}{}
   Mechanic, David. 1966. ``The Sociology of Medicine: Viewpoints and
   Perspectives.'' \emph{Journal of Health and Human Behavior} 7(4):237.
   Retrieved November 24, 2015
   (\url{http://www.jstor.org/stable/2948770?origin=crossref}).
   
-  \hypertarget{ref-mehrotraux5fretailux5f2008}{}
   Mehrotra, Ateev, Margaret C. Wang, Judith R. Lave, John L. Adams, and
   Elizabeth A. McGlynn. 2008. ``Retail Clinics, Primary Care Physicians,
   And Emergency Departments: A Comparison Of Patients' Visits.''
   \emph{Health Affairs} 27(5):1272--82. Retrieved September 21, 2015
   (\url{http://content.healthaffairs.org/content/27/5/1272}).
   
-  \hypertarget{ref-millerux5fprimaryux5f2010}{}
   Miller, William L., Benjamin F. Crabtree, Paul A. Nutting, Kurt C.
-  Stange, and Carlos Roberto Jaén. 2010. ``Primary Care Practice
+  Stange, and Carlos Roberto Ja{é}n. 2010. ``Primary Care Practice
   Development: A Relationship-Centered Approach.'' \emph{The Annals of
-  Family Medicine} 8(Suppl 1):S68--S79. Retrieved November 24, 2015
+  Family Medicine} 8(Suppl 1):S68--79. Retrieved November 24, 2015
   (\url{http://www.annfammed.org/content/8/Suppl_1/S68}).
   
-  \hypertarget{ref-OMALLEYux5f2013}{}
   O'Malley, Ann S. 2013. ``After-Hours Access To Primary Care Practices
   Linked With Lower Emergency Department Use And Less Unmet Medical
   Need.'' \emph{Health Affairs} 32(1):175--83. Retrieved September 15,
   2015 (\url{http://content.healthaffairs.org/content/32/1/175}).
   
-  \hypertarget{ref-petersenux5fnonurgentux5f1998}{}
   Petersen, L. A., H. R. Burstin, A. C. O'Neil, E. J. Orav, and T. A.
   Brennan. 1998. ``Nonurgent Emergency Department Visits - The Effect of
   Having a Regular Doctor.'' \emph{Medical Care} 36(8):1249--55.
   
-  \hypertarget{ref-phillipsux5fprimaryux5f2010}{}
   Phillips, Robert L. and Andrew W. Bazemore. 2010. ``Primary Care And Why
   It Matters For U.S. Health System Reform.'' \emph{Health Affairs}
   29(5):806--10. Retrieved November 24, 2015
   (\url{http://content.healthaffairs.org/content/29/5/806}).
   
-  \hypertarget{ref-pittsux5fwhereux5f2010}{}
   Pitts, Stephen R., Emily R. Carrier, Eugene C. Rich, and Arthur L.
   Kellermann. 2010. ``Where Americans Get Acute Care: Increasingly, It's
-  Not At Their Doctor's Office.'' \emph{Health Affairs} 29(9):1620--9.
+  Not At Their Doctor's Office.'' \emph{Health Affairs} 29(9):1620--29.
   Retrieved September 21, 2015
   (\url{http://content.healthaffairs.org/content/29/9/1620}).
   
-  \hypertarget{ref-potterux5frelationshipux5f2005}{}
   Potter, Sharyn J. and John B. McKinlay. 2005. ``From a Relationship to
   Encounter: An Examination of Longitudinal and Lateral Dimensions in the
   Doctor-Patient Relationship.'' \emph{Social Science \& Medicine (1982)}
   61(2):465--79.
   
-  \hypertarget{ref-reederux5fpatient-clientux5f1972}{}
   Reeder, Leo G. 1972. ``The Patient-Client as a Consumer: Some
   Observations on the Changing Professional-Client Relationship.''
   \emph{Journal of Health and Social Behavior} 13(4):406--12. Retrieved
   November 24, 2015 (\url{http://www.jstor.org/stable/2136833}).
   
-  \hypertarget{ref-reichux5fcontradictionsux5f2014}{}
   Reich, Adam D. 2014. ``Contradictions in the Commodification of Hospital
   Care.'' \emph{American Journal of Sociology} 119(6):1576--1628.
   Retrieved November 24, 2015
   (\url{http://www.jstor.org/stable/10.1086/676836}).
   
-  \hypertarget{ref-rubinux5furgentux5f2012}{}
   Rubin, Mike. 2012. ``Urgent Care.'' \emph{EMS World} 41(4):70. Retrieved
   September 21, 2015
   (\url{http://search.proquest.com/docview/1007867084/abstract?}).
   
-  \hypertarget{ref-shawux5f2013}{}
   Shaw, Eric K. et al. 2013. ``Decision-Making Processes of Patients Who
   Use the Emergency Department for Primary Care Needs.'' \emph{Journal of
   Health Care for the Poor and Underserved} 24(3):1288--1305. Retrieved
   September 21, 2015
   (\url{https://muse.jhu.edu/journals/journal_of_health_care_for_the_poor_and_underserved/v024/24.3.shaw.html}).
   
-  \hypertarget{ref-SHORTLIFFEux5f1958}{}
   Shortliffe, Ernest C., T. Stewart Hamilton, and Edward H. Noroian. 1958.
   ``The Emergency Room and the Changing Pattern of Medical Care.''
   \emph{New England Journal of Medicine} 258(1):20--25. Retrieved
   September 15, 2015
   (\url{http://dx.doi.org/10.1056/NEJM195801022580105}).
   
-  \hypertarget{ref-southertonux5fboundariesux5f2002}{}
   Southerton, Dale. 2002. ``Boundaries of `Us' and `Them': Class, Mobility
   and Identification in a New Town.'' \emph{Sociology} 36(1):171--93.
   Retrieved November 24, 2015
   (\url{http://soc.sagepub.com/content/36/1/171}).
   
-  \hypertarget{ref-starrux5fsocialux5f1982}{}
   Starr, Paul. 1982. \emph{The Social Transformation of American
   Medicine}. Basic Books.
   
-  \hypertarget{ref-timmermansux5fcontinuedux5f2010}{}
   Timmermans, Stefan and Hyeyoung Oh. 2010. ``The Continued Social
   Transformation of the Medical Profession.'' \emph{Journal of Health and
   Social Behavior} 51:S94--S106. Retrieved November 24, 2015
   (\url{http://www.jstor.org/stable/20798319}).
   
-  \hypertarget{ref-ullmanux5fPATIENTS}{}
   Ullman, Ralph, James Block, and William C. Stratmann. n.d. ``An
   Emergency Room's Patients: Their Characteristics and Utilization of
   Hospital Services on JSTOR.'' Retrieved September 21, 2015
   (\url{http://www.jstor.org/stable/3763673}).
   
-  \hypertarget{ref-wangux5fwhyux5f2010}{}
   Wang, Margaret C., Gery Ryan, Elizabeth A. McGlynn, and Ateev Mehrotra.
   2010. ``Why Do Patients Seek Care at Retail Clinics, and What
   Alternatives Did They Consider?'' \emph{American Journal of Medical
   Quality} 25(2):128--34. Retrieved September 21, 2015
   (\url{http://ajm.sagepub.com/content/25/2/128}).
   
-  \hypertarget{ref-WEINECKux5fNOAPPT}{}
-  Weinick, Robin M. and Renée M. Betancourt. n.d. ``No Appointment Needed:
-  The Resurgence of Urgent Care Centers in the United States.''
+  Weinick, Robin M. and Ren{é}e M. Betancourt. n.d. ``No Appointment
+  Needed: The Resurgence of Urgent Care Centers in the United States.''
   
-  \hypertarget{ref-WEINECKux5f2009}{}
   Weinick, Robin M., Steffanie J. Bristol, and Catherine M. DesRoches.
   2009. ``Urgent Care Centers in the U.S.: Findings from a National
   Survey.'' \emph{BMC Health Services Research} 9:79. Retrieved September
   21, 2015 (\url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2685126/}).
   
-  \hypertarget{ref-weinickux5furgentux5f2009-1}{}
   Weinick, Robin M., Steffanie J. Bristol, and Catherine M. DesRoches.
   2009. ``Urgent Care Centers in the U.S.: Findings from a National
   Survey.'' \emph{BMC Health Services Research} 9(1):79. Retrieved
   November 24, 2015
   (\url{http://www.biomedcentral.com/1472-6963/9/79/abstract}).
   
-  \hypertarget{ref-wrightux5fmedicalux5f2010}{}
   Wright, Eric R. and Brea L. Perry. 2010. ``Medical Sociology and Health
   Services Research: Past Accomplishments and Future Policy Challenges.''
-  \emph{Journal of Health and Social Behavior} 51:S107--S119. Retrieved
+  \emph{Journal of Health and Social Behavior} 51:S107--19. Retrieved
   November 24, 2015 (\url{http://www.jstor.org/stable/20798320}).
   
-  \hypertarget{ref-yeeux5fsurgeux5f2013}{}
   Yee, Tracy, Amanda Lechner, and Ellyn Boukus. 2013. ``The Surge in
   Urgent Care Centers: Emergency Department Alternative or Costly
   Convenience?'' Retrieved November 24, 2015

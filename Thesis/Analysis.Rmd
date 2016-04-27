@@ -21,12 +21,14 @@ In order to better examine the hypotheses about individuals choosing to go to ur
 
 ```{r cluster_table, results = "asis", echo=FALSE}
 
-reedtemplates::label(path = "figures/clusters.png", caption = "Identified patient typologies of urgent care centers visits (2008-2012).", 
-      label = "clus1", 
-      type = "figure", 
-      scale = .45,
-      angle = 90,
-      options = "h!")
+reedtemplates::label(path = "figures/clusters.png", 
+                     caption = "Identified patient typologies of urgent care centers visits (2008-2012).", 
+                     cap.size = "small",
+                     label = "clus1", 
+                     type = "figure", 
+                     scale = .45,
+                     angle = 90,
+                     options = "h!")
 ```
 
 \newpage
@@ -49,7 +51,7 @@ As for the Medicare question, if the clusters which consist of primarily elderly
 
 In the end, the observed typologies appear to correspond relatively well with all three hypotheses presented, with the exception of a relatively large number of very young urgent care goers who did not list it as their primary care physician. The explanation for this is probably as simple as them having a pediatrician, and using urgent care as a quick supplement, which somewhat supports hypothesis 3. What the cluster analysis really does is inform the analysis about which variables were identified as important to urgent care seekers. Using these, we can now turn to a logistic regression in order to understand better how each parameter influences decisions regarding urgent care
 
-## Testing Hypotheses
+## Testing Hypotheses {.unnumbered}
 
 
 ```{r load_data_analysis, echo=FALSE, warning=FALSE, message=FALSE, cache=TRUE}
@@ -62,8 +64,7 @@ library(ggplot2)
 library(reshape2)
 
 # load in data
-setwd("~/Desktop/Thesis/analysis")
-NAMCS <- read.csv("NAMCS08-11.csv", header = TRUE)
+NAMCS <- read.csv("data/NAMCS08-11.csv", header = TRUE)
 
 # fixing NAs/blanks
 NAMCS[c("VYEAR")][is.na(NAMCS[c("VYEAR")])] <- 2011
@@ -110,8 +111,8 @@ levels(logistic$PRIMCARE) <- list("Yes" = c("Blank", "Unknown", "Yes"), "No" = "
 traditional <- data.frame(logistic[logistic$RETYPOFF == "Private solo or group practice",])
 urgentcare <- data.frame(logistic[logistic$RETYPOFF == "Freestanding clinic/urgicenter",])
 
-traditional$outcome <-ifelse((traditional$PRIMCARE == "Yes"), "Traditional Primary", "Traditional")
-urgentcare$outcome <-ifelse((urgentcare$PRIMCARE == "Yes"), "Urgent Care Primary", "Urgent Care")
+traditional$outcome <-ifelse((traditional$PRIMCARE == "Yes"), "TP", "T")
+urgentcare$outcome <-ifelse((urgentcare$PRIMCARE == "Yes"), "UCP", "UC")
 
 logistic <- rbind(traditional, urgentcare)
 
@@ -189,7 +190,7 @@ log3.mm$outcome <- logit.3$outcome
 
 
 
-```{r make_them, echo=FALSE, warning=FALSE, message=FALSE}
+```{r make_them, echo=FALSE, cache= TRUE, warning=FALSE, message=FALSE}
 library(nnet)
 model1 <- multinom(outcome ~ ., data = log1.mm)
 model2 <- multinom(outcome ~ ., data = log2.mm)
@@ -203,25 +204,42 @@ fullmodel <- multinom(outcome ~ ., data = log.mm)
 
 
 \singlespacing
-```{r logit_tables2, warning=FALSE, message=FALSE, echo=FALSE ,results="asis"}
+```{r logit_tables2, warning=FALSE, message=FALSE, echo=FALSE ,results="asis", cache=TRUE}
 
 library(texreg)
 texreg(list(model1), 
        caption = "Multinomial Logistic model: location effects", 
+       caption.above = TRUE,
        fontsize = "footnotesize",
-       bold = 0.0001,
+       bold = 0.001,
        custom.model.names = c("M1", "M2", "M3"))
 
 texreg(list(model2), 
        caption = "Multinomial Logistic model: demographic effects", 
+       caption.above = TRUE,
        fontsize = "footnotesize",
-       bold = 0.0001,
+       bold = 0.001,
        custom.model.names = c("M1", "M2", "M3"))
 
 texreg(list(model3), 
        caption = "Multinomial Logistic model: visit characteristics", 
-       fontsize = "footnotesize",
-       bold = 0.0001,
+       caption.above = TRUE,
+       fontsize = "scriptsize",
+       no.margin = TRUE,
+       booktabs = TRUE,
+       use.packages = FALSE,
+       bold = 0.001,
+       custom.model.names = c("M1", "M2", "M3"))
+
+texreg(list(model1, model2, model3, fullmodel), 
+       caption = "Multinomial Logistic model: visit characteristics", 
+       caption.above = TRUE,
+       fontsize = "tiny",
+       no.margin = TRUE,
+       booktabs = TRUE,
+       sideways = TRUE,
+       use.packages = FALSE,
+       bold = 0.001,
        custom.model.names = c("M1", "M2", "M3"))
 
 ```
@@ -323,11 +341,13 @@ library(texreg)
 texreg(list(logit.beh, logit.dem, logit.full), 
        caption = "Logistic model of the decision to go to urgent care.", 
        fontsize = "footnotesize", 
+       bold = 0.001,
        custom.coef.names = c("Intercept", "Injury Related Visit", "Weekend Visit", "Medicaid" , "Medicare" , "SelfPay", "Established Patient", "Number Past Visits", "Visit Reason: Preventative", "Visit Reason: Routine/Chronic", "Age: Working", "Age: Retired", "Male", "Race: White", "High ZIP Income", "Rural"))
 
 texreg(list(logit2.beh, logit2.dem, logit2.full), 
        caption = "Logistic model of the decision to use urgent care as primary care", 
        fontsize = "small",
+       bold = 0.001,
        custom.coef.names = c("Intercept", "Injury Related Visit", "Weekend Visit", "Medicaid" , "Medicare" , "SelfPay" , "Established Patient", "Number Past Visits", "Visit Reason: Preventative", "Visit Reason: Routine/Chronic", "Age: Working", "Age: Retired", "Male", "Race: White", "High ZIP Income", "Rural"))
 
 

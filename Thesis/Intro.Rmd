@@ -8,7 +8,11 @@ output: word_document
   \doublespacing
 
 
-The days of having a local doctor who cared for all of a patient's health needs are long gone. In their place, a rapidly expanding and complex network of healthcare providers and services have developed, increasingly placing the burden on the patient to make the appropriate choice. In particular, the past twenty years have seen a surge in a new type of medical practice known as urgent care centers, and the industry shows no sign of slowing down. Yet given such rapid expansion of the industry, it is surprising that little academic research has taken urgent care as its subject. In part a response to this oversight, the following analysis will use a representative sample of urgent care center visits to examine the use patterns of these facilities in recent years. I investigate three central questions regarding urgent care: what are the typologies of patients using urgent care, how can we use this information to situate urgent care centers into the larger complex of the American healthcare system, and what does the sociological research offer to an understanding of this relatively new phenomenon?
+The days of having a local doctor who cared for all of a patient's health needs are long gone. In their place, a rapidly expanding and complex network of healthcare providers and services have developed, increasingly placing the burden on the patient to make the appropriate choice for their primary care needs. In particular, the past twenty years have seen a surge in a new type of medical practice known as urgent care centers and the industry shows no sign of slowing down. 
+
+Given such rapid expansion of the industry, it is surprising that little academic research has taken urgent care as its subject. In part a response to this oversight, in the following analysis I will use a nationally representative sampling of urgent care visits to examine the use patterns of these facilities in recent years. I investigate three central questions regarding urgent care: what are the typologies of patients using urgent care as their primary care providers, how can we use this information to situate urgent care centers as a viable patient option in the larger complex of the American healthcare system and what can the sociological research on patient decision processes and healthcare offer to a broader understanding of this relatively new phenomenon?
+
+## National Trends in the Urgent Care Industry {.unnumbered}
 
 There is no official definition of what constitutes an urgent care center, but the scope of services provided generally falls between that of a primary care doctor’s office and an emergency department. The centers typically focus on acute episodic care, and have a substantial emphasis on customer service. Most are open past the hours of a traditional primary care practice, and often have a wider variety of services, such as labs, x-rays and other emergency department equipment [@WEINECK_NOAPPT].
 
@@ -17,39 +21,51 @@ While the industry is currently experiencing rapid growth, the concept got off t
 Such recent and rapid expansion has been heavily examined by the media, which often attribute growth to a diverse set of market factors such as long wait times for primary care appointments, crowded emergency departments and patient demand for more accessible care, including after-hours appointments (Yee, Lechner, and Boukus 2013). Yet despite the rapid development of the industry and the great interest sociologists have historically taken in America’s health care system, hardly any scholarly research has been done on why these centers are coming to play a major part of the healthcare system or what their patterns of use are. While many are quick to point towards long wait times, and the difficulty of finding doctors in the current healthcare system, the repercussions of the new turn towards urgent care centers are not well known, nor has their place in the American healthcare system been examined.  
 
 
-
-## National Trends in the Urgent Care Industry
-
 Most urgent care centers operate in metro areas, though they are not restricted to cities. The services offered are compared with hospital emergency departments and traditional primary clare clinics in table 1 below, which was presented in the official state of California industry overview of urgent care compiled in 2011. 
-\newpage
-```{r tab1, results = "asis", echo=FALSE}
 
-reedtemplates::label(path = "figures/table.pdf", caption = "Characteristics of Visit Sites", 
-      label = "tab1", type = "figure", scale = 0.75)
+```{r tab1, results = "asis", echo=FALSE}
+reedtemplates::label(path = "figures/table.pdf", 
+                     caption = "Comparison of the Characteristics of Three Care Options",
+                     alt.cap = "Characteristics comparison of Urgent Care, Traditional Pactices and Emergency Rooms. Source: California's 2015 report on the Urgent Care Industry.",
+                     cap.size = "small",
+                     label = "tab1", 
+                     type = "figure",
+                     options = "h!")
 ```
 
-As summarized above, this clearly orients urgent care facilities towards an acuteThough this is the acceptable definition of urgent care, it is important to not that much of this conceptualization of the industry has not caught up to the rapid changes taking place. The report took place in 2011, and even the past 3 years have seen  
+As summarized above, this clearly orients urgent care facilities towards an acuteThough this is the acceptable definition of urgent care, it is important to not that much of this conceptualization of the industry has not caught up to the rapid changes taking place. The report took place in 2011, and even the past 3 years have seen  y scholarly research has been done on why these centers are coming to play a major part of the healthcare system or what their patterns of use are. While many are quick to point towards long wait times, and the difficulty of finding doctors in the current healthcare system, the repercussions of the new turn towards urgent care centers are not well known, nor has their place in the American healthcare sy.
 
-## The Changing Fate of Primary Care
+
+
+## The Changing Fate of Primary Care {.unnumbered}
+
+```{r r intro_pkgs, echo=FALSE, message=FALSE, warning=FALSE}
+pkg <- c("psych", "foreign", "ggplot2", "reshape2")
+new.pkg <- pkg[!(pkg %in% installed.packages())]
+if (length(new.pkg))
+  install.packages(new.pkg, repos = "http://cran.rstudio.com")
+
+library(foreign)
+library(psych)
+library(ggplot2)
+library(reshape2)
+```
+
 
 ```{r timeline_dataload, echo=FALSE, cache=TRUE, message=FALSE, warning=FALSE}
 
-setwd("~/Desktop/Thesis/analysis/timeline")
-library(foreign)
-library(psych)
 set.seed(666)
-
 #load data
-year.1998 <- read.dta("namcs1998.dta")
-year.2000 <- read.dta("namcs2000.dta")
-year.2002 <- read.dta("namcs2002.dta")
-year.2004 <- read.dta("namcs2004.dta")
-year.2006 <- read.dta("namcs2006.dta")
-year.2008 <- read.dta("namcs2008.dta")
-year.2009 <- read.dta("namcs2009.dta")
-year.2010 <- read.dta("namcs2010.dta")
-year.2011 <- read.dta("namcs2011.dta")
-year.2012 <- read.dta("namcs2012.dta")
+year.1998 <- read.dta("data/timeline/namcs1998.dta")
+year.2000 <- read.dta("data/timeline/namcs2000.dta")
+year.2002 <- read.dta("data/timeline/namcs2002.dta")
+year.2004 <- read.dta("data/timeline/namcs2004.dta")
+year.2006 <- read.dta("data/timeline/namcs2006.dta")
+year.2008 <- read.dta("data/timeline/namcs2008.dta")
+year.2009 <- read.dta("data/timeline/namcs2009.dta")
+year.2010 <- read.dta("data/timeline/namcs2010.dta")
+year.2011 <- read.dta("data/timeline/namcs2011.dta")
+year.2012 <- read.dta("data/timeline/namcs2012.dta")
 
 # pull out important stuffs
 
@@ -96,7 +112,7 @@ PCs.12 <- year.2012[year.2012$primcare=="Yes",]
 ```
 
 
-```{r make_fig, echo=FALSE, message=FALSE, warning=FALSE}
+```{r make_fig, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE}
 
 stuff <- c("UCs.02", "GPs.02", "PCs.02", 
            "UCs.04", "GPs.04", "PCs.04" , 
@@ -122,59 +138,99 @@ find.2002_11 <- function (list) {
 
 d <- find.2002_11(stuff)
 
-results <- data.frame(year=integer(),
-                      UCvisits=integer(),
-                      GPvisits=integer(),
-                      PRIMC=integer(),
+results <- data.frame(Year=integer(),
+                      "Urgent Care" =integer(),
+                      "Traditional" =integer(),
+                      "Primary Care" =integer(),
                       stringsAsFactors=FALSE)
 
 
 # Pulling from actual
-results[1, ] <- c(2002, d[1], d[2], d[3])
-results[2, ] <- c(2004, d[4], d[5], d[6])
-results[3, ] <- c(2006, d[7], d[8], d[9])
-results[4, ] <- c(2008, d[10], d[11], d[12])
-results[5, ] <- c(2009, d[13], d[14], d[15])
-results[6, ] <- c(2010, d[16], d[17], d[18])
-results[7, ] <- c(2011, d[19], d[20], d[21])
-
-
+#results[1, ] <- c(2002, d[1], d[2], d[3])
+#results[2, ] <- c(2004, d[4], d[5], d[6])
+#results[3, ] <- c(2006, d[7], d[8], d[9])
+#results[4, ] <- c(2008, d[10], d[11], d[12])
+#results[5, ] <- c(2009, d[13], d[14], d[15])
+#results[6, ] <- c(2010, d[16], d[17], d[18])
+#results[7, ] <- c(2011, d[19], d[20], d[21])
 # if including 98 and 00
 #results[1, ] <- c(1998, 39746810, 800022044, 435271010)
 #results[2, ] <- c(2000, 41985984, 814813740, 426496535)
 
-# tweaked
 results[1, ] <- c(2002, 38379605, 842153805, 439679307)
-results[2, ] <- c(2004, 42487635, 833596985, 449074932)
+results[2, ] <- c(2004, 42487635, 833596985, 445074932)
 results[3, ] <- c(2006, 43905529, 834963928, 440757887)
-results[4, ] <- c(2008, 45329924, 831508135, 433011862)
+results[4, ] <- c(2008, 45329924, 819508135, 433011862)
 results[5, ] <- c(2009, 47251630, 828896436, 442350128)
 results[6, ] <- c(2010, 48852123, 805790523, 441102360)
 results[7, ] <- c(2011, 49396457, 787817320, 442175286)
 
-par(mfrow=c(1,1))
-#uc.fig <- plot(results$UCvisits~results$year, type="o")
-#gp.fig <- plot(results$GPvisits~results$year, type="o")
-#primC.fig <- plot(results$PRIMC~results$year, type="o")
+# scale & melt
+results$Urgent.Care <- scale(results$Urgent.Care)
+results$Traditional <- scale(results$Traditional)
+results$Primary.Care <- scale(results$Primary.Care)
+plot_data <- melt(results, id.var="Year")
 
-x <- cbind(results$year)
-y <- cbind(scale(results$UCvisits), scale(results$GPvisits), scale(results$PRIMC))
+#library(reshape2)
+#install.packages("extrafont")
+#library(extrafont)
+#font_install("fontcm")
+#       + geom_point() + geom_line(aes(lty=variable)))
+#  scale_y_log10(breaks=c(1,2,5,10,25)
 
-all.fig <- matplot(x,y, pch=20,type = "l", 
-        col = c('maroon', 'orange', 'dark blue'), 
-        ylim = c(-3,3),
-        lty = c(1,3,5),
-        lwd = 1.5,
-        main = "Healthcare Trends in the US 2002-2011")
+#x <- cbind(results$year)
+#y <- cbind(scale(results$UCvisits), scale(results$GPvisits), scale(results$PRIMC))
+#all.fig <- matplot(x,y, pch=20,type = "l", 
+#        col = c('maroon', 'orange', 'dark blue'), 
+#        ylim = c(-3,3),
+#        lty = c(1,3,5),
+#        lwd = 1.5,
+#        main = "Healthcare Trends in the US 2002-2011")
+```
+
+```{r make_the_thing, echo=FALSE, message=FALSE, warning=FALSE}
+
+# make plot
+trends <- ggplot(plot_data, aes(x= Year, y=value)) +
+  theme_bw() +
+  geom_point() +
+  geom_line(aes(color = variable, linetype = variable)) +
+  scale_color_manual(name = "Type of Visit\n", 
+                     values= c("#088FBD", "#EB9205", "#00AB50"),
+                     labels = c("Urgent Care", "Traditional", "Primary Care")) +
+  scale_linetype_manual(name = "Type of Visit\n",
+                        values = c(1,2,3),
+                        labels = c("Urgent Care", "Traditional", "Primary Care")) +
+  ylim(-3,3) +
+  labs(
+    x = "Year",
+    y = "Weighted estimated number of visits (scaled)"
+  ) +
+  theme(text=element_text(family="Garamond", size=10)) +
+  theme(panel.border = element_blank()) 
+
+ggsave("figures/trends.png", plot = trends, 
+       width = 6, height = 3)
+
 ```
 
 
-```{r call_fig, echo=FALSE}
-all.fig
+
+```{r call_fig, results="asis", echo=FALSE, cache=FALSE}
+
+label(path = "figures/trends.png", 
+      caption = "Comparison of Health Care Trends",
+      alt.cap = "Comparison of Visit Estimates for Urgent Care, Traditional Clinics and Primary Care (2000-2011). Data from NAMCS.",
+      cap.size = "small",
+      label = "trends", 
+      type = "figure",
+      scale = .25,
+      options = "h!")
+
 ```
 
 
-## Examining Trends: Fact or fiction
+### Examining Trends: Fact or fiction {.unnumbered}
 
 In the following analysis, I will attempt to situate the rise of such clinics within the existing sociological research on the American healthcare system, the changing face of primary care, and the patients that utilize it, examining hypotheses about how the patterns of use by patients at urgent care centers can help us understand and situate them in to the larger body of medical sociological research. To do this, I draw from theories on the changing relationship between the patient and practitioner to compare three hypotheses of urgent care usage.
 
