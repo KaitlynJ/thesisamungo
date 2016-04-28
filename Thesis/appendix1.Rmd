@@ -20,7 +20,9 @@ library(reedtemplates)
 
 
 # Appendix B {.unnumbered}
-\doublespacing
+  \setcounter{chapter}{8}
+	\setcounter{section}{0}
+  \doublespacing
 
 #### K-modes / Why cluster? {.unnumbered}
 
@@ -48,16 +50,11 @@ reedtemplates::label(path = "figures/banner.png", caption = "Sample Banner Agglo
 The white lines extending to the right represent clusters which differ from each other. After running the bottom up clustering method for a number of trials, the agglomerative coefficient was always between .73 and .8, indicating that as the height for which the clusters should stop combining. Again, Figure 1 demonstrates that at that height, around 8 clusters are have clearly seperated. 
 
 
-#### OR {.unnumbered}
+#### Hierarchal Clustering with Categorical Variables {.unnumbered}
 
 Because urgent care centers have been significantly overlooked by sociologists studying medical practices, there was little theoretical guidance in selecting a likely number of subgroups for the cluster analysis, often the first step in such examinations. Similarly, because I am interested in understanding how an unsupervised analysis of patient data will reveal trends, rather than imposing them onto the data, it was particularly important to the investigation that the number of clusters be both mathematically achievable and substantively small enough for analysis while still remaining unsupervised. The general rule of thumb for cluster analysis suggested by Mardia, Kent and Bibbby (1997) stipulates that the number of clusters k is approximately the square root of n / 2. However, in the case of our comparably small sample of urgent care visitors recorded in the NAMCS data set, such a rule would indicate at least 30 clusters—clearly not a workable number to make sense of patterns in urgent care patients and their use.
 
 Instead, to estimate a k which would produce heterogeneous groups while still remaining theoretically enlightening, I began with non-guided hierarchal clustering of samples of 200 visits to urgent care centers randomly chosen from the data. Using the Gower methodology of finding the distance between dissimilar variable types, I calculated the distance matrix between the various observations for each sample. These distance measures were then used as the input to a hierarchal clustering algorithm which attempted to minimize the distance between observations within the same groups while maximizing the distance between them.  Figure 1 shows the ‘banner’ for the initial agglomerative cluster methods for the behavioral variables, and can be understood as a graphical representation of the points at which a cluster breaks away from the pack of observations. The white lines extending to the right represent clusters at their separation point, where larger red areas between white lines indicate stronger outside group variance.
 
-
-It should be noted that though the analyses were performed in two waves, the clusters should be examined with each other in mind, and I have included some of the key demographic variables in with the behavioral variables to that end. [OH YEAH, THIS IS GOING IN THE APPENDIX]
-
-*Figure 2. Color coded clusters.*
-
-Figure 1 above shows the typical spread of the behavioral parameters’ clusters, and is useful for keeping the proportions of clusters in mind. 
+It should be noted that though the analyses were performed in two waves, the clusters should be examined with each other in mind, and I have included some of the key demographic variables in with the behavioral variables to that end. Figure above shows the typical spread of the behavioral parameters’ clusters, and is useful for keeping the proportions of clusters in mind. 
 

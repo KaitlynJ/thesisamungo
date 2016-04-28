@@ -2,13 +2,16 @@
 output: word_document
 ---
 
-# Introduction {.unnumbered}
+# Introduction 
   \setcounter{chapter}{1}
 	\setcounter{section}{0}
+	\fancyhead[LE,RO]{\thepage} 
+  \fancyhead[RE]{\slshape  } 
+  \fancyhead[LO]{\slshape  }
   \doublespacing
 
 
-The days of having a local doctor who cared for all of a patient's health needs are long gone. In their place, a rapidly expanding and complex network of healthcare providers and services have developed, increasingly placing the burden on the patient to make the appropriate choice for their primary care needs. In particular, the past twenty years have seen a surge in a new type of medical practice known as urgent care centers and the industry shows no sign of slowing down. 
+The days of having a local doctor who cared for all of a patient's health needs are long gone. In their place, a rapidly expanding and complex network of health care providers and services have developed, increasingly placing the burden on the patient to make the appropriate choice for their primary care needs. In particular, the past twenty years have seen a surge in a new type of medical practice known as urgent care centers and the industry shows no sign of slowing down. These centers have undoubtedly gained the attention of both the popular press and patients and most of us know someone with an urgent care anecdote.
 
 Given such rapid expansion of the industry, it is surprising that little academic research has taken urgent care as its subject. In part a response to this oversight, in the following analysis I will use a nationally representative sampling of urgent care visits to examine the use patterns of these facilities in recent years. I investigate three central questions regarding urgent care: what are the typologies of patients using urgent care as their primary care providers, how can we use this information to situate urgent care centers as a viable patient option in the larger complex of the American healthcare system and what can the sociological research on patient decision processes and healthcare offer to a broader understanding of this relatively new phenomenon?
 
@@ -111,7 +114,6 @@ PCs.12 <- year.2012[year.2012$primcare=="Yes",]
 
 ```
 
-
 ```{r make_fig, echo=FALSE, message=FALSE, warning=FALSE, cache=TRUE}
 
 stuff <- c("UCs.02", "GPs.02", "PCs.02", 
@@ -213,8 +215,6 @@ ggsave("figures/trends.png", plot = trends,
        width = 6, height = 3)
 
 ```
-
-
 
 ```{r call_fig, results="asis", echo=FALSE, cache=FALSE}
 

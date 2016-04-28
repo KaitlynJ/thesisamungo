@@ -1,7 +1,7 @@
 ---
 output: word_document
 ---
-# Model Building: theories of urgent care use {.unnumbered}
+# Model Building: theories of urgent care use 
   \setcounter{chapter}{3}
 	\setcounter{section}{0}
   \doublespacing

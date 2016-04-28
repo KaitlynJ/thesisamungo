@@ -8,9 +8,10 @@ header-includes:
 output: pdf_document
 ---
 # Appendix A {.unnumbered}
-
+  \setcounter{chapter}{7}
+	\setcounter{section}{0}
 \newpage
-\doublespacing
+  \doublespacing
 
 ```{r load_pkgs, echo = FALSE, message = FALSE, warning = FALSE}
 # List of packages required for this analysis

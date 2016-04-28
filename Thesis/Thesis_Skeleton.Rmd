@@ -4,15 +4,13 @@ date: 'May 2016'
 division: 'History and Social Sciences'
 advisor: 'Jessica Epstein'
 department: 'Sociology'
-title: 'Consumption and Cooptation of Care: a statistical analysis of visits to urgent care'
+title: 'New choices in primary care: A statistical analysis of urgent care patients'
 abstract: >
-   Urgent care centers are a relatively new and emergent phenomemnon in the American health care system, yet little to no academic reasearch has been performed on how they are situated in the larger sociological understanding of the healthcare system. This thesis attempts to further such an understanding by examining the typologies of patients which are the users of urgent care, and further, who of those uses such centers as their primary care physicians.
-# If you'd rather include the preliminary content in files instead of inline
-# like below, use a command like that for the abstract above.  Note that a tab is # needed on the line after the >.
+   \doublespacing Urgent care centers are a relatively new and emergent phenomemnon in the American health care system, yet little to no academic reasearch has been performed on how they are situated in the larger sociological understanding of the healthcare system. This thesis attempts to further such an understanding by examining the typologies of patients which are the users of urgent care, and further, who of those uses such centers as their primary care physicians.
 acknowledgements: >
-  I want to thank a few people, mostly my mom. Will fill in when this is dOnE.
+  \doublespacing I want to thank all of my friends and family who have cheered me on from the sidelines for the past four years. I couldn't have made it through my sophomore year, no less this thesis without you guys. Thanks also to the professors I've had at Reed. I've come out of this place a different person than when I came in, and I don't think any acknowledgment would be enough thanks.
 dedication: >
-  To my family, both blood and those I found at Reed.
+  To my family, both those I came with and those I found at Reed.
 #preface: >
 #  This is an example of a thesis setup to use the reed thesis document class.
 bibliography: bib/THESIS.bib
@@ -56,9 +54,6 @@ This is the way to split your thesis into chapters and then include each of the 
 -->
 
 
-
-
-
 ```{r chapter0, child = 'Intro.Rmd'}
 ```
 
@@ -82,7 +77,6 @@ This is the way to split your thesis into chapters and then include each of the 
 
 ```{r chapter7, child = 'appendix1.Rmd'}
 ```
-
 
 
 <!--

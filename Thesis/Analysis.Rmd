@@ -5,8 +5,10 @@ header-includes:
 - \usepackage{longtable,booktabs,setspace}
 output: pdf_document
 ---
-# Analysis {.unnumbered}
-
+# Analysis
+  \setcounter{chapter}{5}
+	\setcounter{section}{0}
+	\doublespacing
 
 Before examining the question of why an individual would use urgent care as their primary care physician, an exploratory cluster analysis of urgent care visits between 2008 and 2012 was performed. The goal here was not predictive; rather, for the purposes of this analysis, clustering was used as a form of reproduction--observed trends were used to generate research hypotheses which account for the observed groupings. Following this, two logistic regressions were performed on the characteristics which were identified through the clustering, with the goal of obtaining a model which addresses whether or not an individual would a) choose to go to urgent care and b) use urgent care as their primary care physician. 
 
@@ -16,9 +18,6 @@ Before examining the question of why an individual would use urgent care as thei
 
 In order to better examine the hypotheses about individuals choosing to go to urgent care, I first identified which characteristics or behaviors most distinguished sub-groups of urgent care patients in the cluster analysis. Testing the cluster analysis on critical demographic characteristics and visit behaviors that were discussed in the theory previously revealed clusters which qualitatively fit all three of the theoretical case profiles. The cluster analysis makes immediately clear that there are distinct homogeneous groups within the selection of patients who utilize urgent care. Figure 1 on the following page illustrates the observed sub-groups.
 
-\newpage
-
-
 ```{r cluster_table, results = "asis", echo=FALSE}
 
 reedtemplates::label(path = "figures/clusters.png", 
@@ -26,12 +25,10 @@ reedtemplates::label(path = "figures/clusters.png",
                      cap.size = "small",
                      label = "clus1", 
                      type = "figure", 
-                     scale = .45,
-                     angle = 90,
+                     scale = .35,
                      options = "h!")
 ```
 
-\newpage
 
 Beginning with demographic trends, the characteristics which were *not* identified as distinguishable in the sample by the clustering (and were thus not included in Table 1.) offer just as much, if not more insight as those that did result in fractioning. Race in particular was immediately noticeable for its lack of variety: of the initial clusters, all were predominantly or exclusively white, an unsurprising trend when one looks at the summary statistics (of the 3863 urgent care visits included in the data, 87% of those were white individuals). This is substantively interesting for several reasons, mainly in that race is a known correlate with many other socioeconomic indicators, and urgent care appears to be largely utilized by white patients.
 
@@ -80,14 +77,18 @@ traditional <- yr.2010[yr.2010$RETYPOFF == "Private solo or group practice",]
 
 I test the hypotheses presented in the previous chapter using a series of logistic and multinomial logistic regressions. I find that while the data shows evidence for the first two theories, there is little evidence to support the theory that urgent care is being used solely as is often stated in the press. There appears to be clear significant indicators for individuals choosing to use urgent care as their primary care facility which follow the first hypothesis presented in the previous chapter. The data shows that for specific demographics, urgent care is a viable option for their primary care needs, adding evidence to the shifting tides of American primary care.  
 
-## Multinomial Logistic Regression Analysis {.unnumbered}
+### Multinomial Logistic Regression Analysis {.unnumbered}
 
 The multinomial logistic regression tests the effect of our independant variables on four outcomes: 1) a visit to a traditional clinic whom the patient does *not* identify as their primary care provider, 2) a visit to a traditional clinic whom the patient identifies as their primary care provider, 3) a visit to urgent care, not identified as the patient's primary care facility, and finally 4) a visit to urgent care where the patient identified the facility as their primary care provider. 
 
-In order to understand the results of a multinomial logistic regression, it is important to keep in mind the reference group. Here, the group of patients who's visits occured at traditional practices, but who did not identify that practice as their primary care provider was used as the reference group. Thus, the three models show the effects for each of the idenpendant variables for the three other decisions in comparison to that initial reference point. The results of the regression are summarized in Table 5.4.
+In order to understand the results of a multinomial logistic regression, it is important to keep in mind the reference group. Here, the group of patients who's visits occured at traditional practices, but who did not identify that practice as their primary care provider was used as the reference group. Thus, the three models show the effects for each of the idenpendant variables for the three other decisions in comparison to that initial reference point. The results of the regression are summarized in Tables 4.4-4.6.
+
+The demographic characteristics of urgent care seekers were also clustered with behavioral, visit-level parameters in a second wave of cluster analysis, in order to to examine *how* urgent care is utilized by different groups. By far the largest and most homogeneous clusters isolated consist of white, privately insured patients in medium to large urban environments. These trends match those found in the demographic clusters, and we can learn even more about this group by examining the cluster segmentation that occurred across their behavioral parameters in the second wave. Of the two clusters which consist almost entirely of white, 25-44-year-old men and women, both were almost entirely classed as “established patients”, with at least one past visit. Also theoretically interesting, neither cluster had observations whose reason for visiting was “injury related” and neither had recorded visits on weekends. Clusters 5 and 6 in particular (Rows 5 and 6, Table 1), consisted of 25-64-year-old white patients with private insurance, an established history of visiting urgent care, and a reason for their current visit coded as a “chronic, routine problem”. 
+
+\clearpage
 
 
-```{r multinomial_logit, cache=TRUE, echo=FALSE, warning=FALSE, message=FALSE}
+```{r multinomial_logit, cache=FALSE, echo=FALSE, warning=FALSE, message=FALSE}
 
 # select which variables will be included in model
 variables <- c("RETYPOFF", "URGCARE","PRIMCARE","PCTPOVR", "HINCOMER", 
@@ -111,8 +112,8 @@ levels(logistic$PRIMCARE) <- list("Yes" = c("Blank", "Unknown", "Yes"), "No" = "
 traditional <- data.frame(logistic[logistic$RETYPOFF == "Private solo or group practice",])
 urgentcare <- data.frame(logistic[logistic$RETYPOFF == "Freestanding clinic/urgicenter",])
 
-traditional$outcome <-ifelse((traditional$PRIMCARE == "Yes"), "TP", "T")
-urgentcare$outcome <-ifelse((urgentcare$PRIMCARE == "Yes"), "UCP", "UC")
+traditional$outcome <-ifelse((traditional$PRIMCARE == "Yes"), "Trad Primary", "Traditional")
+urgentcare$outcome <-ifelse((urgentcare$PRIMCARE == "Yes"), "UC Primary", "Urgent Care")
 
 logistic <- rbind(traditional, urgentcare)
 
@@ -190,7 +191,7 @@ log3.mm$outcome <- logit.3$outcome
 
 
 
-```{r make_them, echo=FALSE, cache= TRUE, warning=FALSE, message=FALSE}
+```{r make_them, include = FALSE, echo=FALSE, cache= TRUE, warning=FALSE, message=FALSE, }
 library(nnet)
 model1 <- multinom(outcome ~ ., data = log1.mm)
 model2 <- multinom(outcome ~ ., data = log2.mm)
@@ -224,7 +225,7 @@ texreg(list(model2),
 texreg(list(model3), 
        caption = "Multinomial Logistic model: visit characteristics", 
        caption.above = TRUE,
-       fontsize = "scriptsize",
+       fontsize = "footnotesize",
        no.margin = TRUE,
        booktabs = TRUE,
        use.packages = FALSE,
@@ -232,23 +233,31 @@ texreg(list(model3),
        custom.model.names = c("M1", "M2", "M3"))
 
 texreg(list(model1, model2, model3, fullmodel), 
-       caption = "Multinomial Logistic model: visit characteristics", 
-       caption.above = TRUE,
+       caption = "Multinomial Logistic model: compared characteristics", 
        fontsize = "tiny",
        no.margin = TRUE,
        booktabs = TRUE,
        sideways = TRUE,
        use.packages = FALSE,
-       bold = 0.001,
-       custom.model.names = c("M1", "M2", "M3"))
+       bold = 0.01,
+       model.names = c("M1", "M2", "M3", "Full"),
+       custom.coef.names = c("Intercept", "High ZIP Poverty", "High ZIP Income", "High ZIP Educ",
+                             "Medium Metro", "Large Metro", "Age", "Sex (1 = Female)", "Race, Black", 
+                             "Race, Other", "Payment, Medicaid", "Payment, Medicare", "Payment, Work Comp",
+                             "Payment, Other", "Injury", "Visit, Routine", "Visit, Chronic", "Est. Patient",
+                             "No. Past Visits", "Weekend"))
 
 ```
 
 \doublespacing
 
+In fact, only one cluster of visits in the final model were coded as new patients, though it is a sizable fraction of the whole.Ecxamining these two clusters reveals what I referred to earlier as the traditional patient characteristics ascribed to urgent care visits. These two cluster show what many would expect, both consisted of white, privately insured, new patients, and both clusters contain the only observations which occurred on a weekend or were coded as injury related.  These characteristics are in line with what many hold as the purpose of urgent care centers, but they remain a small fraction of the recorded number of visits. Completely contradicting this idea, the other seven of the nine clusters identified have high levels of established patients with chronic or routine problems, with ages ranging for 15 to over 75.
+	
+As for the Medicare question, if the clusters which consist of primarily elderly patients are examined, we can begin to understand a little better the relatively large percentage of what many would consider non-emergent care utilizers and their relationship to urgent care. Cluster 5 consists entirely of white patients over 74, whose visits were recorded as routine and who have a minimum of 3 past visits at the same center. Cluster three on the other hand has a slightly younger age range, and the majority of patients indicated that the urgent care center was *not* their primary care. Also distinguishing, cluster three is the only cluster with a majority of rural observations. When compared, it appears that there are two typologies of elderly urgent care seekers, the first of which may be using urgent in much the same ways as the younger and larger clusters of privately insured urbanites, while the second seems to rely on urgent care much more as an actually resource for urgent problems. 
 
+In the end, the observed typologies appear to correspond relatively well with all three hypotheses presented, with the exception of a relatively large number of very young urgent care goers who did not list it as their primary care physician. The explanation for this is probably as simple as them having a pediatrician, and using urgent care as a quick supplement, which somewhat supports hypothesis 3. What the cluster analysis really does is inform the analysis about which variables were identified as important to urgent care seekers. Using these, we can now turn to a logistic regression in order to understand better how each parameter influences decisions regarding urgent care
 
-## Logistic Regression Analysis {.unnumbered}
+### Logistic Regression Analysis {.unnumbered}
 
 The initial exploratory analysis shows clear typologies of urgent care seekers which align with the hypotheses presented in the previous chapter, and the next phase of the analysis uses those trends and tests for significance using logistic regression analysis. Tables 5.1 and 5.2 show the results of the two logistic regression models. 
 
@@ -340,7 +349,7 @@ logit2.full <- glm(PRIMCAREYes ~ INJURYYes + WEEKENDYES + PAYTYPERMedicaid + PAY
 library(texreg)
 texreg(list(logit.beh, logit.dem, logit.full), 
        caption = "Logistic model of the decision to go to urgent care.", 
-       fontsize = "footnotesize", 
+       fontsize = "small", 
        bold = 0.001,
        custom.coef.names = c("Intercept", "Injury Related Visit", "Weekend Visit", "Medicaid" , "Medicare" , "SelfPay", "Established Patient", "Number Past Visits", "Visit Reason: Preventative", "Visit Reason: Routine/Chronic", "Age: Working", "Age: Retired", "Male", "Race: White", "High ZIP Income", "Rural"))
 
@@ -390,9 +399,18 @@ There are some surprising trends in the secondary logistic model which deserve f
 
 ## Revisiting the hypotheses {.unnumbered}
 \doublespacing
+
 Returning to the theoretical explanations for urgent care, it appears that while no one theory explains the totality of urgent care center usage, I observed much more evidence for hypotheses 1 and 3 than for 2---unsuprising given that the theory behind hypothesis two is the one most often cited in popular press stories about urgent care. There seems to be plenty of observable evidence to support hypothesis 3: there were a number of clusters which not only corresponded to the predicted trends for that hypothesis, but which directly stated that they use urgent care as their primary care provider.
 
+In fact, only 32 visits in the example model were coded as new patients (Figure 2, purple and orange), and examining these two clusters reveals what I referred to earlier as the traditional patient characteristics ascribed to urgent care visits. These two cluster show what many would expect, both consisted of white, privately insured, new patients, and both clusters contain the only observations which occurred on a weekend or were coded as injury related.  These characteristics are in line with what many hold as the purpose of urgent care centers, but they remain a small fraction of the recorded number of visits. Completely contradicting this idea, the other seven of the nine clusters identified have high levels of established patients with chronic or routine problems, with ages ranging for 15 to over 75.
+	
+As for the Medicare question, if the clusters which consist of primarily elderly patients are examined—rows 5 and 9 in Table 2 (Figure 2, magenta and blue)—we can begin to understand a little better the relatively large percentage of what many would consider non-emergent care utilizers and their relationship to urgent care. Cluster 5 consists entirely of white patients between 65 and 74, whose visits were recorded as routine and who have a minimum of 3 past visits at the same center. Cluster nine on the other hand has a slightly older age range of above 75, and visits which were all considered new problems. Also distinguishing, cluster nine is the only cluster with a majority of rural observations. When compared, it appears that there are two typologies of elderly urgent care seekers, the first of which may be using urgent in much the same ways as the younger and larger clusters of privately insured urbanites, while the second seems to rely on urgent care much more as an actually resource for urgent problems. 
 
+The question remains how the observed trends align with the literature that assess the ways Americans are accessing healthcare in an increasingly changing market. From the exploratory analysis outlined above, it is possible to use the findings to test the hypotheses outlined in Chapter 1. In doing so, we we compare our set of urgent care visitors to the larger set of observations in the NAMCS that chose traditional means of accessing primary care, testing the parameters which appeared to cluster together within urgent care seekers as possible predictors for urgent care as an outcome (actually, is this something we want to do? I’ve somewhat done this already way back when and most are significant, esp. white, urban, etc. but it might be interesting to take something like chronic routine problem and see what coefficient I get?). 
+
+In order to understand the results of a multinomial logistic regression, it is important to keep in mind the reference group. Here, the group of patients who's visits occured at traditional practices, but who did not identify that practice as their primary care provider was used as the reference group. Thus, the three models show the effects for each of the idenpendant variables for the three other decisions in comparison to that initial reference point. The results of the regression are summarized in Tables 4.4-4.6.
+
+The demographic characteristics of urgent care seekers were also clustered with behavioral, visit-level parameters in a second wave of cluster analysis, in order to to examine *how* urgent care is utilized by different groups. By far the largest and most homogeneous clusters isolated consist of white, privately insured patients in medium to large urban environments. These trends match those found in the demographic clusters, and we can learn even more about this group by examining the cluster segmentation that occurred across their behavioral parameters in the second wave. Of the two clusters which consist almost entirely of white, 25-44-year-old men and women, both were almost entirely classed as “established patients”, with at least one past visit. Also theoretically interesting, neither cluster had observations whose reason for visiting was “injury related” and neither had recorded visits on weekends. Clusters 5 and 6 in particular (Rows 5 and 6, Table 1), consisted of 25-64-year-old white patients with private insurance, an established history of visiting urgent care, and a reason for their current visit coded as a “chronic, routine problem”. 
 
 
 

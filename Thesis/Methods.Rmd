@@ -7,7 +7,7 @@ header-includes:
 - \usepackage{setspace}
 output: pdf_document
 ---
-# Methods {.unnumbered}
+# Methods
   \setcounter{chapter}{4}
 	\setcounter{section}{0}
   \doublespacing

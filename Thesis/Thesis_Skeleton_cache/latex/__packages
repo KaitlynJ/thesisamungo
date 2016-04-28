@@ -3,9 +3,9 @@ devtools
 reedtemplates
 foreign
 psych
-dplyr
 ggplot2
+reshape2
+dplyr
 knitr
 nnet
-reshape2
 texreg
